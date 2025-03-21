@@ -1,0 +1,32 @@
+module AcmeAISDK
+  module Resources
+    class Files
+      def file_create: (
+        file: IO | StringIO,
+        ?description: String,
+        ?processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions,
+        ?request_options: AcmeAISDK::request_opts
+      ) -> AcmeAISDK::Models::FileFileCreateResponse
+
+      def file_search: (
+        String file_id,
+        query: String,
+        ?context_size: Integer,
+        ?include_metadata: bool,
+        ?max_results: Integer,
+        ?request_options: AcmeAISDK::request_opts
+      ) -> AcmeAISDK::Models::FileFileSearchResponse
+
+      def fileslist: (
+        ?limit: Integer,
+        ?offset: Integer,
+        ?sort_by: AcmeAISDK::Models::FileFileslistParams::sort_by,
+        ?sort_order: AcmeAISDK::Models::FileFileslistParams::sort_order,
+        ?status: AcmeAISDK::Models::FileFileslistParams::status,
+        ?request_options: AcmeAISDK::request_opts
+      ) -> AcmeAISDK::Models::FileFileslistResponse
+
+      def initialize: (client: AcmeAISDK::Client) -> void
+    end
+  end
+end
