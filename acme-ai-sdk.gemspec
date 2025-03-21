@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.add_dependency "connection_pool"
   s.homepage = "https://gemdocs.org/gems/acme-ai-sdk"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/acme-ai-sdk-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/ACME-AI-Co/ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s
 end
