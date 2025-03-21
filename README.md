@@ -15,7 +15,7 @@ The underlying REST API documentation can be found on [docs.acme-ai-sdk.com](htt
 To use this gem during the beta, install directly from GitHub with Bundler by adding the following to your application's `Gemfile`:
 
 ```ruby
-gem "acme-ai-sdk", git: "https://github.com/stainless-sdks/acme-ai-sdk-ruby", branch: "main"
+gem "acme-ai-sdk", git: "https://github.com/ACME-AI-Co/ruby", branch: "main"
 ```
 
 To fetch an initial copy of the gem:
