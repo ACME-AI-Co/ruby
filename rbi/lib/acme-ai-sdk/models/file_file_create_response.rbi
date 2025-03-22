@@ -55,10 +55,8 @@ module AcmeAISDK
         PENDING = T.let(:pending, AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol)
         PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol)
 
-        class << self
-          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol]) }
-          def values
-          end
+        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol]) }
+        def self.values
         end
       end
     end
