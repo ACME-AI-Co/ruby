@@ -157,10 +157,8 @@ module AcmeAISDK
           COMPLETED = T.let(:completed, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
           FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
 
-          class << self
-            sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol]) }
-            def values
-            end
+          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol]) }
+          def self.values
           end
         end
       end
