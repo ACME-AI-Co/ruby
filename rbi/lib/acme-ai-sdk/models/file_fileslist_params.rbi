@@ -81,10 +81,8 @@ module AcmeAISDK
         UPLOAD_TIME = T.let(:upload_time, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
         STATUS = T.let(:status, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
 
-        class << self
-          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol]) }
-          def values
-          end
+        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol]) }
+        def self.values
         end
       end
 
@@ -99,10 +97,8 @@ module AcmeAISDK
         ASC = T.let(:asc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
         DESC = T.let(:desc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
 
-        class << self
-          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol]) }
-          def values
-          end
+        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol]) }
+        def self.values
         end
       end
 
@@ -118,10 +114,8 @@ module AcmeAISDK
         COMPLETED = T.let(:completed, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
         FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
 
-        class << self
-          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol]) }
-          def values
-          end
+        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol]) }
+        def self.values
         end
       end
     end
