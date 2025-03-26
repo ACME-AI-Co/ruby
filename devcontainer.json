@@ -1,0 +1,10 @@
+{
+	"image": "ghcr.io/rails/devcontainer/images/ruby:3.3.0",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"shopify.ruby-extensions-pack"
+			]
+		}
+	}
+}
