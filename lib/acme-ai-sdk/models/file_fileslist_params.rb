@@ -4,7 +4,7 @@ module AcmeAISDK
   module Models
     class FileFileslistParams < AcmeAISDK::BaseModel
       # @!parse
-      #   extend AcmeAISDK::RequestParameters::Converter
+      #   extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       # @!attribute [r] limit

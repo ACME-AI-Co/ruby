@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     class FileFileslistParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       # Maximum number of files to return
