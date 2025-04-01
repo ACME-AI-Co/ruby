@@ -36,7 +36,6 @@ require "connection_pool"
 # Package files.
 require_relative "acme-ai-sdk/version"
 require_relative "acme-ai-sdk/util"
-require_relative "acme-ai-sdk/extern"
 require_relative "acme-ai-sdk/base_model"
 require_relative "acme-ai-sdk/base_page"
 require_relative "acme-ai-sdk/request_options"
