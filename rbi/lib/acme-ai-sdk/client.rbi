@@ -1,7 +1,7 @@
 # typed: strong
 
 module AcmeAISDK
-  class Client < AcmeAISDK::BaseClient
+  class Client < AcmeAISDK::Transport::BaseClient
     DEFAULT_MAX_RETRIES = 2
 
     DEFAULT_TIMEOUT_IN_SECONDS = T.let(60.0, Float)

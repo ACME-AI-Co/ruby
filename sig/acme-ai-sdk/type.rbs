@@ -1,0 +1,22 @@
+module AcmeAISDK
+  class Unknown = AcmeAISDK::Type::Unknown
+
+  class BooleanModel = AcmeAISDK::Type::BooleanModel
+
+  module Enum = AcmeAISDK::Type::Enum
+
+  module Union = AcmeAISDK::Type::Union
+
+  class ArrayOf = AcmeAISDK::Type::ArrayOf
+
+  class HashOf = AcmeAISDK::Type::HashOf
+
+  class BaseModel = AcmeAISDK::Type::BaseModel
+
+  type request_parameters = AcmeAISDK::Type::request_parameters
+
+  module RequestParameters = AcmeAISDK::Type::RequestParameters
+
+  module Type
+  end
+end
