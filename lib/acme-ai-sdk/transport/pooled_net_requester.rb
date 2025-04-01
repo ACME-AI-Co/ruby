@@ -54,7 +54,7 @@ module AcmeAISDK
         #
         # @yieldparam [String]
         # @return [Net::HTTPGenericRequest]
-        def build_request(request, &)
+        def build_request(request, &blk)
           method, url, headers, body = request.fetch_values(:method, :url, :headers, :body)
           req = Net::HTTPGenericRequest.new(
             method.to_s.upcase,
@@ -70,13 +70,13 @@ module AcmeAISDK
             nil
           in String
             req["content-length"] ||= body.bytesize.to_s unless req["transfer-encoding"]
-            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &)
+            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &blk)
           in StringIO
             req["content-length"] ||= body.size.to_s unless req["transfer-encoding"]
-            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &)
+            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &blk)
           in IO | Enumerator
             req["transfer-encoding"] ||= "chunked" unless req["content-length"]
-            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &)
+            req.body_stream = AcmeAISDK::Util::ReadIOAdapter.new(body, &blk)
           end
 
           req
