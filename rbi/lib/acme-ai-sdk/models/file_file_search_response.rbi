@@ -251,7 +251,13 @@ module AcmeAISDK
           )
             .returns(T.attached_class)
         end
-        def self.new(additional_context: nil, highlight_ranges: nil, page_number: nil, passage: nil, relevance_score: nil)
+        def self.new(
+          additional_context: nil,
+          highlight_ranges: nil,
+          page_number: nil,
+          passage: nil,
+          relevance_score: nil
+        )
         end
 
         sig do
