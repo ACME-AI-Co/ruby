@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     class FileFileSearchParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       # Natural language search query

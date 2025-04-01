@@ -11,7 +11,7 @@ module AcmeAISDK
       & AcmeAISDK::request_parameters
 
     class FileFileslistParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       attr_reader limit: Integer?

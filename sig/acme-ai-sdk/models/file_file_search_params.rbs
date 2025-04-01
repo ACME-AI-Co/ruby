@@ -10,7 +10,7 @@ module AcmeAISDK
       & AcmeAISDK::request_parameters
 
     class FileFileSearchParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       attr_accessor query: String

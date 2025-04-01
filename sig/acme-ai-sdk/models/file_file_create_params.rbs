@@ -9,7 +9,7 @@ module AcmeAISDK
       & AcmeAISDK::request_parameters
 
     class FileFileCreateParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       attr_accessor file: IO | StringIO

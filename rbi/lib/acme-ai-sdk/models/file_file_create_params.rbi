@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     class FileFileCreateParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::RequestParameters::Converter
+      extend AcmeAISDK::Type::RequestParameters::Converter
       include AcmeAISDK::RequestParameters
 
       # The file to upload
