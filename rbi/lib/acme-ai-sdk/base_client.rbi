@@ -85,7 +85,7 @@ module AcmeAISDK
     end
 
     # @api private
-    sig { returns(T.anything) }
+    sig { returns(AcmeAISDK::PooledNetRequester) }
     attr_accessor :requester
 
     # @api private
