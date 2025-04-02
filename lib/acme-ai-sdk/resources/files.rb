@@ -51,7 +51,7 @@ module AcmeAISDK
         parsed, options = AcmeAISDK::Models::FileFileSearchParams.dump_request(params)
         @client.request(
           method: :get,
-          path: ["files/%0s/search", file_id],
+          path: ["files/%1$s/search", file_id],
           query: parsed,
           model: AcmeAISDK::Models::FileFileSearchResponse,
           options: options
