@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/acme-ai-sdk/version"
+require_relative "lib/acme_ai_sdk/version"
 
 Gem::Specification.new do |s|
   s.name = "acme-ai-sdk"
