@@ -2,6 +2,7 @@
 
 module AcmeAISDK
   module Models
+    # @see AcmeAISDK::Resources::Files#file_create
     class FileFileCreateResponse < AcmeAISDK::BaseModel
       # @!attribute [r] file_id
       #   Unique identifier for the file
