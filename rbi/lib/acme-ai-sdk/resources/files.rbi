@@ -80,6 +80,7 @@ module AcmeAISDK
       )
       end
 
+      # @api private
       sig { params(client: AcmeAISDK::Client).returns(T.attached_class) }
       def self.new(client:)
       end

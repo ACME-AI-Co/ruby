@@ -43,6 +43,8 @@ module AcmeAISDK
       # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
 
       # Current processing status
+      #
+      # @see AcmeAISDK::Models::FileFileCreateResponse#status
       module Status
         extend AcmeAISDK::Enum
 

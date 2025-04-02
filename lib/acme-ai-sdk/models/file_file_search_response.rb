@@ -63,6 +63,7 @@ module AcmeAISDK
 
       # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
 
+      # @see AcmeAISDK::Models::FileFileSearchResponse#metadata
       class Metadata < AcmeAISDK::BaseModel
         # @!attribute [r] description
         #   User-provided description of the file
@@ -172,6 +173,7 @@ module AcmeAISDK
 
         # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
 
+        # @see AcmeAISDK::Models::FileFileSearchResponse::Metadata#processing_options
         class ProcessingOptions < AcmeAISDK::BaseModel
           # @!attribute [r] language
           #   Language used for processing
