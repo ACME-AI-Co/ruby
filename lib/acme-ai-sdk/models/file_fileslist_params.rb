@@ -2,6 +2,7 @@
 
 module AcmeAISDK
   module Models
+    # @see AcmeAISDK::Resources::Files#fileslist
     class FileFileslistParams < AcmeAISDK::BaseModel
       # @!parse
       #   extend AcmeAISDK::Type::RequestParameters::Converter

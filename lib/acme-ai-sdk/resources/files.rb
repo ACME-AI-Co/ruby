@@ -17,6 +17,8 @@ module AcmeAISDK
       #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
       #
       # @return [AcmeAISDK::Models::FileFileCreateResponse]
+      #
+      # @see AcmeAISDK::Models::FileFileCreateParams
       def file_create(params)
         parsed, options = AcmeAISDK::Models::FileFileCreateParams.dump_request(params)
         @client.request(
@@ -47,6 +49,8 @@ module AcmeAISDK
       #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
       #
       # @return [AcmeAISDK::Models::FileFileSearchResponse]
+      #
+      # @see AcmeAISDK::Models::FileFileSearchParams
       def file_search(file_id, params)
         parsed, options = AcmeAISDK::Models::FileFileSearchParams.dump_request(params)
         @client.request(
@@ -76,6 +80,8 @@ module AcmeAISDK
       #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
       #
       # @return [AcmeAISDK::Models::FileFileslistResponse]
+      #
+      # @see AcmeAISDK::Models::FileFileslistParams
       def fileslist(params = {})
         parsed, options = AcmeAISDK::Models::FileFileslistParams.dump_request(params)
         @client.request(
@@ -87,6 +93,8 @@ module AcmeAISDK
         )
       end
 
+      # @api private
+      #
       # @param client [AcmeAISDK::Client]
       def initialize(client:)
         @client = client
