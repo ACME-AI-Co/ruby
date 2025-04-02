@@ -2,6 +2,7 @@
 
 module AcmeAISDK
   module Models
+    # @see AcmeAISDK::Resources::Files#fileslist
     class FileFileslistResponse < AcmeAISDK::BaseModel
       # @!attribute [r] files
       #

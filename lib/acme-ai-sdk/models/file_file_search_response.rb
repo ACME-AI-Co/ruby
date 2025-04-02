@@ -2,6 +2,7 @@
 
 module AcmeAISDK
   module Models
+    # @see AcmeAISDK::Resources::Files#file_search
     class FileFileSearchResponse < AcmeAISDK::BaseModel
       # @!attribute [r] file_id
       #   Unique identifier of the searched file
