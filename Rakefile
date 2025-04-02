@@ -87,9 +87,9 @@ multitask(typecheck: [:steep, :sorbet])
 multitask(lint: [:rubocop, :typecheck])
 
 multitask(:build) do
-  sh(*%w[gem build -- acme-ai-sdk.gemspec])
+  sh(*%w[gem build -- acme_ai_sdk.gemspec])
 end
 
 multitask(release: [:build]) do
-  sh(*%w[gem push], *FileList["acme-ai-sdk-*.gem"])
+  sh(*%w[gem push], *FileList["acme_ai_sdk-*.gem"])
 end
