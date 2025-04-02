@@ -76,7 +76,8 @@ module AcmeAISDK
         extend AcmeAISDK::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy) }
-        OrSymbol = T.type_alias { T.any(Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol) }
+        OrSymbol =
+          T.type_alias { T.any(Symbol, String, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol) }
 
         UPLOAD_TIME = T.let(:upload_time, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
         STATUS = T.let(:status, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
@@ -92,7 +93,7 @@ module AcmeAISDK
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder) }
         OrSymbol =
-          T.type_alias { T.any(Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol) }
+          T.type_alias { T.any(Symbol, String, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol) }
 
         ASC = T.let(:asc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
         DESC = T.let(:desc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
@@ -107,7 +108,8 @@ module AcmeAISDK
         extend AcmeAISDK::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol) }
+        OrSymbol =
+          T.type_alias { T.any(Symbol, String, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol) }
 
         PENDING = T.let(:pending, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
         PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)

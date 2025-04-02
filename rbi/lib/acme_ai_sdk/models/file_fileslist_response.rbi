@@ -150,7 +150,7 @@ module AcmeAISDK
 
           TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status) }
           OrSymbol =
-            T.type_alias { T.any(Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol) }
+            T.type_alias { T.any(Symbol, String, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol) }
 
           PENDING = T.let(:pending, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
           PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
