@@ -6,15 +6,12 @@ module AcmeAISDK
       # Upload a file for processing with AI. The file will be analyzed and made
       #   searchable using natural language queries.
       #
-      # @param params [AcmeAISDK::Models::FileFileCreateParams, Hash{Symbol=>Object}] .
+      # @overload file_create(file:, description: nil, processing_options: nil, request_options: {})
       #
-      #   @option params [IO, StringIO] :file The file to upload
-      #
-      #   @option params [String] :description Optional description of the file
-      #
-      #   @option params [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions] :processing_options
-      #
-      #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
+      # @param file [IO, StringIO]
+      # @param description [String]
+      # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileCreateResponse]
       #
@@ -34,19 +31,14 @@ module AcmeAISDK
       # Search for content within a processed file using natural language queries.
       #   Returns relevant passages and their context.
       #
-      # @param file_id [String] Unique identifier of the file to search in
+      # @overload file_search(file_id, query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
       #
-      # @param params [AcmeAISDK::Models::FileFileSearchParams, Hash{Symbol=>Object}] .
-      #
-      #   @option params [String] :query Natural language search query
-      #
-      #   @option params [Integer] :context_size Number of characters to include before and after the match
-      #
-      #   @option params [Boolean] :include_metadata Whether to include file metadata in response
-      #
-      #   @option params [Integer] :max_results Maximum number of results to return
-      #
-      #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
+      # @param file_id [String]
+      # @param query [String]
+      # @param context_size [Integer]
+      # @param include_metadata [Boolean]
+      # @param max_results [Integer]
+      # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileSearchResponse]
       #
@@ -65,19 +57,14 @@ module AcmeAISDK
       # Retrieve the processing status of files. Can be filtered by status and sorted by
       #   upload time.
       #
-      # @param params [AcmeAISDK::Models::FileFileslistParams, Hash{Symbol=>Object}] .
+      # @overload fileslist(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #
-      #   @option params [Integer] :limit Maximum number of files to return
-      #
-      #   @option params [Integer] :offset Number of files to skip
-      #
-      #   @option params [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] :sort_by Field to sort by
-      #
-      #   @option params [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] :sort_order Sort order
-      #
-      #   @option params [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] :status Filter by processing status
-      #
-      #   @option params [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :request_options
+      # @param limit [Integer]
+      # @param offset [Integer]
+      # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
+      # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
+      # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
+      # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileslistResponse]
       #
