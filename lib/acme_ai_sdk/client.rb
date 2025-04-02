@@ -32,9 +32,9 @@ module AcmeAISDK
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param base_url [String, nil] Override the default base URL for the API, e.g., `"https://api.example.com/v2/"`
-    #
     # @param bearer_token [String, nil] Defaults to `ENV["ACME_AI_SDK_BEARER_TOKEN"]`
+    #
+    # @param base_url [String, nil] Override the default base URL for the API, e.g., `"https://api.example.com/v2/"`
     #
     # @param max_retries [Integer] Max number of retries to attempt after a failed retryable request.
     #
@@ -44,8 +44,8 @@ module AcmeAISDK
     #
     # @param max_retry_delay [Float]
     def initialize(
-      base_url: nil,
       bearer_token: ENV["ACME_AI_SDK_BEARER_TOKEN"],
+      base_url: nil,
       max_retries: DEFAULT_MAX_RETRIES,
       timeout: DEFAULT_TIMEOUT_IN_SECONDS,
       initial_retry_delay: DEFAULT_INITIAL_RETRY_DELAY,
@@ -54,7 +54,7 @@ module AcmeAISDK
       base_url ||= "https://api.example.com/v1"
 
       if bearer_token.nil?
-        raise ArgumentError.new("bearer_token is required")
+        raise ArgumentError.new("bearer_token is required, and can be set via environ: \"ACME_AI_SDK_BEARER_TOKEN\"")
       end
 
       @bearer_token = bearer_token.to_s
