@@ -47,7 +47,7 @@ module AcmeAISDK
       ) -> AcmeAISDK::Transport::BaseClient::request_input
 
       def self.reap_connection!: (
-        Integer | AcmeAISDK::APIConnectionError status,
+        Integer | AcmeAISDK::Errors::APIConnectionError status,
         stream: Enumerable[String]?
       ) -> void
 

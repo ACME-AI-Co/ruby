@@ -1,144 +1,174 @@
 # typed: strong
 
 module AcmeAISDK
-  class Error < StandardError
-    sig { returns(T.nilable(StandardError)) }
-    attr_accessor :cause
-  end
-
-  class ConversionError < AcmeAISDK::Error
-  end
-
-  class APIError < AcmeAISDK::Error
-    sig { returns(URI::Generic) }
-    attr_accessor :url
-
-    sig { returns(T.nilable(Integer)) }
-    attr_accessor :status
-
-    sig { returns(T.nilable(T.anything)) }
-    attr_accessor :body
-
-    # @api private
-    sig do
-      params(
-        url: URI::Generic,
-        status: T.nilable(Integer),
-        body: T.nilable(Object),
-        request: NilClass,
-        response: NilClass,
-        message: T.nilable(String)
-      )
-        .returns(T.attached_class)
-    end
-    def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: nil)
-    end
-  end
-
-  class APIConnectionError < AcmeAISDK::APIError
-    sig { void }
-    attr_accessor :status
-
-    sig { void }
-    attr_accessor :body
-
-    # @api private
-    sig do
-      params(
-        url: URI::Generic,
-        status: NilClass,
-        body: NilClass,
-        request: NilClass,
-        response: NilClass,
-        message: T.nilable(String)
-      )
-        .returns(T.attached_class)
-    end
-    def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: "Connection error.")
-    end
-  end
-
-  class APITimeoutError < AcmeAISDK::APIConnectionError
-    # @api private
-    sig do
-      params(
-        url: URI::Generic,
-        status: NilClass,
-        body: NilClass,
-        request: NilClass,
-        response: NilClass,
-        message: T.nilable(String)
-      )
-        .returns(T.attached_class)
-    end
-    def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: "Request timed out.")
-    end
-  end
-
-  class APIStatusError < AcmeAISDK::APIError
-    # @api private
-    sig do
-      params(
-        url: URI::Generic,
-        status: Integer,
-        body: T.nilable(Object),
-        request: NilClass,
-        response: NilClass,
-        message: T.nilable(String)
-      )
-        .returns(T.attached_class)
-    end
-    def self.for(url:, status:, body:, request:, response:, message: nil)
+  module Errors
+    class Error < StandardError
+      sig { returns(T.nilable(StandardError)) }
+      attr_accessor :cause
     end
 
-    sig { returns(Integer) }
-    attr_accessor :status
-
-    # @api private
-    sig do
-      params(
-        url: URI::Generic,
-        status: Integer,
-        body: T.nilable(Object),
-        request: NilClass,
-        response: NilClass,
-        message: T.nilable(String)
-      )
-        .returns(T.attached_class)
+    class ConversionError < AcmeAISDK::Errors::Error
     end
-    def self.new(url:, status:, body:, request:, response:, message: nil)
+
+    class APIError < AcmeAISDK::Errors::Error
+      sig { returns(URI::Generic) }
+      attr_accessor :url
+
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :status
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :body
+
+      # @api private
+      sig do
+        params(
+          url: URI::Generic,
+          status: T.nilable(Integer),
+          body: T.nilable(Object),
+          request: NilClass,
+          response: NilClass,
+          message: T.nilable(String)
+        )
+          .returns(T.attached_class)
+      end
+      def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: nil)
+      end
+    end
+
+    class APIConnectionError < AcmeAISDK::Errors::APIError
+      sig { void }
+      attr_accessor :status
+
+      sig { void }
+      attr_accessor :body
+
+      # @api private
+      sig do
+        params(
+          url: URI::Generic,
+          status: NilClass,
+          body: NilClass,
+          request: NilClass,
+          response: NilClass,
+          message: T.nilable(String)
+        )
+          .returns(T.attached_class)
+      end
+      def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: "Connection error.")
+      end
+    end
+
+    class APITimeoutError < AcmeAISDK::Errors::APIConnectionError
+      # @api private
+      sig do
+        params(
+          url: URI::Generic,
+          status: NilClass,
+          body: NilClass,
+          request: NilClass,
+          response: NilClass,
+          message: T.nilable(String)
+        )
+          .returns(T.attached_class)
+      end
+      def self.new(url:, status: nil, body: nil, request: nil, response: nil, message: "Request timed out.")
+      end
+    end
+
+    class APIStatusError < AcmeAISDK::Errors::APIError
+      # @api private
+      sig do
+        params(
+          url: URI::Generic,
+          status: Integer,
+          body: T.nilable(Object),
+          request: NilClass,
+          response: NilClass,
+          message: T.nilable(String)
+        )
+          .returns(T.attached_class)
+      end
+      def self.for(url:, status:, body:, request:, response:, message: nil)
+      end
+
+      sig { returns(Integer) }
+      attr_accessor :status
+
+      # @api private
+      sig do
+        params(
+          url: URI::Generic,
+          status: Integer,
+          body: T.nilable(Object),
+          request: NilClass,
+          response: NilClass,
+          message: T.nilable(String)
+        )
+          .returns(T.attached_class)
+      end
+      def self.new(url:, status:, body:, request:, response:, message: nil)
+      end
+    end
+
+    class BadRequestError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 400
+    end
+
+    class AuthenticationError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 401
+    end
+
+    class PermissionDeniedError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 403
+    end
+
+    class NotFoundError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 404
+    end
+
+    class ConflictError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 409
+    end
+
+    class UnprocessableEntityError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 422
+    end
+
+    class RateLimitError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = 429
+    end
+
+    class InternalServerError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS = T.let((500..), T::Range[Integer])
     end
   end
 
-  class BadRequestError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 400
-  end
+  Error = AcmeAISDK::Errors::Error
 
-  class AuthenticationError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 401
-  end
+  ConversionError = AcmeAISDK::Errors::ConversionError
 
-  class PermissionDeniedError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 403
-  end
+  APIError = AcmeAISDK::Errors::APIError
 
-  class NotFoundError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 404
-  end
+  APIStatusError = AcmeAISDK::Errors::APIStatusError
 
-  class ConflictError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 409
-  end
+  APIConnectionError = AcmeAISDK::Errors::APIConnectionError
 
-  class UnprocessableEntityError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 422
-  end
+  APITimeoutError = AcmeAISDK::Errors::APITimeoutError
 
-  class RateLimitError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = 429
-  end
+  BadRequestError = AcmeAISDK::Errors::BadRequestError
 
-  class InternalServerError < AcmeAISDK::APIStatusError
-    HTTP_STATUS = T.let((500..), T::Range[Integer])
-  end
+  AuthenticationError = AcmeAISDK::Errors::AuthenticationError
+
+  PermissionDeniedError = AcmeAISDK::Errors::PermissionDeniedError
+
+  NotFoundError = AcmeAISDK::Errors::NotFoundError
+
+  ConflictError = AcmeAISDK::Errors::ConflictError
+
+  UnprocessableEntityError = AcmeAISDK::Errors::UnprocessableEntityError
+
+  RateLimitError = AcmeAISDK::Errors::RateLimitError
+
+  InternalServerError = AcmeAISDK::Errors::InternalServerError
 end
