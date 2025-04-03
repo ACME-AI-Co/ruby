@@ -82,7 +82,7 @@ module AcmeAISDK
         # @api private
         sig do
           params(
-            status: T.any(Integer, AcmeAISDK::APIConnectionError),
+            status: T.any(Integer, AcmeAISDK::Errors::APIConnectionError),
             stream: T.nilable(T::Enumerable[String])
           )
             .void

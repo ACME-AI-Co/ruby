@@ -220,7 +220,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(307, {"location" => "/redirected"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::APIConnectionError) do
+    assert_raises(AcmeAISDK::Errors::APIConnectionError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {}}
@@ -241,7 +241,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(303, {"location" => "/redirected"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::APIConnectionError) do
+    assert_raises(AcmeAISDK::Errors::APIConnectionError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {}}
@@ -259,7 +259,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(307, {"location" => "/redirected"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::APIConnectionError) do
+    assert_raises(AcmeAISDK::Errors::APIConnectionError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {"Authorization" => "Bearer xyz"}}
@@ -277,7 +277,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(307, {"location" => "https://example.com/redirected"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::APIConnectionError) do
+    assert_raises(AcmeAISDK::Errors::APIConnectionError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {"Authorization" => "Bearer xyz"}}

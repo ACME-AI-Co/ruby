@@ -153,7 +153,7 @@ module AcmeAISDK
             end
           end
         rescue Timeout::Error
-          raise AcmeAISDK::APITimeoutError
+          raise AcmeAISDK::Errors::APITimeoutError
         end
 
         conn, _, response = enum.next
