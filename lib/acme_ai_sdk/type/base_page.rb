@@ -29,7 +29,7 @@ module AcmeAISDK
       # @return [Boolean]
       def next_page? = (raise NotImplementedError)
 
-      # @raise [AcmeAISDK::APIError]
+      # @raise [AcmeAISDK::Errors::APIError]
       # @return [AcmeAISDK::Type::BasePage]
       def next_page = (raise NotImplementedError)
 

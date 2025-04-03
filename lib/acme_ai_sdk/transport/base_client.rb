@@ -92,7 +92,7 @@ module AcmeAISDK
               URI.join(url, response_headers["location"])
             rescue ArgumentError
               message = "Server responded with status #{status} but no valid location header."
-              raise AcmeAISDK::APIConnectionError.new(url: url, message: message)
+              raise AcmeAISDK::Errors::APIConnectionError.new(url: url, message: message)
             end
 
           request = {**request, url: location}
@@ -100,7 +100,7 @@ module AcmeAISDK
           case [url.scheme, location.scheme]
           in ["https", "http"]
             message = "Tried to redirect to a insecure URL"
-            raise AcmeAISDK::APIConnectionError.new(url: url, message: message)
+            raise AcmeAISDK::Errors::APIConnectionError.new(url: url, message: message)
           else
             nil
           end
@@ -129,13 +129,13 @@ module AcmeAISDK
 
         # @api private
         #
-        # @param status [Integer, AcmeAISDK::APIConnectionError]
+        # @param status [Integer, AcmeAISDK::Errors::APIConnectionError]
         # @param stream [Enumerable, nil]
         def reap_connection!(status, stream:)
           case status
           in (..199) | (300..499)
             stream&.each { next }
-          in AcmeAISDK::APIConnectionError | (500..)
+          in AcmeAISDK::Errors::APIConnectionError | (500..)
             AcmeAISDK::Util.close_fused!(stream)
           else
           end
@@ -326,7 +326,7 @@ module AcmeAISDK
       #
       # @param send_retry_header [Boolean]
       #
-      # @raise [AcmeAISDK::APIError]
+      # @raise [AcmeAISDK::Errors::APIError]
       # @return [Array(Integer, Net::HTTPResponse, Enumerable)]
       private def send_request(request, redirect_count:, retry_count:, send_retry_header:)
         url, headers, max_retries, timeout = request.fetch_values(:url, :headers, :max_retries, :timeout)
@@ -349,7 +349,7 @@ module AcmeAISDK
           self.class.reap_connection!(status, stream: stream)
 
           message = "Failed to complete the request within #{self.class::MAX_REDIRECTS} redirects."
-          raise AcmeAISDK::APIConnectionError.new(url: url, message: message)
+          raise AcmeAISDK::Errors::APIConnectionError.new(url: url, message: message)
         in 300..399
           self.class.reap_connection!(status, stream: stream)
 
@@ -369,14 +369,14 @@ module AcmeAISDK
             self.class.reap_connection!(status, stream: stream)
           end
 
-          raise AcmeAISDK::APIStatusError.for(
+          raise AcmeAISDK::Errors::APIStatusError.for(
             url: url,
             status: status,
             body: decoded,
             request: nil,
             response: response
           )
-        in (400..) | AcmeAISDK::APIConnectionError
+        in (400..) | AcmeAISDK::Errors::APIConnectionError
           self.class.reap_connection!(status, stream: stream)
 
           delay = retry_delay(response, retry_count: retry_count)
@@ -416,7 +416,7 @@ module AcmeAISDK
       #
       #   @option req [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil] :options
       #
-      # @raise [AcmeAISDK::APIError]
+      # @raise [AcmeAISDK::Errors::APIError]
       # @return [Object]
       def request(req)
         self.class.validate!(req)

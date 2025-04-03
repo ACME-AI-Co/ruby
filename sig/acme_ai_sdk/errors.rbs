@@ -1,99 +1,129 @@
 module AcmeAISDK
-  class Error < StandardError
-    attr_accessor cause: StandardError?
+  module Errors
+    class Error < StandardError
+      attr_accessor cause: StandardError?
+    end
+
+    class ConversionError < AcmeAISDK::Errors::Error
+    end
+
+    class APIError < AcmeAISDK::Errors::Error
+      attr_accessor url: URI::Generic
+
+      attr_accessor status: Integer?
+
+      attr_accessor body: top?
+
+      def initialize: (
+        url: URI::Generic,
+        ?status: Integer?,
+        ?body: Object?,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APIConnectionError < AcmeAISDK::Errors::APIError
+      def initialize: (
+        url: URI::Generic,
+        ?status: nil,
+        ?body: nil,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APITimeoutError < AcmeAISDK::Errors::APIConnectionError
+      def initialize: (
+        url: URI::Generic,
+        ?status: nil,
+        ?body: nil,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APIStatusError < AcmeAISDK::Errors::APIError
+      def self.for: (
+        url: URI::Generic,
+        status: Integer,
+        body: Object?,
+        request: nil,
+        response: nil,
+        ?message: String?
+      ) -> instance
+
+      def initialize: (
+        url: URI::Generic,
+        status: Integer,
+        body: Object?,
+        request: nil,
+        response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class BadRequestError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 400
+    end
+
+    class AuthenticationError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 401
+    end
+
+    class PermissionDeniedError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 403
+    end
+
+    class NotFoundError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 404
+    end
+
+    class ConflictError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 409
+    end
+
+    class UnprocessableEntityError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 422
+    end
+
+    class RateLimitError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: 429
+    end
+
+    class InternalServerError < AcmeAISDK::Errors::APIStatusError
+      HTTP_STATUS: Range[Integer]
+    end
   end
 
-  class ConversionError < AcmeAISDK::Error
-  end
+  class Error = AcmeAISDK::Errors::Error
 
-  class APIError < AcmeAISDK::Error
-    attr_accessor url: URI::Generic
+  class ConversionError = AcmeAISDK::Errors::ConversionError
 
-    attr_accessor status: Integer?
+  class APIError = AcmeAISDK::Errors::APIError
 
-    attr_accessor body: top?
+  class APIStatusError = AcmeAISDK::Errors::APIStatusError
 
-    def initialize: (
-      url: URI::Generic,
-      ?status: Integer?,
-      ?body: Object?,
-      ?request: nil,
-      ?response: nil,
-      ?message: String?
-    ) -> void
-  end
+  class APIConnectionError = AcmeAISDK::Errors::APIConnectionError
 
-  class APIConnectionError < AcmeAISDK::APIError
-    def initialize: (
-      url: URI::Generic,
-      ?status: nil,
-      ?body: nil,
-      ?request: nil,
-      ?response: nil,
-      ?message: String?
-    ) -> void
-  end
+  class APITimeoutError = AcmeAISDK::Errors::APITimeoutError
 
-  class APITimeoutError < AcmeAISDK::APIConnectionError
-    def initialize: (
-      url: URI::Generic,
-      ?status: nil,
-      ?body: nil,
-      ?request: nil,
-      ?response: nil,
-      ?message: String?
-    ) -> void
-  end
+  class BadRequestError = AcmeAISDK::Errors::BadRequestError
 
-  class APIStatusError < AcmeAISDK::APIError
-    def self.for: (
-      url: URI::Generic,
-      status: Integer,
-      body: Object?,
-      request: nil,
-      response: nil,
-      ?message: String?
-    ) -> instance
+  class AuthenticationError = AcmeAISDK::Errors::AuthenticationError
 
-    def initialize: (
-      url: URI::Generic,
-      status: Integer,
-      body: Object?,
-      request: nil,
-      response: nil,
-      ?message: String?
-    ) -> void
-  end
+  class PermissionDeniedError = AcmeAISDK::Errors::PermissionDeniedError
 
-  class BadRequestError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 400
-  end
+  class NotFoundError = AcmeAISDK::Errors::NotFoundError
 
-  class AuthenticationError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 401
-  end
+  class ConflictError = AcmeAISDK::Errors::ConflictError
 
-  class PermissionDeniedError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 403
-  end
+  class UnprocessableEntityError = AcmeAISDK::Errors::UnprocessableEntityError
 
-  class NotFoundError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 404
-  end
+  class RateLimitError = AcmeAISDK::Errors::RateLimitError
 
-  class ConflictError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 409
-  end
-
-  class UnprocessableEntityError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 422
-  end
-
-  class RateLimitError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: 429
-  end
-
-  class InternalServerError < AcmeAISDK::APIStatusError
-    HTTP_STATUS: Range[Integer]
-  end
+  class InternalServerError = AcmeAISDK::Errors::InternalServerError
 end
