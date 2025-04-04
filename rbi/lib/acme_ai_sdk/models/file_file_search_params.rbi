@@ -2,7 +2,7 @@
 
 module AcmeAISDK
   module Models
-    class FileFileSearchParams < AcmeAISDK::BaseModel
+    class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
@@ -37,7 +37,7 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end

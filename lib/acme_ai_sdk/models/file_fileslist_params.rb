@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#fileslist
-    class FileFileslistParams < AcmeAISDK::BaseModel
+    class FileFileslistParams < AcmeAISDK::Internal::Type::BaseModel
       # @!parse
       #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
@@ -68,11 +68,11 @@ module AcmeAISDK
       #   #
       #   def initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
       # Field to sort by
       module SortBy
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         UPLOAD_TIME = :upload_time
         STATUS = :status
@@ -86,7 +86,7 @@ module AcmeAISDK
 
       # Sort order
       module SortOrder
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         ASC = :asc
         DESC = :desc
@@ -100,7 +100,7 @@ module AcmeAISDK
 
       # Filter by processing status
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         PENDING = :pending
         PROCESSING = :processing

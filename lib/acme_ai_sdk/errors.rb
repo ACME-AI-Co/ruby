@@ -189,32 +189,4 @@ module AcmeAISDK
       HTTP_STATUS = (500..)
     end
   end
-
-  Error = AcmeAISDK::Errors::Error
-
-  ConversionError = AcmeAISDK::Errors::ConversionError
-
-  APIError = AcmeAISDK::Errors::APIError
-
-  APIStatusError = AcmeAISDK::Errors::APIStatusError
-
-  APIConnectionError = AcmeAISDK::Errors::APIConnectionError
-
-  APITimeoutError = AcmeAISDK::Errors::APITimeoutError
-
-  BadRequestError = AcmeAISDK::Errors::BadRequestError
-
-  AuthenticationError = AcmeAISDK::Errors::AuthenticationError
-
-  PermissionDeniedError = AcmeAISDK::Errors::PermissionDeniedError
-
-  NotFoundError = AcmeAISDK::Errors::NotFoundError
-
-  ConflictError = AcmeAISDK::Errors::ConflictError
-
-  UnprocessableEntityError = AcmeAISDK::Errors::UnprocessableEntityError
-
-  RateLimitError = AcmeAISDK::Errors::RateLimitError
-
-  InternalServerError = AcmeAISDK::Errors::InternalServerError
 end

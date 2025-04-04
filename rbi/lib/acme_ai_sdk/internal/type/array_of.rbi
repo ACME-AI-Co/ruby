@@ -17,11 +17,11 @@ module AcmeAISDK
         sig(:final) do
           params(
             type_info: T.any(
-              AcmeAISDK::Internal::Util::AnyHash,
+              AcmeAISDK::Internal::AnyHash,
               T.proc.returns(AcmeAISDK::Internal::Type::Converter::Input),
               AcmeAISDK::Internal::Type::Converter::Input
             ),
-            spec: AcmeAISDK::Internal::Util::AnyHash
+            spec: AcmeAISDK::Internal::AnyHash
           )
             .returns(T.attached_class)
         end
@@ -72,11 +72,11 @@ module AcmeAISDK
         sig(:final) do
           params(
             type_info: T.any(
-              AcmeAISDK::Internal::Util::AnyHash,
+              AcmeAISDK::Internal::AnyHash,
               T.proc.returns(AcmeAISDK::Internal::Type::Converter::Input),
               AcmeAISDK::Internal::Type::Converter::Input
             ),
-            spec: AcmeAISDK::Internal::Util::AnyHash
+            spec: AcmeAISDK::Internal::AnyHash
           )
             .void
         end

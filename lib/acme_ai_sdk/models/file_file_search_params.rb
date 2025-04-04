@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_search
-    class FileFileSearchParams < AcmeAISDK::BaseModel
+    class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
       # @!parse
       #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
@@ -28,7 +28,7 @@ module AcmeAISDK
       #   Whether to include file metadata in response
       #
       #   @return [Boolean, nil]
-      optional :include_metadata, AcmeAISDK::BooleanModel
+      optional :include_metadata, AcmeAISDK::Internal::Type::BooleanModel
 
       # @!parse
       #   # @return [Boolean]
@@ -53,7 +53,7 @@ module AcmeAISDK
       #   #
       #   def initialize(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
     end
   end
 end

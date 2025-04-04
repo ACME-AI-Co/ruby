@@ -9,7 +9,7 @@ module AcmeAISDK
         total_results: Integer
       }
 
-    class FileFileSearchResponse < AcmeAISDK::BaseModel
+    class FileFileSearchResponse < AcmeAISDK::Internal::Type::BaseModel
       attr_reader file_id: String?
 
       def file_id=: (String) -> String
@@ -56,7 +56,7 @@ module AcmeAISDK
           word_count: Integer
         }
 
-      class Metadata < AcmeAISDK::BaseModel
+      class Metadata < AcmeAISDK::Internal::Type::BaseModel
         attr_reader description: String?
 
         def description=: (String) -> String
@@ -106,7 +106,7 @@ module AcmeAISDK
 
         type processing_options = { language: String, ocr: bool }
 
-        class ProcessingOptions < AcmeAISDK::BaseModel
+        class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
           attr_reader language: String?
 
           def language=: (String) -> String
@@ -130,7 +130,7 @@ module AcmeAISDK
           relevance_score: Float
         }
 
-      class Result < AcmeAISDK::BaseModel
+      class Result < AcmeAISDK::Internal::Type::BaseModel
         attr_reader additional_context: top?
 
         def additional_context=: (top) -> top
@@ -165,7 +165,7 @@ module AcmeAISDK
 
         type highlight_range = { end_: Integer, start: Integer }
 
-        class HighlightRange < AcmeAISDK::BaseModel
+        class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           attr_reader end_: Integer?
 
           def end_=: (Integer) -> Integer

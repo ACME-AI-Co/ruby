@@ -34,8 +34,8 @@ module AcmeAISDK
         # @api private
         sig do
           params(
-            key: T.any(Symbol, AcmeAISDK::Internal::Util::AnyHash, T.proc.returns(T.anything), T.anything),
-            spec: T.any(AcmeAISDK::Internal::Util::AnyHash, T.proc.returns(T.anything), T.anything)
+            key: T.any(Symbol, AcmeAISDK::Internal::AnyHash, T.proc.returns(T.anything), T.anything),
+            spec: T.any(AcmeAISDK::Internal::AnyHash, T.proc.returns(T.anything), T.anything)
           )
             .void
         end

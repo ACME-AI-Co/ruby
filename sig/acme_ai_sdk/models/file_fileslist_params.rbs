@@ -10,7 +10,7 @@ module AcmeAISDK
       }
       & AcmeAISDK::Internal::Type::request_parameters
 
-    class FileFileslistParams < AcmeAISDK::BaseModel
+    class FileFileslistParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
@@ -54,7 +54,7 @@ module AcmeAISDK
       type sort_by = :upload_time | :status
 
       module SortBy
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         UPLOAD_TIME: :upload_time
         STATUS: :status
@@ -65,7 +65,7 @@ module AcmeAISDK
       type sort_order = :asc | :desc
 
       module SortOrder
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         ASC: :asc
         DESC: :desc
@@ -76,7 +76,7 @@ module AcmeAISDK
       type status = :pending | :processing | :completed | :failed
 
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         PENDING: :pending
         PROCESSING: :processing

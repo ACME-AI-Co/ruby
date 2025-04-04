@@ -25,10 +25,10 @@ module AcmeAISDK
               ),
               body: T.nilable(T.anything),
               unwrap: T.nilable(Symbol),
-              page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::BaseModel]]),
+              page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
               model: T.nilable(AcmeAISDK::Internal::Type::Converter::Input),
-              options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash))
+              options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
             }
           end
 
@@ -136,7 +136,7 @@ module AcmeAISDK
           overridable
             .params(
               req: AcmeAISDK::Internal::Transport::BaseClient::RequestComponentsShape,
-              opts: AcmeAISDK::Internal::Util::AnyHash
+              opts: AcmeAISDK::Internal::AnyHash
             )
             .returns(AcmeAISDK::Internal::Transport::BaseClient::RequestInputShape)
         end
@@ -180,10 +180,10 @@ module AcmeAISDK
             ),
             body: T.nilable(T.anything),
             unwrap: T.nilable(Symbol),
-            page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::BaseModel]]),
+            page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::Internal::Type::BaseModel]]),
             stream: T.nilable(T::Class[T.anything]),
             model: T.nilable(AcmeAISDK::Internal::Type::Converter::Input),
-            options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash))
+            options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
           )
             .returns(T.anything)
         end
@@ -196,7 +196,7 @@ module AcmeAISDK
           unwrap: nil,
           page: nil,
           stream: nil,
-          model: AcmeAISDK::Unknown,
+          model: AcmeAISDK::Internal::Type::Unknown,
           options: {}
         )
         end

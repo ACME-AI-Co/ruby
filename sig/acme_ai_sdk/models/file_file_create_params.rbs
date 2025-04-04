@@ -8,7 +8,7 @@ module AcmeAISDK
       }
       & AcmeAISDK::Internal::Type::request_parameters
 
-    class FileFileCreateParams < AcmeAISDK::BaseModel
+    class FileFileCreateParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
@@ -35,7 +35,7 @@ module AcmeAISDK
 
       type processing_options = { language: String, ocr: bool }
 
-      class ProcessingOptions < AcmeAISDK::BaseModel
+      class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
         attr_reader language: String?
 
         def language=: (String) -> String
