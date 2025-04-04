@@ -6,11 +6,11 @@ module AcmeAISDK
         description: String,
         processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
       }
-      & AcmeAISDK::request_parameters
+      & AcmeAISDK::Internal::Type::request_parameters
 
     class FileFileCreateParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       attr_accessor file: IO | StringIO
 

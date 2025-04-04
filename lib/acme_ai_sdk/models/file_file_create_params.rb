@@ -5,8 +5,8 @@ module AcmeAISDK
     # @see AcmeAISDK::Resources::Files#file_create
     class FileFileCreateParams < AcmeAISDK::BaseModel
       # @!parse
-      #   extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # @!attribute file
       #   The file to upload

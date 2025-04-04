@@ -5,8 +5,8 @@ module AcmeAISDK
     # @see AcmeAISDK::Resources::Files#file_search
     class FileFileSearchParams < AcmeAISDK::BaseModel
       # @!parse
-      #   extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # @!attribute query
       #   Natural language search query

@@ -3,8 +3,8 @@
 module AcmeAISDK
   module Models
     class FileFileCreateParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # The file to upload
       sig { returns(T.any(IO, StringIO)) }
@@ -22,7 +22,7 @@ module AcmeAISDK
 
       sig do
         params(
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Util::AnyHash)
+          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::Util::AnyHash)
         )
           .void
       end
@@ -32,8 +32,8 @@ module AcmeAISDK
         params(
           file: T.any(IO, StringIO),
           description: String,
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Util::AnyHash),
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash)
+          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::Util::AnyHash),
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
         )
           .returns(T.attached_class)
       end
