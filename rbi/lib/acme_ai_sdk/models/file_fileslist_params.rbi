@@ -2,7 +2,7 @@
 
 module AcmeAISDK
   module Models
-    class FileFileslistParams < AcmeAISDK::BaseModel
+    class FileFileslistParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
@@ -48,7 +48,7 @@ module AcmeAISDK
           sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
           sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
           status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -73,7 +73,7 @@ module AcmeAISDK
 
       # Field to sort by
       module SortBy
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy) }
         OrSymbol =
@@ -89,7 +89,7 @@ module AcmeAISDK
 
       # Sort order
       module SortOrder
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder) }
         OrSymbol =
@@ -105,7 +105,7 @@ module AcmeAISDK
 
       # Filter by processing status
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::Status) }
         OrSymbol =

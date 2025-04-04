@@ -2,7 +2,7 @@
 
 module AcmeAISDK
   module Models
-    class FileFileCreateParams < AcmeAISDK::BaseModel
+    class FileFileCreateParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
@@ -22,7 +22,7 @@ module AcmeAISDK
 
       sig do
         params(
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::Util::AnyHash)
+          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::AnyHash)
         )
           .void
       end
@@ -32,8 +32,8 @@ module AcmeAISDK
         params(
           file: T.any(IO, StringIO),
           description: String,
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::Util::AnyHash),
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
+          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::AnyHash),
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
         )
           .returns(T.attached_class)
       end
@@ -54,7 +54,7 @@ module AcmeAISDK
       def to_hash
       end
 
-      class ProcessingOptions < AcmeAISDK::BaseModel
+      class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
         # Preferred language for processing
         sig { returns(T.nilable(String)) }
         attr_reader :language

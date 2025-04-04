@@ -31,10 +31,10 @@ module AcmeAISDK
         def dump(value)
           case value
           in Array
-            value.map { AcmeAISDK::Unknown.dump(_1) }
+            value.map { AcmeAISDK::Internal::Type::Unknown.dump(_1) }
           in Hash
-            value.transform_values { AcmeAISDK::Unknown.dump(_1) }
-          in AcmeAISDK::BaseModel
+            value.transform_values { AcmeAISDK::Internal::Type::Unknown.dump(_1) }
+          in AcmeAISDK::Internal::Type::BaseModel
             value.class.dump(value)
           else
             value
@@ -64,7 +64,7 @@ module AcmeAISDK
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { AcmeAISDK::BooleanModel }
+              -> { AcmeAISDK::Internal::Type::BooleanModel }
             in AcmeAISDK::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float
@@ -209,7 +209,7 @@ module AcmeAISDK
           #
           # @return [Object]
           def dump(target, value)
-            target.is_a?(AcmeAISDK::Internal::Type::Converter) ? target.dump(value) : AcmeAISDK::Unknown.dump(value)
+            target.is_a?(AcmeAISDK::Internal::Type::Converter) ? target.dump(value) : AcmeAISDK::Internal::Type::Unknown.dump(value)
           end
         end
       end

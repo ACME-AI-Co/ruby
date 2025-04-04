@@ -8,7 +8,7 @@ module AcmeAISDK
         total: Integer
       }
 
-    class FileFileslistResponse < AcmeAISDK::BaseModel
+    class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
       attr_reader files: ::Array[AcmeAISDK::Models::FileFileslistResponse::File]?
 
       def files=: (
@@ -47,7 +47,7 @@ module AcmeAISDK
           upload_time: Time
         }
 
-      class File < AcmeAISDK::BaseModel
+      class File < AcmeAISDK::Internal::Type::BaseModel
         attr_reader completion_time: Time?
 
         def completion_time=: (Time) -> Time
@@ -93,7 +93,7 @@ module AcmeAISDK
         type status = :pending | :processing | :completed | :failed
 
         module Status
-          extend AcmeAISDK::Enum
+          extend AcmeAISDK::Internal::Type::Enum
 
           PENDING: :pending
           PROCESSING: :processing

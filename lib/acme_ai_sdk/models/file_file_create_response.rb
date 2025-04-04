@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_create
-    class FileFileCreateResponse < AcmeAISDK::BaseModel
+    class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
       # @!attribute [r] file_id
       #   Unique identifier for the file
       #
@@ -41,13 +41,13 @@ module AcmeAISDK
       #   #
       #   def initialize(file_id: nil, status: nil, upload_time: nil, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
       # Current processing status
       #
       # @see AcmeAISDK::Models::FileFileCreateResponse#status
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         PENDING = :pending
         PROCESSING = :processing

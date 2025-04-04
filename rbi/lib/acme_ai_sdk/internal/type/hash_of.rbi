@@ -17,11 +17,11 @@ module AcmeAISDK
         sig(:final) do
           params(
             type_info: T.any(
-              AcmeAISDK::Internal::Util::AnyHash,
+              AcmeAISDK::Internal::AnyHash,
               T.proc.returns(AcmeAISDK::Internal::Type::Converter::Input),
               AcmeAISDK::Internal::Type::Converter::Input
             ),
-            spec: AcmeAISDK::Internal::Util::AnyHash
+            spec: AcmeAISDK::Internal::AnyHash
           )
             .returns(T.attached_class)
         end
@@ -43,7 +43,7 @@ module AcmeAISDK
               value: T.any(T::Hash[T.anything, T.anything], T.anything),
               state: AcmeAISDK::Internal::Type::Converter::State
             )
-            .returns(T.any(AcmeAISDK::Internal::Util::AnyHash, T.anything))
+            .returns(T.any(AcmeAISDK::Internal::AnyHash, T.anything))
         end
         def coerce(value, state:)
         end
@@ -52,7 +52,7 @@ module AcmeAISDK
         sig(:final) do
           override
             .params(value: T.any(T::Hash[T.anything, T.anything], T.anything))
-            .returns(T.any(AcmeAISDK::Internal::Util::AnyHash, T.anything))
+            .returns(T.any(AcmeAISDK::Internal::AnyHash, T.anything))
         end
         def dump(value)
         end
@@ -71,11 +71,11 @@ module AcmeAISDK
         sig(:final) do
           params(
             type_info: T.any(
-              AcmeAISDK::Internal::Util::AnyHash,
+              AcmeAISDK::Internal::AnyHash,
               T.proc.returns(AcmeAISDK::Internal::Type::Converter::Input),
               AcmeAISDK::Internal::Type::Converter::Input
             ),
-            spec: AcmeAISDK::Internal::Util::AnyHash
+            spec: AcmeAISDK::Internal::AnyHash
           )
             .void
         end

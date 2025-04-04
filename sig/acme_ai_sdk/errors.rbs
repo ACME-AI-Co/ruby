@@ -98,32 +98,4 @@ module AcmeAISDK
       HTTP_STATUS: Range[Integer]
     end
   end
-
-  class Error = AcmeAISDK::Errors::Error
-
-  class ConversionError = AcmeAISDK::Errors::ConversionError
-
-  class APIError = AcmeAISDK::Errors::APIError
-
-  class APIStatusError = AcmeAISDK::Errors::APIStatusError
-
-  class APIConnectionError = AcmeAISDK::Errors::APIConnectionError
-
-  class APITimeoutError = AcmeAISDK::Errors::APITimeoutError
-
-  class BadRequestError = AcmeAISDK::Errors::BadRequestError
-
-  class AuthenticationError = AcmeAISDK::Errors::AuthenticationError
-
-  class PermissionDeniedError = AcmeAISDK::Errors::PermissionDeniedError
-
-  class NotFoundError = AcmeAISDK::Errors::NotFoundError
-
-  class ConflictError = AcmeAISDK::Errors::ConflictError
-
-  class UnprocessableEntityError = AcmeAISDK::Errors::UnprocessableEntityError
-
-  class RateLimitError = AcmeAISDK::Errors::RateLimitError
-
-  class InternalServerError = AcmeAISDK::Errors::InternalServerError
 end

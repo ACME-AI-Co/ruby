@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_create
-    class FileFileCreateParams < AcmeAISDK::BaseModel
+    class FileFileCreateParams < AcmeAISDK::Internal::Type::BaseModel
       # @!parse
       #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
@@ -41,9 +41,9 @@ module AcmeAISDK
       #   #
       #   def initialize(file:, description: nil, processing_options: nil, request_options: {}, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
-      class ProcessingOptions < AcmeAISDK::BaseModel
+      class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] language
         #   Preferred language for processing
         #
@@ -58,7 +58,7 @@ module AcmeAISDK
         #   Enable OCR for image-based documents
         #
         #   @return [Boolean, nil]
-        optional :ocr, AcmeAISDK::BooleanModel
+        optional :ocr, AcmeAISDK::Internal::Type::BooleanModel
 
         # @!parse
         #   # @return [Boolean]
@@ -70,7 +70,7 @@ module AcmeAISDK
         #   #
         #   def initialize(language: nil, ocr: nil, **) = super
 
-        # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
       end
     end
   end
