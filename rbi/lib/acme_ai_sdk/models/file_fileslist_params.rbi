@@ -3,8 +3,8 @@
 module AcmeAISDK
   module Models
     class FileFileslistParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # Maximum number of files to return
       sig { returns(T.nilable(Integer)) }
@@ -48,7 +48,7 @@ module AcmeAISDK
           sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
           sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
           status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash)
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
         )
           .returns(T.attached_class)
       end

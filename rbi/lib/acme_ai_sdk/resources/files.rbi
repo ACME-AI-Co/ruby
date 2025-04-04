@@ -9,8 +9,8 @@ module AcmeAISDK
         params(
           file: T.any(IO, StringIO),
           description: String,
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Util::AnyHash),
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash))
+          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::Util::AnyHash),
+          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash))
         )
           .returns(AcmeAISDK::Models::FileFileCreateResponse)
       end
@@ -33,7 +33,7 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash))
+          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash))
         )
           .returns(AcmeAISDK::Models::FileFileSearchResponse)
       end
@@ -61,7 +61,7 @@ module AcmeAISDK
           sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
           sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
           status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash))
+          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash))
         )
           .returns(AcmeAISDK::Models::FileFileslistResponse)
       end

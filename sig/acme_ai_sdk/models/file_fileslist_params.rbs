@@ -8,11 +8,11 @@ module AcmeAISDK
         sort_order: AcmeAISDK::Models::FileFileslistParams::sort_order,
         status: AcmeAISDK::Models::FileFileslistParams::status
       }
-      & AcmeAISDK::request_parameters
+      & AcmeAISDK::Internal::Type::request_parameters
 
     class FileFileslistParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       attr_reader limit: Integer?
 

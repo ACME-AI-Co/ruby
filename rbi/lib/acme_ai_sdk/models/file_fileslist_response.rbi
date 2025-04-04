@@ -7,7 +7,9 @@ module AcmeAISDK
       attr_reader :files
 
       sig do
-        params(files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Util::AnyHash)])
+        params(
+          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::Util::AnyHash)]
+        )
           .void
       end
       attr_writer :files
@@ -35,7 +37,7 @@ module AcmeAISDK
 
       sig do
         params(
-          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Util::AnyHash)],
+          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::Util::AnyHash)],
           limit: Integer,
           offset: Integer,
           total: Integer
