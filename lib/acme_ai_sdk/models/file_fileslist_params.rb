@@ -5,8 +5,8 @@ module AcmeAISDK
     # @see AcmeAISDK::Resources::Files#fileslist
     class FileFileslistParams < AcmeAISDK::BaseModel
       # @!parse
-      #   extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # @!attribute [r] limit
       #   Maximum number of files to return

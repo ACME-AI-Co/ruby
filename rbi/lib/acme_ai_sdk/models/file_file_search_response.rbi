@@ -14,7 +14,12 @@ module AcmeAISDK
       sig { returns(T.nilable(AcmeAISDK::Models::FileFileSearchResponse::Metadata)) }
       attr_reader :metadata
 
-      sig { params(metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Util::AnyHash)).void }
+      sig do
+        params(
+          metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Internal::Util::AnyHash)
+        )
+          .void
+      end
       attr_writer :metadata
 
       # The search query used
@@ -29,7 +34,7 @@ module AcmeAISDK
 
       sig do
         params(
-          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Util::AnyHash)]
+          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Internal::Util::AnyHash)]
         )
           .void
       end
@@ -45,9 +50,9 @@ module AcmeAISDK
       sig do
         params(
           file_id: String,
-          metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Util::AnyHash),
+          metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Internal::Util::AnyHash),
           query: String,
-          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Util::AnyHash)],
+          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Internal::Util::AnyHash)],
           total_results: Integer
         )
           .returns(T.attached_class)
@@ -111,7 +116,10 @@ module AcmeAISDK
 
         sig do
           params(
-            processing_options: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions, AcmeAISDK::Util::AnyHash)
+            processing_options: T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
+              AcmeAISDK::Internal::Util::AnyHash
+            )
           )
             .void
         end
@@ -139,7 +147,10 @@ module AcmeAISDK
             file_type: String,
             filename: String,
             page_count: Integer,
-            processing_options: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions, AcmeAISDK::Util::AnyHash),
+            processing_options: T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
+              AcmeAISDK::Internal::Util::AnyHash
+            ),
             upload_time: Time,
             word_count: Integer
           )
@@ -214,7 +225,12 @@ module AcmeAISDK
 
         sig do
           params(
-            highlight_ranges: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange, AcmeAISDK::Util::AnyHash)]
+            highlight_ranges: T::Array[
+            T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange,
+              AcmeAISDK::Internal::Util::AnyHash
+            )
+            ]
           )
             .void
         end
@@ -244,7 +260,12 @@ module AcmeAISDK
         sig do
           params(
             additional_context: T.anything,
-            highlight_ranges: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange, AcmeAISDK::Util::AnyHash)],
+            highlight_ranges: T::Array[
+            T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange,
+              AcmeAISDK::Internal::Util::AnyHash
+            )
+            ],
             page_number: Integer,
             passage: String,
             relevance_score: Float

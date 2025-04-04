@@ -7,11 +7,11 @@ module AcmeAISDK
         include_metadata: bool,
         max_results: Integer
       }
-      & AcmeAISDK::request_parameters
+      & AcmeAISDK::Internal::Type::request_parameters
 
     class FileFileSearchParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       attr_accessor query: String
 

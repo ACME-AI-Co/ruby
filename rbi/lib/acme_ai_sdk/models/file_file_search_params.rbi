@@ -3,8 +3,8 @@
 module AcmeAISDK
   module Models
     class FileFileSearchParams < AcmeAISDK::BaseModel
-      extend AcmeAISDK::Type::RequestParameters::Converter
-      include AcmeAISDK::RequestParameters
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
 
       # Natural language search query
       sig { returns(String) }
@@ -37,7 +37,7 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Util::AnyHash)
+          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::Util::AnyHash)
         )
           .returns(T.attached_class)
       end
