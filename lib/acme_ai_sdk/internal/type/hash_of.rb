@@ -7,6 +7,8 @@ module AcmeAISDK
       #
       # @abstract
       #
+      # @generic Elem
+      #
       # Hash of items of a given type.
       class HashOf
         include AcmeAISDK::Internal::Type::Converter
@@ -111,7 +113,7 @@ module AcmeAISDK
 
         # @api private
         #
-        # @return [AcmeAISDK::Internal::Type::Converter, Class]
+        # @return [generic<Elem>]
         protected def item_type = @item_type_fn.call
 
         # @api private
