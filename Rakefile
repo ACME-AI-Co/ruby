@@ -11,10 +11,10 @@ CLEAN.push(*%w[.idea/ .ruby-lsp/ .yardoc/])
 
 xargs = %w[xargs --no-run-if-empty --null --max-procs=0 --max-args=300 --]
 
-task(default: [:test])
+multitask(default: [:test])
 
 multitask(:test) do
-  rb = 
+  rb =
     FileList[ENV.fetch("TEST", "./test/**/*_test.rb")]
     .map { "require_relative(#{_1.dump});" }
     .join
@@ -87,9 +87,9 @@ multitask(typecheck: [:steep, :sorbet])
 multitask(lint: [:rubocop, :typecheck])
 
 multitask(:build) do
-  sh(*%w[gem build -- acme-ai-sdk.gemspec])
+  sh(*%w[gem build -- acme_ai_sdk.gemspec])
 end
 
 multitask(release: [:build]) do
-  sh(*%w[gem push], *FileList["acme-ai-sdk-*.gem"])
+  sh(*%w[gem push], *FileList["acme_ai_sdk-*.gem"])
 end
