@@ -9,7 +9,7 @@ module AcmeAISDK
       }
       & AcmeAISDK::Internal::Type::request_parameters
 
-    class FileFileSearchParams < AcmeAISDK::BaseModel
+    class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 

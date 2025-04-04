@@ -31,7 +31,7 @@ class AcmeAISDK::Test::Resources::FilesTest < AcmeAISDK::Test::ResourceTest
         file_id: String | nil,
         metadata: AcmeAISDK::Models::FileFileSearchResponse::Metadata | nil,
         query: String | nil,
-        results: ^(AcmeAISDK::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result]) | nil,
+        results: ^(AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result]) | nil,
         total_results: Integer | nil
       }
     end
@@ -46,7 +46,7 @@ class AcmeAISDK::Test::Resources::FilesTest < AcmeAISDK::Test::ResourceTest
 
     assert_pattern do
       response => {
-        files: ^(AcmeAISDK::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File]) | nil,
+        files: ^(AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File]) | nil,
         limit: Integer | nil,
         offset: Integer | nil,
         total: Integer | nil

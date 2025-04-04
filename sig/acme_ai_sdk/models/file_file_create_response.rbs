@@ -7,7 +7,7 @@ module AcmeAISDK
         upload_time: Time
       }
 
-    class FileFileCreateResponse < AcmeAISDK::BaseModel
+    class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
       attr_reader file_id: String?
 
       def file_id=: (String) -> String
@@ -33,7 +33,7 @@ module AcmeAISDK
       type status = :pending | :processing
 
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         PENDING: :pending
         PROCESSING: :processing

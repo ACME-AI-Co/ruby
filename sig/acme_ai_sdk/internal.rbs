@@ -1,0 +1,4 @@
+module AcmeAISDK
+  module Internal
+  end
+end

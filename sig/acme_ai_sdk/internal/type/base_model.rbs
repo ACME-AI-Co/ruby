@@ -7,10 +7,10 @@ module AcmeAISDK
         type known_field =
           { mode: (:coerce | :dump)?, required: bool, nilable: bool }
 
-        def self.known_fields: -> ::Hash[Symbol, (AcmeAISDK::BaseModel::known_field
+        def self.known_fields: -> ::Hash[Symbol, (AcmeAISDK::Internal::Type::BaseModel::known_field
         & { type_fn: (^-> AcmeAISDK::Internal::Type::Converter::input) })]
 
-        def self.fields: -> ::Hash[Symbol, (AcmeAISDK::BaseModel::known_field
+        def self.fields: -> ::Hash[Symbol, (AcmeAISDK::Internal::Type::BaseModel::known_field
         & { type: AcmeAISDK::Internal::Type::Converter::input })]
 
         private def self.add_field: (
@@ -52,7 +52,7 @@ module AcmeAISDK
         def ==: (top other) -> bool
 
         def self.coerce: (
-          AcmeAISDK::BaseModel | ::Hash[top, top] | top value,
+          AcmeAISDK::Internal::Type::BaseModel | ::Hash[top, top] | top value,
           state: AcmeAISDK::Internal::Type::Converter::state
         ) -> (instance | top)
 

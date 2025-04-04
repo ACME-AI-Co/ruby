@@ -3,11 +3,11 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#fileslist
-    class FileFileslistResponse < AcmeAISDK::BaseModel
+    class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
       # @!attribute [r] files
       #
       #   @return [Array<AcmeAISDK::Models::FileFileslistResponse::File>, nil]
-      optional :files, -> { AcmeAISDK::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File] }
+      optional :files, -> { AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File] }
 
       # @!parse
       #   # @return [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
@@ -51,9 +51,9 @@ module AcmeAISDK
       #   #
       #   def initialize(files: nil, limit: nil, offset: nil, total: nil, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
-      class File < AcmeAISDK::BaseModel
+      class File < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] completion_time
         #   Time processing was completed (if applicable)
         #
@@ -146,13 +146,13 @@ module AcmeAISDK
         #     super
         #   end
 
-        # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
         # Current processing status
         #
         # @see AcmeAISDK::Models::FileFileslistResponse::File#status
         module Status
-          extend AcmeAISDK::Enum
+          extend AcmeAISDK::Internal::Type::Enum
 
           PENDING = :pending
           PROCESSING = :processing

@@ -55,7 +55,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
     end
 
@@ -72,7 +72,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
     end
 
@@ -84,7 +84,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {max_retries: 3}
@@ -104,7 +104,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {max_retries: 4}
@@ -124,7 +124,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {"retry-after" => "1.3"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
     end
 
@@ -142,7 +142,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {"retry-after" => (Time.now + 10).httpdate}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
       Thread.current.thread_variable_set(:time_now, nil)
@@ -162,7 +162,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {"retry-after-ms" => "1300"}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
     end
 
@@ -175,7 +175,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
     end
 
@@ -188,7 +188,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
@@ -204,7 +204,7 @@ class AcmeAISDKTest < Minitest::Test
     requester = MockRequester.new(500, {}, {})
     acme_ai_sdk.requester = requester
 
-    assert_raises(AcmeAISDK::InternalServerError) do
+    assert_raises(AcmeAISDK::Errors::InternalServerError) do
       acme_ai_sdk.files.file_create(
         file: StringIO.new("some file contents"),
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}

@@ -21,7 +21,7 @@ module AcmeAISDK
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= AcmeAISDK::Unknown
+        def self.==(other) = other.is_a?(Class) && other <= AcmeAISDK::Internal::Type::Unknown
 
         class << self
           # @api private

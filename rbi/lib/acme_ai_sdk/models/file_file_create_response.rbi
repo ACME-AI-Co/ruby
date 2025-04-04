@@ -2,7 +2,7 @@
 
 module AcmeAISDK
   module Models
-    class FileFileCreateResponse < AcmeAISDK::BaseModel
+    class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
       # Unique identifier for the file
       sig { returns(T.nilable(String)) }
       attr_reader :file_id
@@ -46,7 +46,7 @@ module AcmeAISDK
 
       # Current processing status
       module Status
-        extend AcmeAISDK::Enum
+        extend AcmeAISDK::Internal::Type::Enum
 
         TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status) }
         OrSymbol =

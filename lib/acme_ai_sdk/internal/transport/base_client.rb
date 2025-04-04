@@ -339,7 +339,7 @@ module AcmeAISDK
 
           begin
             status, response, stream = @requester.execute(input)
-          rescue AcmeAISDK::APIConnectionError => e
+          rescue AcmeAISDK::Errors::APIConnectionError => e
             status = e
           end
 
@@ -361,7 +361,7 @@ module AcmeAISDK
               retry_count: retry_count,
               send_retry_header: send_retry_header
             )
-          in AcmeAISDK::APIConnectionError if retry_count >= max_retries
+          in AcmeAISDK::Errors::APIConnectionError if retry_count >= max_retries
             raise status
           in (400..) if retry_count >= max_retries || !self.class.should_retry?(status, headers: response)
             decoded = Kernel.then do
@@ -421,7 +421,7 @@ module AcmeAISDK
         # @return [Object]
         def request(req)
           self.class.validate!(req)
-          model = req.fetch(:model) { AcmeAISDK::Unknown }
+          model = req.fetch(:model) { AcmeAISDK::Internal::Type::Unknown }
           opts = req[:options].to_h
           AcmeAISDK::RequestOptions.validate!(opts)
           request = build_request(req.except(:options), opts)

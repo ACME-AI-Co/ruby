@@ -3,7 +3,7 @@
 module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_search
-    class FileFileSearchResponse < AcmeAISDK::BaseModel
+    class FileFileSearchResponse < AcmeAISDK::Internal::Type::BaseModel
       # @!attribute [r] file_id
       #   Unique identifier of the searched file
       #
@@ -37,7 +37,8 @@ module AcmeAISDK
       # @!attribute [r] results
       #
       #   @return [Array<AcmeAISDK::Models::FileFileSearchResponse::Result>, nil]
-      optional :results, -> { AcmeAISDK::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result] }
+      optional :results,
+               -> { AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result] }
 
       # @!parse
       #   # @return [Array<AcmeAISDK::Models::FileFileSearchResponse::Result>]
@@ -62,10 +63,10 @@ module AcmeAISDK
       #   #
       #   def initialize(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil, **) = super
 
-      # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
       # @see AcmeAISDK::Models::FileFileSearchResponse#metadata
-      class Metadata < AcmeAISDK::BaseModel
+      class Metadata < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] description
         #   User-provided description of the file
         #
@@ -172,10 +173,10 @@ module AcmeAISDK
         #     super
         #   end
 
-        # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
         # @see AcmeAISDK::Models::FileFileSearchResponse::Metadata#processing_options
-        class ProcessingOptions < AcmeAISDK::BaseModel
+        class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
           # @!attribute [r] language
           #   Language used for processing
           #
@@ -190,7 +191,7 @@ module AcmeAISDK
           #   Whether OCR was used
           #
           #   @return [Boolean, nil]
-          optional :ocr, AcmeAISDK::BooleanModel
+          optional :ocr, AcmeAISDK::Internal::Type::BooleanModel
 
           # @!parse
           #   # @return [Boolean]
@@ -202,16 +203,16 @@ module AcmeAISDK
           #   #
           #   def initialize(language: nil, ocr: nil, **) = super
 
-          # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+          # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
         end
       end
 
-      class Result < AcmeAISDK::BaseModel
+      class Result < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] additional_context
         #   Additional context information (document-type specific)
         #
         #   @return [Object, nil]
-        optional :additional_context, AcmeAISDK::Unknown
+        optional :additional_context, AcmeAISDK::Internal::Type::Unknown
 
         # @!parse
         #   # @return [Object]
@@ -222,7 +223,7 @@ module AcmeAISDK
         #
         #   @return [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>, nil]
         optional :highlight_ranges,
-                 -> { AcmeAISDK::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange] }
+                 -> { AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange] }
 
         # @!parse
         #   # @return [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>]
@@ -267,9 +268,9 @@ module AcmeAISDK
         #   #
         #   def initialize(additional_context: nil, highlight_ranges: nil, page_number: nil, passage: nil, relevance_score: nil, **) = super
 
-        # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
 
-        class HighlightRange < AcmeAISDK::BaseModel
+        class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           # @!attribute [r] end_
           #   End index of highlight in passage
           #
@@ -296,7 +297,7 @@ module AcmeAISDK
           #   #
           #   def initialize(end_: nil, start: nil, **) = super
 
-          # def initialize: (Hash | AcmeAISDK::BaseModel) -> void
+          # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
         end
       end
     end

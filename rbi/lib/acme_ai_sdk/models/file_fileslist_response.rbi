@@ -2,13 +2,13 @@
 
 module AcmeAISDK
   module Models
-    class FileFileslistResponse < AcmeAISDK::BaseModel
+    class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
       sig { returns(T.nilable(T::Array[AcmeAISDK::Models::FileFileslistResponse::File])) }
       attr_reader :files
 
       sig do
         params(
-          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::Util::AnyHash)]
+          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::AnyHash)]
         )
           .void
       end
@@ -37,7 +37,7 @@ module AcmeAISDK
 
       sig do
         params(
-          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::Util::AnyHash)],
+          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::AnyHash)],
           limit: Integer,
           offset: Integer,
           total: Integer
@@ -56,7 +56,7 @@ module AcmeAISDK
       def to_hash
       end
 
-      class File < AcmeAISDK::BaseModel
+      class File < AcmeAISDK::Internal::Type::BaseModel
         # Time processing was completed (if applicable)
         sig { returns(T.nilable(Time)) }
         attr_reader :completion_time
@@ -148,7 +148,7 @@ module AcmeAISDK
 
         # Current processing status
         module Status
-          extend AcmeAISDK::Enum
+          extend AcmeAISDK::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status) }
           OrSymbol =
