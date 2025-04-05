@@ -122,9 +122,9 @@ Due to limitations with the Sorbet type system, where a method otherwise can tak
 Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
 
 ```ruby
-model = AcmeAISDK::Models::FileFileCreateParams.new(file: "REPLACE_ME")
+params = AcmeAISDK::Models::FileFileCreateParams.new(file: "REPLACE_ME")
 
-acme_ai_sdk.files.file_create(**model)
+acme_ai_sdk.files.file_create(**params)
 ```
 
 ## Advanced
