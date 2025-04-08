@@ -58,7 +58,7 @@ module AcmeAISDK
         #   Enable OCR for image-based documents
         #
         #   @return [Boolean, nil]
-        optional :ocr, AcmeAISDK::Internal::Type::BooleanModel
+        optional :ocr, AcmeAISDK::Internal::Type::Boolean
 
         # @!parse
         #   # @return [Boolean]

@@ -64,7 +64,7 @@ module AcmeAISDK
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { AcmeAISDK::Internal::Type::BooleanModel }
+              -> { AcmeAISDK::Internal::Type::Boolean }
             in AcmeAISDK::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float
