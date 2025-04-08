@@ -68,8 +68,7 @@ module AcmeAISDK
             }
           )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Field to sort by
       module SortBy
@@ -83,8 +82,7 @@ module AcmeAISDK
         STATUS = T.let(:status, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
 
         sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol]) }
-        def self.values
-        end
+        def self.values; end
       end
 
       # Sort order
@@ -99,8 +97,7 @@ module AcmeAISDK
         DESC = T.let(:desc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
 
         sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol]) }
-        def self.values
-        end
+        def self.values; end
       end
 
       # Filter by processing status
@@ -117,8 +114,7 @@ module AcmeAISDK
         FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
 
         sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol]) }
-        def self.values
-        end
+        def self.values; end
       end
     end
   end
