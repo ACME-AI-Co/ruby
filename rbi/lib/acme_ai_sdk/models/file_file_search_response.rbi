@@ -55,8 +55,7 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil)
-      end
+      def self.new(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil); end
 
       sig do
         override
@@ -70,8 +69,7 @@ module AcmeAISDK
             }
           )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       class Metadata < AcmeAISDK::Internal::Type::BaseModel
         # User-provided description of the file
@@ -163,9 +161,7 @@ module AcmeAISDK
           processing_options: nil,
           upload_time: nil,
           word_count: nil
-        )
-        end
-
+        ); end
         sig do
           override
             .returns(
@@ -181,8 +177,7 @@ module AcmeAISDK
               }
             )
         end
-        def to_hash
-        end
+        def to_hash; end
 
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
           # Language used for processing
@@ -200,12 +195,10 @@ module AcmeAISDK
           attr_writer :ocr
 
           sig { params(language: String, ocr: T::Boolean).returns(T.attached_class) }
-          def self.new(language: nil, ocr: nil)
-          end
+          def self.new(language: nil, ocr: nil); end
 
           sig { override.returns({language: String, ocr: T::Boolean}) }
-          def to_hash
-          end
+          def to_hash; end
         end
       end
 
@@ -281,8 +274,7 @@ module AcmeAISDK
               }
             )
         end
-        def to_hash
-        end
+        def to_hash; end
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           # End index of highlight in passage
@@ -300,12 +292,10 @@ module AcmeAISDK
           attr_writer :start
 
           sig { params(end_: Integer, start: Integer).returns(T.attached_class) }
-          def self.new(end_: nil, start: nil)
-          end
+          def self.new(end_: nil, start: nil); end
 
           sig { override.returns({end_: Integer, start: Integer}) }
-          def to_hash
-          end
+          def to_hash; end
         end
       end
     end

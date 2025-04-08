@@ -32,8 +32,7 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(file_id: nil, status: nil, upload_time: nil)
-      end
+      def self.new(file_id: nil, status: nil, upload_time: nil); end
 
       sig do
         override
@@ -41,8 +40,7 @@ module AcmeAISDK
             {file_id: String, status: AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol, upload_time: Time}
           )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Current processing status
       module Status
@@ -56,8 +54,7 @@ module AcmeAISDK
         PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol)
 
         sig { override.returns(T::Array[AcmeAISDK::Models::FileFileCreateResponse::Status::TaggedSymbol]) }
-        def self.values
-        end
+        def self.values; end
       end
     end
   end

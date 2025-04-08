@@ -44,8 +44,7 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(files: nil, limit: nil, offset: nil, total: nil)
-      end
+      def self.new(files: nil, limit: nil, offset: nil, total: nil); end
 
       sig do
         override
@@ -53,8 +52,7 @@ module AcmeAISDK
             {files: T::Array[AcmeAISDK::Models::FileFileslistResponse::File], limit: Integer, offset: Integer, total: Integer}
           )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       class File < AcmeAISDK::Internal::Type::BaseModel
         # Time processing was completed (if applicable)
@@ -126,9 +124,7 @@ module AcmeAISDK
           filename: nil,
           status: nil,
           upload_time: nil
-        )
-        end
-
+        ); end
         sig do
           override
             .returns(
@@ -143,8 +139,7 @@ module AcmeAISDK
               }
             )
         end
-        def to_hash
-        end
+        def to_hash; end
 
         # Current processing status
         module Status
@@ -160,8 +155,7 @@ module AcmeAISDK
           FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
 
           sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol]) }
-          def self.values
-          end
+          def self.values; end
         end
       end
     end
