@@ -191,7 +191,7 @@ module AcmeAISDK
           #   Whether OCR was used
           #
           #   @return [Boolean, nil]
-          optional :ocr, AcmeAISDK::Internal::Type::BooleanModel
+          optional :ocr, AcmeAISDK::Internal::Type::Boolean
 
           # @!parse
           #   # @return [Boolean]

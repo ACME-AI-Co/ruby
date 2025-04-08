@@ -8,7 +8,7 @@ module AcmeAISDK
       # @abstract
       #
       # Ruby has no Boolean class; this is something for models to refer to.
-      class BooleanModel
+      class Boolean
         extend AcmeAISDK::Internal::Type::Converter
 
         # @param other [Object]
@@ -19,7 +19,7 @@ module AcmeAISDK
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= AcmeAISDK::Internal::Type::BooleanModel
+        def self.==(other) = other.is_a?(Class) && other <= AcmeAISDK::Internal::Type::Boolean
 
         class << self
           # @api private
