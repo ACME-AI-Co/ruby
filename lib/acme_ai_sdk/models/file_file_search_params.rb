@@ -28,7 +28,7 @@ module AcmeAISDK
       #   Whether to include file metadata in response
       #
       #   @return [Boolean, nil]
-      optional :include_metadata, AcmeAISDK::Internal::Type::BooleanModel
+      optional :include_metadata, AcmeAISDK::Internal::Type::Boolean
 
       # @!parse
       #   # @return [Boolean]
