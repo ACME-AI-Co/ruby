@@ -4,7 +4,7 @@ module AcmeAISDK
   module Resources
     class Files
       # Upload a file for processing with AI. The file will be analyzed and made
-      #   searchable using natural language queries.
+      # searchable using natural language queries.
       sig do
         params(
           file: T.any(IO, StringIO),
@@ -23,7 +23,7 @@ module AcmeAISDK
         request_options: {}
       ); end
       # Search for content within a processed file using natural language queries.
-      #   Returns relevant passages and their context.
+      # Returns relevant passages and their context.
       sig do
         params(
           file_id: String,
@@ -49,7 +49,7 @@ module AcmeAISDK
         request_options: {}
       ); end
       # Retrieve the processing status of files. Can be filtered by status and sorted by
-      #   upload time.
+      # upload time.
       sig do
         params(
           limit: Integer,
