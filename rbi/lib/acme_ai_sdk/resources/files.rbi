@@ -21,9 +21,7 @@ module AcmeAISDK
         description: nil,
         processing_options: nil,
         request_options: {}
-      )
-      end
-
+      ); end
       # Search for content within a processed file using natural language queries.
       #   Returns relevant passages and their context.
       sig do
@@ -49,9 +47,7 @@ module AcmeAISDK
         # Maximum number of results to return
         max_results: nil,
         request_options: {}
-      )
-      end
-
+      ); end
       # Retrieve the processing status of files. Can be filtered by status and sorted by
       #   upload time.
       sig do
@@ -77,13 +73,10 @@ module AcmeAISDK
         # Filter by processing status
         status: nil,
         request_options: {}
-      )
-      end
-
+      ); end
       # @api private
       sig { params(client: AcmeAISDK::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end
