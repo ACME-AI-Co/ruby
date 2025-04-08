@@ -4,7 +4,7 @@ module AcmeAISDK
   module Resources
     class Files
       # Upload a file for processing with AI. The file will be analyzed and made
-      #   searchable using natural language queries.
+      # searchable using natural language queries.
       #
       # @overload file_create(file:, description: nil, processing_options: nil, request_options: {})
       #
@@ -29,7 +29,7 @@ module AcmeAISDK
       end
 
       # Search for content within a processed file using natural language queries.
-      #   Returns relevant passages and their context.
+      # Returns relevant passages and their context.
       #
       # @overload file_search(file_id, query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
       #
@@ -55,7 +55,7 @@ module AcmeAISDK
       end
 
       # Retrieve the processing status of files. Can be filtered by status and sorted by
-      #   upload time.
+      # upload time.
       #
       # @overload fileslist(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #
