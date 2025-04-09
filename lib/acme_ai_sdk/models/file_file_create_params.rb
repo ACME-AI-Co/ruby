@@ -11,8 +11,8 @@ module AcmeAISDK
       # @!attribute file
       #   The file to upload
       #
-      #   @return [IO, StringIO]
-      required :file, IO
+      #   @return [Pathname, StringIO]
+      required :file, AcmeAISDK::Internal::Type::IOLike
 
       # @!attribute [r] description
       #   Optional description of the file
@@ -34,7 +34,7 @@ module AcmeAISDK
       #   attr_writer :processing_options
 
       # @!parse
-      #   # @param file [IO, StringIO]
+      #   # @param file [Pathname, StringIO]
       #   # @param description [String]
       #   # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
       #   # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
