@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class AcmeAISDK::Test::Resources::FilesTest < AcmeAISDK::Test::ResourceTest
   def test_file_create_required_params
-    response = @acme_ai_sdk.files.file_create(file: StringIO.new("some file contents"))
+    response = @acme_ai_sdk.files.file_create(file: Pathname(__FILE__))
 
     assert_pattern do
       response => AcmeAISDK::Models::FileFileCreateResponse

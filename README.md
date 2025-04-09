@@ -43,6 +43,23 @@ response = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
 puts(response.file_id)
 ```
 
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.1/o/pathname) instance.
+
+```ruby
+require "pathname"
+
+# using `Pathname`, the file will be lazily read, without reading everything in to memory
+response = acme_ai_sdk.files.file_create(file: Pathname("/path/to/file"))
+
+file = File.read("/path/to/file")
+# using `StringIO`, useful if you already have the data in memory
+response = acme_ai_sdk.files.file_create(file: StringIO.new(file))
+
+puts(response.file_id)
+```
+
 ### Errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Error` will be thrown:
