@@ -8,7 +8,7 @@ module AcmeAISDK
       #
       # @overload file_create(file:, description: nil, processing_options: nil, request_options: {})
       #
-      # @param file [IO, StringIO]
+      # @param file [Pathname, StringIO]
       # @param description [String]
       # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
