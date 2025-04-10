@@ -43,7 +43,7 @@ response = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
 puts(response.file_id)
 ```
 
-## File uploads
+### File uploads
 
 Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.1/o/pathname) instance.
 
