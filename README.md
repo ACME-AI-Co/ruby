@@ -1,6 +1,6 @@
 # Acme AI SDK Ruby API library
 
-The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.0.0+ application.
+The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.1.0+ application.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -12,22 +12,20 @@ The underlying REST API documentation can be found on [docs.acme-ai-sdk.com](htt
 
 ## Installation
 
-To use this gem during the beta, install directly from GitHub with Bundler by adding the following to your application's `Gemfile`:
+To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
+
+<!-- x-release-please-start-version -->
 
 ```ruby
-gem "acme-ai-sdk", git: "https://github.com/ACME-AI-Co/ruby", branch: "main"
+gem "acme-ai-sdk", "~> 0.1.0.pre.alpha.2"
 ```
+
+<!-- x-release-please-end -->
 
 To fetch an initial copy of the gem:
 
 ```sh
 bundle install
-```
-
-To update the version used by your application when updates are pushed to GitHub:
-
-```sh
-bundle update acme-ai-sdk
 ```
 
 ## Usage
@@ -45,6 +43,23 @@ response = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
 puts(response.file_id)
 ```
 
+### File uploads
+
+Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.1/o/pathname) instance.
+
+```ruby
+require "pathname"
+
+# using `Pathname`, the file will be lazily read, without reading everything in to memory
+response = acme_ai_sdk.files.file_create(file: Pathname("/path/to/file"))
+
+file = File.read("/path/to/file")
+# using `StringIO`, useful if you already have the data in memory
+response = acme_ai_sdk.files.file_create(file: StringIO.new(file))
+
+puts(response.file_id)
+```
+
 ### Errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Error` will be thrown:
@@ -52,7 +67,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```ruby
 begin
   file = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
-rescue AcmeAISDK::Error => e
+rescue AcmeAISDK::Errors::APIError => e
   puts(e.status) # 400
 end
 ```
@@ -68,7 +83,7 @@ Error codes are as followed:
 | HTTP 409         | `ConflictError`            |
 | HTTP 422         | `UnprocessableEntityError` |
 | HTTP 429         | `RateLimitError`           |
-| HTTP >=500       | `InternalServerError`      |
+| HTTP >= 500      | `InternalServerError`      |
 | Other HTTP error | `APIStatusError`           |
 | Timeout          | `APITimeoutError`          |
 | Network error    | `APIConnectionError`       |
@@ -109,9 +124,32 @@ acme_ai_sdk = AcmeAISDK::Client.new(
 acme_ai_sdk.files.file_create(file: "REPLACE_ME", request_options: {timeout: 5})
 ```
 
-## Sorbet Support
+## LSP Support
 
-**This library emits an intentional warning under the [`tapioca` toolchain](https://github.com/Shopify/tapioca)**. This is normal, and does not impact functionality.
+### Solargraph
+
+This library includes [Solargraph](https://solargraph.org) support for both auto completion and go to definition.
+
+```ruby
+gem "solargraph", group: :development
+```
+
+After Solargraph is installed, **you must populate its index** either via the provided editor command, or by running the following in your terminal:
+
+```sh
+bundle exec solargraph gems
+```
+
+Note: if you had installed the gem either using a `git:` or `github:` URL, or had vendored the gem using bundler, you will need to set up your [`.solargraph.yml`](https://solargraph.org/guides/configuration) to include the path to the gem's `lib` directory.
+
+```yaml
+include:
+  - 'vendor/bundle/ruby/*/gems/acme-ai-sdk-*/lib/**/*.rb'
+```
+
+Otherwise Solargraph will not be able to provide type information or auto-completion for any non-indexed libraries.
+
+### Sorbet
 
 This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
 
@@ -122,12 +160,43 @@ Due to limitations with the Sorbet type system, where a method otherwise can tak
 Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
 
 ```ruby
-model = FileFileCreateParams.new(file: "REPLACE_ME")
+params = AcmeAISDK::Models::FileFileCreateParams.new(file: "REPLACE_ME")
 
-acme_ai_sdk.files.file_create(**model)
+acme_ai_sdk.files.file_create(**params)
 ```
 
+Note: **This library emits an intentional warning under the [`tapioca` toolchain](https://github.com/Shopify/tapioca)**. This is normal, and does not impact functionality.
+
+### Ruby LSP
+
+The Ruby LSP has [best effort support](https://shopify.github.io/ruby-lsp/#guessed-types) for inferring type information from Ruby code, and as such it may not always be able to provide accurate type information.
+
 ## Advanced
+
+### Making custom/undocumented requests
+
+This library is typed for convenient access to the documented API.
+
+If you need to access undocumented endpoints, params, or response properties, the library can still be used.
+
+#### Undocumented request params
+
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a requests as seen in examples above.
+
+#### Undocumented endpoints
+
+To make requests to undocumented endpoints, you can make requests using `client.request`. Options on the client will be respected (such as retries) when making this request.
+
+```ruby
+response =
+  client.request(
+    method: :post,
+    path: '/undocumented/endpoint',
+    query: {"dog": "woof"},
+    headers: {"useful-header": "interesting-value"},
+    body: {"he": "llo"},
+  )
+```
 
 ### Concurrency & Connection Pooling
 
@@ -147,4 +216,4 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 ## Requirements
 
-Ruby 3.0.0 or higher.
+Ruby 3.1.0 or higher.
