@@ -6,7 +6,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for released of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
 
 The underlying REST API documentation can be found on [docs.acme-ai-sdk.com](https://docs.acme-ai-sdk.com).
 
