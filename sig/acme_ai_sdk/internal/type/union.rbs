@@ -39,6 +39,8 @@ module AcmeAISDK
           top value,
           state: AcmeAISDK::Internal::Type::Converter::dump_state
         ) -> top
+
+        def inspect: (?depth: Integer) -> String
       end
     end
   end
