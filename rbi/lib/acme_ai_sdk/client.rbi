@@ -35,8 +35,9 @@ module AcmeAISDK
     def self.new(
       # Defaults to `ENV["ACME_AI_SDK_BEARER_TOKEN"]`
       bearer_token: ENV["ACME_AI_SDK_BEARER_TOKEN"],
-      # Override the default base URL for the API, e.g., `"https://api.example.com/v2/"`
-      base_url: nil,
+      # Override the default base URL for the API, e.g.,
+      # `"https://api.example.com/v2/"`. Defaults to `ENV["ACME_AI_SDK_BASE_URL"]`
+      base_url: ENV["ACME_AI_SDK_BASE_URL"],
       # Max number of retries to attempt after a failed retryable request.
       max_retries: DEFAULT_MAX_RETRIES,
       timeout: DEFAULT_TIMEOUT_IN_SECONDS,
