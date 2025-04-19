@@ -34,14 +34,10 @@ module AcmeAISDK
       #   # @return [Time]
       #   attr_writer :upload_time
 
-      # @!parse
-      #   # @param file_id [String]
-      #   # @param status [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status]
-      #   # @param upload_time [Time]
-      #   #
-      #   def initialize(file_id: nil, status: nil, upload_time: nil, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(file_id: nil, status: nil, upload_time: nil)
+      #   @param file_id [String]
+      #   @param status [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status]
+      #   @param upload_time [Time]
 
       # Current processing status
       #
@@ -52,11 +48,8 @@ module AcmeAISDK
         PENDING = :pending
         PROCESSING = :processing
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

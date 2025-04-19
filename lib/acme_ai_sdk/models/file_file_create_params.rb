@@ -33,15 +33,11 @@ module AcmeAISDK
       #   # @return [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
       #   attr_writer :processing_options
 
-      # @!parse
-      #   # @param file [Pathname, StringIO]
-      #   # @param description [String]
-      #   # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
-      #   # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(file:, description: nil, processing_options: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(file:, description: nil, processing_options: nil, request_options: {})
+      #   @param file [Pathname, StringIO]
+      #   @param description [String]
+      #   @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 
       class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] language
@@ -64,13 +60,9 @@ module AcmeAISDK
         #   # @return [Boolean]
         #   attr_writer :ocr
 
-        # @!parse
-        #   # @param language [String]
-        #   # @param ocr [Boolean]
-        #   #
-        #   def initialize(language: nil, ocr: nil, **) = super
-
-        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+        # @!method initialize(language: nil, ocr: nil)
+        #   @param language [String]
+        #   @param ocr [Boolean]
       end
     end
   end

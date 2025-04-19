@@ -54,16 +54,12 @@ module AcmeAISDK
       #   # @return [Integer]
       #   attr_writer :total_results
 
-      # @!parse
-      #   # @param file_id [String]
-      #   # @param metadata [AcmeAISDK::Models::FileFileSearchResponse::Metadata]
-      #   # @param query [String]
-      #   # @param results [Array<AcmeAISDK::Models::FileFileSearchResponse::Result>]
-      #   # @param total_results [Integer]
-      #   #
-      #   def initialize(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil)
+      #   @param file_id [String]
+      #   @param metadata [AcmeAISDK::Models::FileFileSearchResponse::Metadata]
+      #   @param query [String]
+      #   @param results [Array<AcmeAISDK::Models::FileFileSearchResponse::Result>]
+      #   @param total_results [Integer]
 
       # @see AcmeAISDK::Models::FileFileSearchResponse#metadata
       class Metadata < AcmeAISDK::Internal::Type::BaseModel
@@ -147,33 +143,17 @@ module AcmeAISDK
         #   # @return [Integer]
         #   attr_writer :word_count
 
-        # @!parse
-        #   # File metadata (only included if requested)
-        #   #
-        #   # @param description [String]
-        #   # @param file_id [String]
-        #   # @param file_type [String]
-        #   # @param filename [String]
-        #   # @param page_count [Integer]
-        #   # @param processing_options [AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions]
-        #   # @param upload_time [Time]
-        #   # @param word_count [Integer]
-        #   #
-        #   def initialize(
-        #     description: nil,
-        #     file_id: nil,
-        #     file_type: nil,
-        #     filename: nil,
-        #     page_count: nil,
-        #     processing_options: nil,
-        #     upload_time: nil,
-        #     word_count: nil,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+        # @!method initialize(description: nil, file_id: nil, file_type: nil, filename: nil, page_count: nil, processing_options: nil, upload_time: nil, word_count: nil)
+        #   File metadata (only included if requested)
+        #
+        #   @param description [String]
+        #   @param file_id [String]
+        #   @param file_type [String]
+        #   @param filename [String]
+        #   @param page_count [Integer]
+        #   @param processing_options [AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions]
+        #   @param upload_time [Time]
+        #   @param word_count [Integer]
 
         # @see AcmeAISDK::Models::FileFileSearchResponse::Metadata#processing_options
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
@@ -197,13 +177,9 @@ module AcmeAISDK
           #   # @return [Boolean]
           #   attr_writer :ocr
 
-          # @!parse
-          #   # @param language [String]
-          #   # @param ocr [Boolean]
-          #   #
-          #   def initialize(language: nil, ocr: nil, **) = super
-
-          # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+          # @!method initialize(language: nil, ocr: nil)
+          #   @param language [String]
+          #   @param ocr [Boolean]
         end
       end
 
@@ -259,16 +235,12 @@ module AcmeAISDK
         #   # @return [Float]
         #   attr_writer :relevance_score
 
-        # @!parse
-        #   # @param additional_context [Object]
-        #   # @param highlight_ranges [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>]
-        #   # @param page_number [Integer]
-        #   # @param passage [String]
-        #   # @param relevance_score [Float]
-        #   #
-        #   def initialize(additional_context: nil, highlight_ranges: nil, page_number: nil, passage: nil, relevance_score: nil, **) = super
-
-        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+        # @!method initialize(additional_context: nil, highlight_ranges: nil, page_number: nil, passage: nil, relevance_score: nil)
+        #   @param additional_context [Object]
+        #   @param highlight_ranges [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>]
+        #   @param page_number [Integer]
+        #   @param passage [String]
+        #   @param relevance_score [Float]
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           # @!attribute [r] end_
@@ -291,13 +263,9 @@ module AcmeAISDK
           #   # @return [Integer]
           #   attr_writer :start
 
-          # @!parse
-          #   # @param end_ [Integer]
-          #   # @param start [Integer]
-          #   #
-          #   def initialize(end_: nil, start: nil, **) = super
-
-          # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+          # @!method initialize(end_: nil, start: nil)
+          #   @param end_ [Integer]
+          #   @param start [Integer]
         end
       end
     end
