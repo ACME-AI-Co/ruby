@@ -146,8 +146,7 @@ module AcmeAISDK
           extend AcmeAISDK::Internal::Type::Enum
 
           TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status) }
-          OrSymbol =
-            T.type_alias { T.any(Symbol, String, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           PENDING = T.let(:pending, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
           PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
