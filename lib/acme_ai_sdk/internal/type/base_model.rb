@@ -344,6 +344,8 @@ module AcmeAISDK
         end
 
         class << self
+          # @api private
+          #
           # @param model [AcmeAISDK::Internal::Type::BaseModel]
           #
           # @return [Hash{Symbol=>Object}]

@@ -43,15 +43,11 @@ module AcmeAISDK
       #   # @return [Integer]
       #   attr_writer :total
 
-      # @!parse
-      #   # @param files [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
-      #   # @param limit [Integer]
-      #   # @param offset [Integer]
-      #   # @param total [Integer]
-      #   #
-      #   def initialize(files: nil, limit: nil, offset: nil, total: nil, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(files: nil, limit: nil, offset: nil, total: nil)
+      #   @param files [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
+      #   @param limit [Integer]
+      #   @param offset [Integer]
+      #   @param total [Integer]
 
       class File < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute [r] completion_time
@@ -124,29 +120,14 @@ module AcmeAISDK
         #   # @return [Time]
         #   attr_writer :upload_time
 
-        # @!parse
-        #   # @param completion_time [Time]
-        #   # @param error [String]
-        #   # @param file_id [String]
-        #   # @param file_size [Integer]
-        #   # @param filename [String]
-        #   # @param status [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status]
-        #   # @param upload_time [Time]
-        #   #
-        #   def initialize(
-        #     completion_time: nil,
-        #     error: nil,
-        #     file_id: nil,
-        #     file_size: nil,
-        #     filename: nil,
-        #     status: nil,
-        #     upload_time: nil,
-        #     **
-        #   )
-        #     super
-        #   end
-
-        # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+        # @!method initialize(completion_time: nil, error: nil, file_id: nil, file_size: nil, filename: nil, status: nil, upload_time: nil)
+        #   @param completion_time [Time]
+        #   @param error [String]
+        #   @param file_id [String]
+        #   @param file_size [Integer]
+        #   @param filename [String]
+        #   @param status [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status]
+        #   @param upload_time [Time]
 
         # Current processing status
         #
@@ -159,11 +140,8 @@ module AcmeAISDK
           COMPLETED = :completed
           FAILED = :failed
 
-          finalize!
-
-          # @!parse
-          #   # @return [Array<Symbol>]
-          #   def self.values; end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

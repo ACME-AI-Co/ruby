@@ -44,16 +44,12 @@ module AcmeAISDK
       #   # @return [Integer]
       #   attr_writer :max_results
 
-      # @!parse
-      #   # @param query [String]
-      #   # @param context_size [Integer]
-      #   # @param include_metadata [Boolean]
-      #   # @param max_results [Integer]
-      #   # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
+      #   @param query [String]
+      #   @param context_size [Integer]
+      #   @param include_metadata [Boolean]
+      #   @param max_results [Integer]
+      #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

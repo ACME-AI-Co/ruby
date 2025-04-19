@@ -58,17 +58,13 @@ module AcmeAISDK
       #   # @return [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
       #   attr_writer :status
 
-      # @!parse
-      #   # @param limit [Integer]
-      #   # @param offset [Integer]
-      #   # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
-      #   # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
-      #   # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
-      #   # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
-      #   #
-      #   def initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {}, **) = super
-
-      # def initialize: (Hash | AcmeAISDK::Internal::Type::BaseModel) -> void
+      # @!method initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
+      #   @param limit [Integer]
+      #   @param offset [Integer]
+      #   @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
+      #   @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
+      #   @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
+      #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 
       # Field to sort by
       module SortBy
@@ -77,11 +73,8 @@ module AcmeAISDK
         UPLOAD_TIME = :upload_time
         STATUS = :status
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # Sort order
@@ -91,11 +84,8 @@ module AcmeAISDK
         ASC = :asc
         DESC = :desc
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # Filter by processing status
@@ -107,11 +97,8 @@ module AcmeAISDK
         COMPLETED = :completed
         FAILED = :failed
 
-        finalize!
-
-        # @!parse
-        #   # @return [Array<Symbol>]
-        #   def self.values; end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end
