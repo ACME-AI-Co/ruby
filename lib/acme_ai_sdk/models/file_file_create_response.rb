@@ -4,35 +4,23 @@ module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_create
     class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
-      # @!attribute [r] file_id
+      # @!attribute file_id
       #   Unique identifier for the file
       #
       #   @return [String, nil]
       optional :file_id, String
 
-      # @!parse
-      #   # @return [String]
-      #   attr_writer :file_id
-
-      # @!attribute [r] status
+      # @!attribute status
       #   Current processing status
       #
       #   @return [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status, nil]
       optional :status, enum: -> { AcmeAISDK::Models::FileFileCreateResponse::Status }
 
-      # @!parse
-      #   # @return [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status]
-      #   attr_writer :status
-
-      # @!attribute [r] upload_time
+      # @!attribute upload_time
       #   Time the file was uploaded
       #
       #   @return [Time, nil]
       optional :upload_time, Time
-
-      # @!parse
-      #   # @return [Time]
-      #   attr_writer :upload_time
 
       # @!method initialize(file_id: nil, status: nil, upload_time: nil)
       #   @param file_id [String]
