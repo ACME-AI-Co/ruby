@@ -4,14 +4,6 @@ module AcmeAISDK
   module Internal
     module Type
       # @abstract
-      #
-      # @example
-      #   # `file_file_create_response` is a `AcmeAISDK::Models::FileFileCreateResponse`
-      #   file_file_create_response => {
-      #     file_id: file_id,
-      #     status: status,
-      #     upload_time: upload_time
-      #   }
       class BaseModel
         extend AcmeAISDK::Internal::Type::Converter
 
@@ -98,11 +90,13 @@ module AcmeAISDK
                   target, value, state: state
                 )
               end
-            rescue StandardError
+            rescue StandardError => e
               cls = self.class.name.split("::").last
-              # rubocop:disable Layout/LineLength
-              message = "Failed to parse #{cls}.#{__method__} from #{value.class} to #{target.inspect}. To get the unparsed API response, use #{cls}[:#{__method__}]."
-              # rubocop:enable Layout/LineLength
+              message = [
+                "Failed to parse #{cls}.#{__method__} from #{value.class} to #{target.inspect}.",
+                "To get the unparsed API response, use #{cls}[#{__method__.inspect}].",
+                "Cause: #{e.message}"
+              ].join(" ")
               raise AcmeAISDK::Errors::ConversionError.new(message)
             end
           end
@@ -176,12 +170,18 @@ module AcmeAISDK
           def ==(other)
             other.is_a?(Class) && other <= AcmeAISDK::Internal::Type::BaseModel && other.fields == fields
           end
+
+          # @return [Integer]
+          def hash = fields.hash
         end
 
         # @param other [Object]
         #
         # @return [Boolean]
         def ==(other) = self.class == other.class && @data == other.to_h
+
+        # @return [Integer]
+        def hash = [self.class, @data].hash
 
         class << self
           # @api private
