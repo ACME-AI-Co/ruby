@@ -4,59 +4,38 @@ module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#fileslist
     class FileFileslistParams < AcmeAISDK::Internal::Type::BaseModel
-      # @!parse
-      #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
-      # @!attribute [r] limit
+      # @!attribute limit
       #   Maximum number of files to return
       #
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :limit
-
-      # @!attribute [r] offset
+      # @!attribute offset
       #   Number of files to skip
       #
       #   @return [Integer, nil]
       optional :offset, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :offset
-
-      # @!attribute [r] sort_by
+      # @!attribute sort_by
       #   Field to sort by
       #
       #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy, nil]
       optional :sort_by, enum: -> { AcmeAISDK::Models::FileFileslistParams::SortBy }
 
-      # @!parse
-      #   # @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
-      #   attr_writer :sort_by
-
-      # @!attribute [r] sort_order
+      # @!attribute sort_order
       #   Sort order
       #
       #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder, nil]
       optional :sort_order, enum: -> { AcmeAISDK::Models::FileFileslistParams::SortOrder }
 
-      # @!parse
-      #   # @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
-      #   attr_writer :sort_order
-
-      # @!attribute [r] status
+      # @!attribute status
       #   Filter by processing status
       #
       #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::Status, nil]
       optional :status, enum: -> { AcmeAISDK::Models::FileFileslistParams::Status }
-
-      # @!parse
-      #   # @return [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
-      #   attr_writer :status
 
       # @!method initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #   @param limit [Integer]

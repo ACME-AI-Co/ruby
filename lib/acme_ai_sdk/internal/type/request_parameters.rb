@@ -12,9 +12,8 @@ module AcmeAISDK
 
         # @param mod [Module]
         def self.included(mod)
-          return unless mod <= AcmeAISDK::Internal::Type::BaseModel
+          raise ArgumentError.new(mod) unless mod <= AcmeAISDK::Internal::Type::BaseModel
 
-          mod.extend(AcmeAISDK::Internal::Type::RequestParameters::Converter)
           mod.optional(:request_options, AcmeAISDK::RequestOptions)
         end
 

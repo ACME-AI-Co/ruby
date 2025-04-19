@@ -4,8 +4,7 @@ module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#file_search
     class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
-      # @!parse
-      #   extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
       # @!attribute query
@@ -14,35 +13,23 @@ module AcmeAISDK
       #   @return [String]
       required :query, String
 
-      # @!attribute [r] context_size
+      # @!attribute context_size
       #   Number of characters to include before and after the match
       #
       #   @return [Integer, nil]
       optional :context_size, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :context_size
-
-      # @!attribute [r] include_metadata
+      # @!attribute include_metadata
       #   Whether to include file metadata in response
       #
       #   @return [Boolean, nil]
       optional :include_metadata, AcmeAISDK::Internal::Type::Boolean
 
-      # @!parse
-      #   # @return [Boolean]
-      #   attr_writer :include_metadata
-
-      # @!attribute [r] max_results
+      # @!attribute max_results
       #   Maximum number of results to return
       #
       #   @return [Integer, nil]
       optional :max_results, Integer
-
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :max_results
 
       # @!method initialize(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
       #   @param query [String]

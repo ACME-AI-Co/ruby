@@ -4,44 +4,28 @@ module AcmeAISDK
   module Models
     # @see AcmeAISDK::Resources::Files#fileslist
     class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
-      # @!attribute [r] files
+      # @!attribute files
       #
       #   @return [Array<AcmeAISDK::Models::FileFileslistResponse::File>, nil]
       optional :files, -> { AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File] }
 
-      # @!parse
-      #   # @return [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
-      #   attr_writer :files
-
-      # @!attribute [r] limit
+      # @!attribute limit
       #   Maximum number of files returned
       #
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :limit
-
-      # @!attribute [r] offset
+      # @!attribute offset
       #   Number of files skipped
       #
       #   @return [Integer, nil]
       optional :offset, Integer
 
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :offset
-
-      # @!attribute [r] total
+      # @!attribute total
       #   Total number of files matching the filter
       #
       #   @return [Integer, nil]
       optional :total, Integer
-
-      # @!parse
-      #   # @return [Integer]
-      #   attr_writer :total
 
       # @!method initialize(files: nil, limit: nil, offset: nil, total: nil)
       #   @param files [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
@@ -50,75 +34,47 @@ module AcmeAISDK
       #   @param total [Integer]
 
       class File < AcmeAISDK::Internal::Type::BaseModel
-        # @!attribute [r] completion_time
+        # @!attribute completion_time
         #   Time processing was completed (if applicable)
         #
         #   @return [Time, nil]
         optional :completion_time, Time
 
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :completion_time
-
-        # @!attribute [r] error
+        # @!attribute error
         #   Error message (if status is 'failed')
         #
         #   @return [String, nil]
         optional :error, String
 
-        # @!parse
-        #   # @return [String]
-        #   attr_writer :error
-
-        # @!attribute [r] file_id
+        # @!attribute file_id
         #   Unique identifier for the file
         #
         #   @return [String, nil]
         optional :file_id, String
 
-        # @!parse
-        #   # @return [String]
-        #   attr_writer :file_id
-
-        # @!attribute [r] file_size
+        # @!attribute file_size
         #   Size of the file in bytes
         #
         #   @return [Integer, nil]
         optional :file_size, Integer
 
-        # @!parse
-        #   # @return [Integer]
-        #   attr_writer :file_size
-
-        # @!attribute [r] filename
+        # @!attribute filename
         #   Original name of the file
         #
         #   @return [String, nil]
         optional :filename, String
 
-        # @!parse
-        #   # @return [String]
-        #   attr_writer :filename
-
-        # @!attribute [r] status
+        # @!attribute status
         #   Current processing status
         #
         #   @return [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status, nil]
         optional :status, enum: -> { AcmeAISDK::Models::FileFileslistResponse::File::Status }
 
-        # @!parse
-        #   # @return [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status]
-        #   attr_writer :status
-
-        # @!attribute [r] upload_time
+        # @!attribute upload_time
         #   Time the file was uploaded
         #
         #   @return [Time, nil]
         optional :upload_time, Time
-
-        # @!parse
-        #   # @return [Time]
-        #   attr_writer :upload_time
 
         # @!method initialize(completion_time: nil, error: nil, file_id: nil, file_size: nil, filename: nil, status: nil, upload_time: nil)
         #   @param completion_time [Time]
