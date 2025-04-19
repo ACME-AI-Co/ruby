@@ -30,6 +30,8 @@ module AcmeAISDK
 
         def ==: (top other) -> bool
 
+        def hash: -> Integer
+
         def coerce: (
           top value,
           state: AcmeAISDK::Internal::Type::Converter::coerce_state
