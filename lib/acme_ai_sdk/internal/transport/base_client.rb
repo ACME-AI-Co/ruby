@@ -216,9 +216,9 @@ module AcmeAISDK
         #
         #   @option req [Symbol, nil] :unwrap
         #
-        #   @option req [Class, nil] :page
+        #   @option req [Class<AcmeAISDK::Internal::Type::BasePage>, nil] :page
         #
-        #   @option req [Class, nil] :stream
+        #   @option req [Class<AcmeAISDK::Internal::Type::BaseStream>, nil] :stream
         #
         #   @option req [AcmeAISDK::Internal::Type::Converter, Class, nil] :model
         #
@@ -417,9 +417,9 @@ module AcmeAISDK
         #
         # @param unwrap [Symbol, nil]
         #
-        # @param page [Class, nil]
+        # @param page [Class<AcmeAISDK::Internal::Type::BasePage>, nil]
         #
-        # @param stream [Class, nil]
+        # @param stream [Class<AcmeAISDK::Internal::Type::BaseStream>, nil]
         #
         # @param model [AcmeAISDK::Internal::Type::Converter, Class, nil]
         #

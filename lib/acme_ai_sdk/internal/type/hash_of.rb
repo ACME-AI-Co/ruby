@@ -28,6 +28,8 @@ module AcmeAISDK
         #   @option spec [Proc] :union
         #
         #   @option spec [Boolean] :"nil?"
+        #
+        # @return [AcmeAISDK::Internal::Type::HashOf]
         def self.[](...) = new(...)
 
         # @api public

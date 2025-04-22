@@ -394,7 +394,7 @@ module AcmeAISDK
 
         # Create a new instance of a model.
         #
-        # @param data [Hash{Symbol=>Object}, AcmeAISDK::Internal::Type::BaseModel]
+        # @param data [Hash{Symbol=>Object}, self]
         def initialize(data = {})
           case AcmeAISDK::Internal::Util.coerce_hash(data)
           in Hash => coerced

@@ -19,7 +19,7 @@ module AcmeAISDK
         # @api public
         #
         # @raise [AcmeAISDK::Errors::APIError]
-        # @return [AcmeAISDK::Internal::Type::BasePage]
+        # @return [self]
         def next_page = (raise NotImplementedError)
 
         # @api public
