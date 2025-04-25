@@ -90,7 +90,7 @@ module AcmeAISDK
 
         # @api private
         sig { returns(AcmeAISDK::Internal::Transport::PooledNetRequester) }
-        attr_accessor :requester
+        attr_reader :requester
 
         # @api private
         sig do
