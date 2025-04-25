@@ -2,7 +2,7 @@ module AcmeAISDK
   module Resources
     class Files
       def file_create: (
-        file: Pathname | StringIO,
+        file: Pathname | StringIO | IO | AcmeAISDK::FilePart,
         ?description: String,
         ?processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions,
         ?request_options: AcmeAISDK::request_opts

@@ -7,7 +7,7 @@ module AcmeAISDK
       # searchable using natural language queries.
       sig do
         params(
-          file: T.any(Pathname, StringIO),
+          file: T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart),
           description: String,
           processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::AnyHash),
           request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))

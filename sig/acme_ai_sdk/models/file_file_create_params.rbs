@@ -2,7 +2,7 @@ module AcmeAISDK
   module Models
     type file_file_create_params =
       {
-        file: (Pathname | StringIO),
+        file: (Pathname | StringIO | IO | AcmeAISDK::FilePart),
         description: String,
         processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
       }
@@ -12,7 +12,7 @@ module AcmeAISDK
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
-      attr_accessor file: Pathname | StringIO
+      attr_accessor file: Pathname | StringIO | IO | AcmeAISDK::FilePart
 
       attr_reader description: String?
 
@@ -25,7 +25,7 @@ module AcmeAISDK
       ) -> AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
 
       def initialize: (
-        file: Pathname | StringIO,
+        file: Pathname | StringIO | IO | AcmeAISDK::FilePart,
         ?description: String,
         ?processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions,
         ?request_options: AcmeAISDK::request_opts

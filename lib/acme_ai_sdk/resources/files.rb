@@ -8,7 +8,7 @@ module AcmeAISDK
       #
       # @overload file_create(file:, description: nil, processing_options: nil, request_options: {})
       #
-      # @param file [Pathname, StringIO] The file to upload
+      # @param file [Pathname, StringIO, IO, AcmeAISDK::FilePart] The file to upload
       #
       # @param description [String] Optional description of the file
       #

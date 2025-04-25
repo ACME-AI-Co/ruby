@@ -5,8 +5,12 @@ module AcmeAISDK
     module Type
       # @api private
       #
-      # Either `Pathname` or `StringIO`.
-      class IOLike
+      # Either `Pathname` or `StringIO`, or `IO`, or
+      # `AcmeAISDK::Internal::Type::FileInput`.
+      #
+      # Note: when `IO` is used, all retries are disabled, since many IO` streams are
+      # not rewindable.
+      class FileInput
         extend AcmeAISDK::Internal::Type::Converter
 
         abstract!
