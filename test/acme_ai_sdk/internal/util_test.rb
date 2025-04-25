@@ -87,8 +87,9 @@ class AcmeAISDK::Test::UtilDataHandlingTest < Minitest::Test
       AcmeAISDK::Internal::Util.dig([], 1.0) => nil
 
       AcmeAISDK::Internal::Util.dig(Object, 1) => nil
-      AcmeAISDK::Internal::Util.dig([], 1.0, 2) => 2
       AcmeAISDK::Internal::Util.dig([], 1.0) { 2 } => 2
+      AcmeAISDK::Internal::Util.dig([], ->(_) { 2 }) => 2
+      AcmeAISDK::Internal::Util.dig([1], -> { _1 in [1] }) => true
     end
   end
 end
@@ -165,9 +166,9 @@ class AcmeAISDK::Test::RegexMatchTest < Minitest::Test
       "application/vnd.github.v3+json" => true,
       "application/vnd.api+json" => true
     }
-    cases.each do |header, _verdict|
+    cases.each do |header, verdict|
       assert_pattern do
-        AcmeAISDK::Internal::Util::JSON_CONTENT.match?(header) => verdict
+        AcmeAISDK::Internal::Util::JSON_CONTENT.match?(header) => ^verdict
       end
     end
   end
