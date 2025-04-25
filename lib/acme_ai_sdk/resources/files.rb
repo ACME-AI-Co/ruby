@@ -8,9 +8,12 @@ module AcmeAISDK
       #
       # @overload file_create(file:, description: nil, processing_options: nil, request_options: {})
       #
-      # @param file [Pathname, StringIO]
-      # @param description [String]
+      # @param file [Pathname, StringIO] The file to upload
+      #
+      # @param description [String] Optional description of the file
+      #
       # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileCreateResponse]
@@ -33,11 +36,16 @@ module AcmeAISDK
       #
       # @overload file_search(file_id, query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
       #
-      # @param file_id [String]
-      # @param query [String]
-      # @param context_size [Integer]
-      # @param include_metadata [Boolean]
-      # @param max_results [Integer]
+      # @param file_id [String] Unique identifier of the file to search in
+      #
+      # @param query [String] Natural language search query
+      #
+      # @param context_size [Integer] Number of characters to include before and after the match
+      #
+      # @param include_metadata [Boolean] Whether to include file metadata in response
+      #
+      # @param max_results [Integer] Maximum number of results to return
+      #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileSearchResponse]
@@ -59,11 +67,16 @@ module AcmeAISDK
       #
       # @overload fileslist(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #
-      # @param limit [Integer]
-      # @param offset [Integer]
-      # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
-      # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
-      # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
+      # @param limit [Integer] Maximum number of files to return
+      #
+      # @param offset [Integer] Number of files to skip
+      #
+      # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] Field to sort by
+      #
+      # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] Sort order
+      #
+      # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] Filter by processing status
+      #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [AcmeAISDK::Models::FileFileslistResponse]

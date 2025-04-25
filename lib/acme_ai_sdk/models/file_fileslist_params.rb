@@ -38,11 +38,16 @@ module AcmeAISDK
       optional :status, enum: -> { AcmeAISDK::Models::FileFileslistParams::Status }
 
       # @!method initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
-      #   @param limit [Integer]
-      #   @param offset [Integer]
-      #   @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy]
-      #   @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder]
-      #   @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status]
+      #   @param limit [Integer] Maximum number of files to return
+      #
+      #   @param offset [Integer] Number of files to skip
+      #
+      #   @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] Field to sort by
+      #
+      #   @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] Sort order
+      #
+      #   @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] Filter by processing status
+      #
       #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 
       # Field to sort by

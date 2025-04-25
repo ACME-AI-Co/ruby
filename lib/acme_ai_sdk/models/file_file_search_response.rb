@@ -35,11 +35,15 @@ module AcmeAISDK
       optional :total_results, Integer
 
       # @!method initialize(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil)
-      #   @param file_id [String]
-      #   @param metadata [AcmeAISDK::Models::FileFileSearchResponse::Metadata]
-      #   @param query [String]
+      #   @param file_id [String] Unique identifier of the searched file
+      #
+      #   @param metadata [AcmeAISDK::Models::FileFileSearchResponse::Metadata] File metadata (only included if requested)
+      #
+      #   @param query [String] The search query used
+      #
       #   @param results [Array<AcmeAISDK::Models::FileFileSearchResponse::Result>]
-      #   @param total_results [Integer]
+      #
+      #   @param total_results [Integer] Total number of results found
 
       # @see AcmeAISDK::Models::FileFileSearchResponse#metadata
       class Metadata < AcmeAISDK::Internal::Type::BaseModel
@@ -94,14 +98,21 @@ module AcmeAISDK
         # @!method initialize(description: nil, file_id: nil, file_type: nil, filename: nil, page_count: nil, processing_options: nil, upload_time: nil, word_count: nil)
         #   File metadata (only included if requested)
         #
-        #   @param description [String]
-        #   @param file_id [String]
-        #   @param file_type [String]
-        #   @param filename [String]
-        #   @param page_count [Integer]
+        #   @param description [String] User-provided description of the file
+        #
+        #   @param file_id [String] Unique identifier for the file
+        #
+        #   @param file_type [String] MIME type of the file
+        #
+        #   @param filename [String] Original name of the file
+        #
+        #   @param page_count [Integer] Number of pages (for documents)
+        #
         #   @param processing_options [AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions]
-        #   @param upload_time [Time]
-        #   @param word_count [Integer]
+        #
+        #   @param upload_time [Time] Time the file was uploaded
+        #
+        #   @param word_count [Integer] Approximate word count
 
         # @see AcmeAISDK::Models::FileFileSearchResponse::Metadata#processing_options
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
@@ -118,8 +129,9 @@ module AcmeAISDK
           optional :ocr, AcmeAISDK::Internal::Type::Boolean
 
           # @!method initialize(language: nil, ocr: nil)
-          #   @param language [String]
-          #   @param ocr [Boolean]
+          #   @param language [String] Language used for processing
+          #
+          #   @param ocr [Boolean] Whether OCR was used
         end
       end
 
@@ -156,11 +168,15 @@ module AcmeAISDK
         optional :relevance_score, Float
 
         # @!method initialize(additional_context: nil, highlight_ranges: nil, page_number: nil, passage: nil, relevance_score: nil)
-        #   @param additional_context [Object]
-        #   @param highlight_ranges [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>]
-        #   @param page_number [Integer]
-        #   @param passage [String]
-        #   @param relevance_score [Float]
+        #   @param additional_context [Object] Additional context information (document-type specific)
+        #
+        #   @param highlight_ranges [Array<AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange>] Character ranges to highlight within the passage
+        #
+        #   @param page_number [Integer] Page number where the match was found (if applicable)
+        #
+        #   @param passage [String] Text passage containing the match with surrounding context
+        #
+        #   @param relevance_score [Float] Relevance score of the result (0-1)
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           # @!attribute end_
@@ -176,8 +192,9 @@ module AcmeAISDK
           optional :start, Integer
 
           # @!method initialize(end_: nil, start: nil)
-          #   @param end_ [Integer]
-          #   @param start [Integer]
+          #   @param end_ [Integer] End index of highlight in passage
+          #
+          #   @param start [Integer] Start index of highlight in passage
         end
       end
     end

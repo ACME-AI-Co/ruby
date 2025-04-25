@@ -44,8 +44,15 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(files: nil, limit: nil, offset: nil, total: nil); end
-
+      def self.new(
+        files: nil,
+        # Maximum number of files returned
+        limit: nil,
+        # Number of files skipped
+        offset: nil,
+        # Total number of files matching the filter
+        total: nil
+      ); end
       sig do
         override
           .returns(
@@ -117,12 +124,19 @@ module AcmeAISDK
             .returns(T.attached_class)
         end
         def self.new(
+          # Time processing was completed (if applicable)
           completion_time: nil,
+          # Error message (if status is 'failed')
           error: nil,
+          # Unique identifier for the file
           file_id: nil,
+          # Size of the file in bytes
           file_size: nil,
+          # Original name of the file
           filename: nil,
+          # Current processing status
           status: nil,
+          # Time the file was uploaded
           upload_time: nil
         ); end
         sig do
