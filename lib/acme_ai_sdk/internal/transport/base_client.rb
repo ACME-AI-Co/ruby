@@ -153,7 +153,7 @@ module AcmeAISDK
 
         # @api private
         # @return [AcmeAISDK::Internal::Transport::PooledNetRequester]
-        attr_accessor :requester
+        attr_reader :requester
 
         # @api private
         #
