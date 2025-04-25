@@ -32,10 +32,14 @@ module AcmeAISDK
       optional :max_results, Integer
 
       # @!method initialize(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
-      #   @param query [String]
-      #   @param context_size [Integer]
-      #   @param include_metadata [Boolean]
-      #   @param max_results [Integer]
+      #   @param query [String] Natural language search query
+      #
+      #   @param context_size [Integer] Number of characters to include before and after the match
+      #
+      #   @param include_metadata [Boolean] Whether to include file metadata in response
+      #
+      #   @param max_results [Integer] Maximum number of results to return
+      #
       #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

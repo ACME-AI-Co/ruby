@@ -55,8 +55,17 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(file_id: nil, metadata: nil, query: nil, results: nil, total_results: nil); end
-
+      def self.new(
+        # Unique identifier of the searched file
+        file_id: nil,
+        # File metadata (only included if requested)
+        metadata: nil,
+        # The search query used
+        query: nil,
+        results: nil,
+        # Total number of results found
+        total_results: nil
+      ); end
       sig do
         override
           .returns(
@@ -153,13 +162,20 @@ module AcmeAISDK
             .returns(T.attached_class)
         end
         def self.new(
+          # User-provided description of the file
           description: nil,
+          # Unique identifier for the file
           file_id: nil,
+          # MIME type of the file
           file_type: nil,
+          # Original name of the file
           filename: nil,
+          # Number of pages (for documents)
           page_count: nil,
           processing_options: nil,
+          # Time the file was uploaded
           upload_time: nil,
+          # Approximate word count
           word_count: nil
         ); end
         sig do
@@ -195,8 +211,12 @@ module AcmeAISDK
           attr_writer :ocr
 
           sig { params(language: String, ocr: T::Boolean).returns(T.attached_class) }
-          def self.new(language: nil, ocr: nil); end
-
+          def self.new(
+            # Language used for processing
+            language: nil,
+            # Whether OCR was used
+            ocr: nil
+          ); end
           sig { override.returns({language: String, ocr: T::Boolean}) }
           def to_hash; end
         end
@@ -254,14 +274,17 @@ module AcmeAISDK
             .returns(T.attached_class)
         end
         def self.new(
+          # Additional context information (document-type specific)
           additional_context: nil,
+          # Character ranges to highlight within the passage
           highlight_ranges: nil,
+          # Page number where the match was found (if applicable)
           page_number: nil,
+          # Text passage containing the match with surrounding context
           passage: nil,
+          # Relevance score of the result (0-1)
           relevance_score: nil
-        )
-        end
-
+        ); end
         sig do
           override
             .returns(
@@ -292,8 +315,12 @@ module AcmeAISDK
           attr_writer :start
 
           sig { params(end_: Integer, start: Integer).returns(T.attached_class) }
-          def self.new(end_: nil, start: nil); end
-
+          def self.new(
+            # End index of highlight in passage
+            end_: nil,
+            # Start index of highlight in passage
+            start: nil
+          ); end
           sig { override.returns({end_: Integer, start: Integer}) }
           def to_hash; end
         end

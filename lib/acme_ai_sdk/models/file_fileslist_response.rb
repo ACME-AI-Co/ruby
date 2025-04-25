@@ -29,9 +29,12 @@ module AcmeAISDK
 
       # @!method initialize(files: nil, limit: nil, offset: nil, total: nil)
       #   @param files [Array<AcmeAISDK::Models::FileFileslistResponse::File>]
-      #   @param limit [Integer]
-      #   @param offset [Integer]
-      #   @param total [Integer]
+      #
+      #   @param limit [Integer] Maximum number of files returned
+      #
+      #   @param offset [Integer] Number of files skipped
+      #
+      #   @param total [Integer] Total number of files matching the filter
 
       class File < AcmeAISDK::Internal::Type::BaseModel
         # @!attribute completion_time
@@ -77,13 +80,19 @@ module AcmeAISDK
         optional :upload_time, Time
 
         # @!method initialize(completion_time: nil, error: nil, file_id: nil, file_size: nil, filename: nil, status: nil, upload_time: nil)
-        #   @param completion_time [Time]
-        #   @param error [String]
-        #   @param file_id [String]
-        #   @param file_size [Integer]
-        #   @param filename [String]
-        #   @param status [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status]
-        #   @param upload_time [Time]
+        #   @param completion_time [Time] Time processing was completed (if applicable)
+        #
+        #   @param error [String] Error message (if status is 'failed')
+        #
+        #   @param file_id [String] Unique identifier for the file
+        #
+        #   @param file_size [Integer] Size of the file in bytes
+        #
+        #   @param filename [String] Original name of the file
+        #
+        #   @param status [Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status] Current processing status
+        #
+        #   @param upload_time [Time] Time the file was uploaded
 
         # Current processing status
         #

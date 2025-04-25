@@ -41,9 +41,17 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(query:, context_size: nil, include_metadata: nil, max_results: nil, request_options: {})
-      end
-
+      def self.new(
+        # Natural language search query
+        query:,
+        # Number of characters to include before and after the match
+        context_size: nil,
+        # Whether to include file metadata in response
+        include_metadata: nil,
+        # Maximum number of results to return
+        max_results: nil,
+        request_options: {}
+      ); end
       sig do
         override
           .returns(

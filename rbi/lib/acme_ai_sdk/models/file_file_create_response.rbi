@@ -32,8 +32,14 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(file_id: nil, status: nil, upload_time: nil); end
-
+      def self.new(
+        # Unique identifier for the file
+        file_id: nil,
+        # Current processing status
+        status: nil,
+        # Time the file was uploaded
+        upload_time: nil
+      ); end
       sig do
         override
           .returns(

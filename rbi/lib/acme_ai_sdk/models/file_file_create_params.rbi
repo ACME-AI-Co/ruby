@@ -37,8 +37,14 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(file:, description: nil, processing_options: nil, request_options: {}); end
-
+      def self.new(
+        # The file to upload
+        file:,
+        # Optional description of the file
+        description: nil,
+        processing_options: nil,
+        request_options: {}
+      ); end
       sig do
         override
           .returns(
@@ -68,8 +74,12 @@ module AcmeAISDK
         attr_writer :ocr
 
         sig { params(language: String, ocr: T::Boolean).returns(T.attached_class) }
-        def self.new(language: nil, ocr: nil); end
-
+        def self.new(
+          # Preferred language for processing
+          language: nil,
+          # Enable OCR for image-based documents
+          ocr: nil
+        ); end
         sig { override.returns({language: String, ocr: T::Boolean}) }
         def to_hash; end
       end

@@ -25,9 +25,12 @@ module AcmeAISDK
       optional :processing_options, -> { AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions }
 
       # @!method initialize(file:, description: nil, processing_options: nil, request_options: {})
-      #   @param file [Pathname, StringIO]
-      #   @param description [String]
+      #   @param file [Pathname, StringIO] The file to upload
+      #
+      #   @param description [String] Optional description of the file
+      #
       #   @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      #
       #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 
       class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
@@ -44,8 +47,9 @@ module AcmeAISDK
         optional :ocr, AcmeAISDK::Internal::Type::Boolean
 
         # @!method initialize(language: nil, ocr: nil)
-        #   @param language [String]
-        #   @param ocr [Boolean]
+        #   @param language [String] Preferred language for processing
+        #
+        #   @param ocr [Boolean] Enable OCR for image-based documents
       end
     end
   end

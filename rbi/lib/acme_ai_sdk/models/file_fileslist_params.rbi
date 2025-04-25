@@ -52,9 +52,19 @@ module AcmeAISDK
         )
           .returns(T.attached_class)
       end
-      def self.new(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
-      end
-
+      def self.new(
+        # Maximum number of files to return
+        limit: nil,
+        # Number of files to skip
+        offset: nil,
+        # Field to sort by
+        sort_by: nil,
+        # Sort order
+        sort_order: nil,
+        # Filter by processing status
+        status: nil,
+        request_options: {}
+      ); end
       sig do
         override
           .returns(

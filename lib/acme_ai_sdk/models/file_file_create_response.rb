@@ -23,9 +23,11 @@ module AcmeAISDK
       optional :upload_time, Time
 
       # @!method initialize(file_id: nil, status: nil, upload_time: nil)
-      #   @param file_id [String]
-      #   @param status [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status]
-      #   @param upload_time [Time]
+      #   @param file_id [String] Unique identifier for the file
+      #
+      #   @param status [Symbol, AcmeAISDK::Models::FileFileCreateResponse::Status] Current processing status
+      #
+      #   @param upload_time [Time] Time the file was uploaded
 
       # Current processing status
       #
