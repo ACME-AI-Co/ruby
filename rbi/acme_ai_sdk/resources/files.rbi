@@ -10,7 +10,7 @@ module AcmeAISDK
           file: T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart),
           description: String,
           processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::AnyHash),
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
+          request_options: AcmeAISDK::RequestOpts
         )
           .returns(AcmeAISDK::Models::FileFileCreateResponse)
       end
@@ -31,7 +31,7 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
+          request_options: AcmeAISDK::RequestOpts
         )
           .returns(AcmeAISDK::Models::FileFileSearchResponse)
       end
@@ -57,7 +57,7 @@ module AcmeAISDK
           sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
           sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
           status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
+          request_options: AcmeAISDK::RequestOpts
         )
           .returns(AcmeAISDK::Models::FileFileslistResponse)
       end

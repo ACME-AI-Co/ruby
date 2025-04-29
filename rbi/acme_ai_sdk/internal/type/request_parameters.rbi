@@ -6,7 +6,7 @@ module AcmeAISDK
       # @api private
       module RequestParameters
         # Options to specify HTTP behaviour for this request.
-        sig { returns(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)) }
+        sig { returns(AcmeAISDK::RequestOpts) }
         attr_accessor :request_options
 
         # @api private
