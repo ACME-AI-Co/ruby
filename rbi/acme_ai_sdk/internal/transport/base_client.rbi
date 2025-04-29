@@ -35,7 +35,7 @@ module AcmeAISDK
               page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
               model: T.nilable(AcmeAISDK::Internal::Type::Converter::Input),
-              options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
+              options: T.nilable(AcmeAISDK::RequestOpts)
             }
           end
 
@@ -188,7 +188,7 @@ module AcmeAISDK
             page: T.nilable(T::Class[AcmeAISDK::Internal::Type::BasePage[AcmeAISDK::Internal::Type::BaseModel]]),
             stream: T.nilable(T::Class[T.anything]),
             model: T.nilable(AcmeAISDK::Internal::Type::Converter::Input),
-            options: T.nilable(T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash))
+            options: T.nilable(AcmeAISDK::RequestOpts)
           )
             .returns(T.anything)
         end
