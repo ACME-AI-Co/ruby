@@ -1,6 +1,6 @@
 # Acme AI SDK Ruby API library
 
-The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.1.0+ application.
+The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.2.0+ application.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -49,7 +49,7 @@ acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
 
 ### File uploads
 
-Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.1/o/pathname) instance.
+Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance.
 
 ```ruby
 require "pathname"
@@ -76,7 +76,7 @@ rescue AcmeAISDK::Errors::APIError => e
 end
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Cause            | Error Type                 |
 | ---------------- | -------------------------- |
@@ -201,7 +201,7 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 ## Requirements
 
-Ruby 3.1.0 or higher.
+Ruby 3.2.0 or higher.
 
 ## Contributing
 
