@@ -137,7 +137,7 @@ module AcmeAISDK
     end
 
     class InternalServerError < AcmeAISDK::Errors::APIStatusError
-      HTTP_STATUS = T.let((500..), T::Range[Integer])
+      HTTP_STATUS = T.let(500.., T::Range[Integer])
     end
   end
 end
