@@ -1,0 +1,7 @@
+module AcmeAISDK
+  class FileFileCreateParams = AcmeAISDK::Models::FileFileCreateParams
+
+  class FileFileSearchParams = AcmeAISDK::Models::FileFileSearchParams
+
+  class FileFileslistParams = AcmeAISDK::Models::FileFileslistParams
+end
