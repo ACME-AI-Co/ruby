@@ -29,7 +29,7 @@ require "bundler/setup"
 require "acme_ai_sdk"
 
 acme_ai_sdk = AcmeAISDK::Client.new(
-  bearer_token: "My Bearer Token" # defaults to ENV["ACME_AI_SDK_BEARER_TOKEN"]
+  bearer_token: ENV["ACME_AI_SDK_BEARER_TOKEN"] # This is the default and can be omitted
 )
 
 response = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
