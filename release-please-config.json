@@ -60,5 +60,11 @@
     }
   ],
   "release-type": "ruby",
-  "version-file": "lib/acme-ai-sdk/version.rb"
+  "version-file": "lib/acme_ai_sdk/version.rb",
+  "extra-files": [
+    {
+      "type": "ruby-readme",
+      "path": "README.md"
+    }
+  ]
 }

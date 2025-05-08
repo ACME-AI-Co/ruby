@@ -1,0 +1,49 @@
+module AcmeAISDK
+  module Models
+    type file_file_create_params =
+      {
+        file: (Pathname | StringIO | IO | AcmeAISDK::FilePart),
+        description: String,
+        processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions
+      }
+      & AcmeAISDK::Internal::Type::request_parameters
+
+    class FileFileCreateParams < AcmeAISDK::Internal::Type::BaseModel
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
+
+      attr_accessor file: Pathname | StringIO | IO | AcmeAISDK::FilePart
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions?
+
+      def processing_options=: (
+        AcmeAISDK::FileFileCreateParams::ProcessingOptions
+      ) -> AcmeAISDK::FileFileCreateParams::ProcessingOptions
+
+      def initialize: (
+        file: Pathname | StringIO | IO | AcmeAISDK::FilePart,
+        ?description: String,
+        ?processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions,
+        ?request_options: AcmeAISDK::request_opts
+      ) -> void
+
+      type processing_options = { language: String, ocr: bool }
+
+      class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
+        attr_reader language: String?
+
+        def language=: (String) -> String
+
+        attr_reader ocr: bool?
+
+        def ocr=: (bool) -> bool
+
+        def initialize: (?language: String, ?ocr: bool) -> void
+      end
+    end
+  end
+end

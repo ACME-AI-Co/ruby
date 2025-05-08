@@ -1,0 +1,104 @@
+module AcmeAISDK
+  module Models
+    type file_fileslist_response =
+      {
+        files: ::Array[AcmeAISDK::Models::FileFileslistResponse::File],
+        limit: Integer,
+        offset: Integer,
+        total: Integer
+      }
+
+    class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
+      attr_reader files: ::Array[AcmeAISDK::Models::FileFileslistResponse::File]?
+
+      def files=: (
+        ::Array[AcmeAISDK::Models::FileFileslistResponse::File]
+      ) -> ::Array[AcmeAISDK::Models::FileFileslistResponse::File]
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader offset: Integer?
+
+      def offset=: (Integer) -> Integer
+
+      attr_reader total: Integer?
+
+      def total=: (Integer) -> Integer
+
+      def initialize: (
+        ?files: ::Array[AcmeAISDK::Models::FileFileslistResponse::File],
+        ?limit: Integer,
+        ?offset: Integer,
+        ?total: Integer
+      ) -> void
+
+      type file =
+        {
+          completion_time: Time,
+          error: String,
+          file_id: String,
+          file_size: Integer,
+          filename: String,
+          status: AcmeAISDK::Models::FileFileslistResponse::File::status,
+          upload_time: Time
+        }
+
+      class File < AcmeAISDK::Internal::Type::BaseModel
+        attr_reader completion_time: Time?
+
+        def completion_time=: (Time) -> Time
+
+        attr_reader error: String?
+
+        def error=: (String) -> String
+
+        attr_reader file_id: String?
+
+        def file_id=: (String) -> String
+
+        attr_reader file_size: Integer?
+
+        def file_size=: (Integer) -> Integer
+
+        attr_reader filename: String?
+
+        def filename=: (String) -> String
+
+        attr_reader status: AcmeAISDK::Models::FileFileslistResponse::File::status?
+
+        def status=: (
+          AcmeAISDK::Models::FileFileslistResponse::File::status
+        ) -> AcmeAISDK::Models::FileFileslistResponse::File::status
+
+        attr_reader upload_time: Time?
+
+        def upload_time=: (Time) -> Time
+
+        def initialize: (
+          ?completion_time: Time,
+          ?error: String,
+          ?file_id: String,
+          ?file_size: Integer,
+          ?filename: String,
+          ?status: AcmeAISDK::Models::FileFileslistResponse::File::status,
+          ?upload_time: Time
+        ) -> void
+
+        type status = :pending | :processing | :completed | :failed
+
+        module Status
+          extend AcmeAISDK::Internal::Type::Enum
+
+          PENDING: :pending
+          PROCESSING: :processing
+          COMPLETED: :completed
+          FAILED: :failed
+
+          def self?.values: -> ::Array[AcmeAISDK::Models::FileFileslistResponse::File::status]
+        end
+      end
+    end
+  end
+end

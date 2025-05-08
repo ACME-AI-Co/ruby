@@ -1,63 +1,82 @@
 # Acme AI SDK Ruby API library
 
-The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.0.0+ application.
+The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.2.0+ application.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for released of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
 
-The underlying REST API documentation can be found on [docs.acme-ai-sdk.com](https://docs.acme-ai-sdk.com).
+The REST API documentation can be found on [docs.acme-ai-sdk.com](https://docs.acme-ai-sdk.com).
 
 ## Installation
 
-To use this gem during the beta, install directly from GitHub with Bundler by adding the following to your application's `Gemfile`:
+To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
+
+<!-- x-release-please-start-version -->
 
 ```ruby
-gem "acme-ai-sdk", git: "https://github.com/ACME-AI-Co/ruby", branch: "main"
+gem "acme-ai-sdk", "~> 0.1.0.pre.alpha.2"
 ```
 
-To fetch an initial copy of the gem:
-
-```sh
-bundle install
-```
-
-To update the version used by your application when updates are pushed to GitHub:
-
-```sh
-bundle update acme-ai-sdk
-```
+<!-- x-release-please-end -->
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "acme-ai-sdk"
+require "acme_ai_sdk"
 
 acme_ai_sdk = AcmeAISDK::Client.new(
-  bearer_token: "My Bearer Token" # defaults to ENV["ACME_AI_SDK_BEARER_TOKEN"]
+  bearer_token: ENV["ACME_AI_SDK_BEARER_TOKEN"] # This is the default and can be omitted
 )
 
-response = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
+response = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+
+puts(response.file_id)
+```
+
+## Sorbet
+
+This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
+
+When using sorbet, it is recommended to use model classes as below. This provides stronger type checking and tooling integration.
+
+```ruby
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+```
+
+### File uploads
+
+Request parameters that correspond to file uploads can be passed as `StringIO`, or a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance.
+
+```ruby
+require "pathname"
+
+# using `Pathname`, the file will be lazily read, without reading everything in to memory
+response = acme_ai_sdk.files.file_create(file: Pathname("/path/to/file"))
+
+file = File.read("/path/to/file")
+# using `StringIO`, useful if you already have the data in memory
+response = acme_ai_sdk.files.file_create(file: StringIO.new(file))
 
 puts(response.file_id)
 ```
 
 ### Errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Error` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Errors::APIError` will be thrown:
 
 ```ruby
 begin
-  file = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
-rescue AcmeAISDK::Error => e
+  file = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+rescue AcmeAISDK::Errors::APIError => e
   puts(e.status) # 400
 end
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Cause            | Error Type                 |
 | ---------------- | -------------------------- |
@@ -68,7 +87,7 @@ Error codes are as followed:
 | HTTP 409         | `ConflictError`            |
 | HTTP 422         | `UnprocessableEntityError` |
 | HTTP 429         | `RateLimitError`           |
-| HTTP >=500       | `InternalServerError`      |
+| HTTP >= 500      | `InternalServerError`      |
 | Other HTTP error | `APIStatusError`           |
 | Timeout          | `APITimeoutError`          |
 | Network error    | `APIConnectionError`       |
@@ -88,7 +107,7 @@ acme_ai_sdk = AcmeAISDK::Client.new(
 )
 
 # Or, configure per-request:
-acme_ai_sdk.files.file_create(file: "REPLACE_ME", request_options: {max_retries: 5})
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"), request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -106,30 +125,54 @@ acme_ai_sdk = AcmeAISDK::Client.new(
 )
 
 # Or, configure per-request:
-acme_ai_sdk.files.file_create(file: "REPLACE_ME", request_options: {timeout: 5})
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"), request_options: {timeout: 5})
 ```
 
-## Sorbet Support
+## Model DSL
 
-**This library emits an intentional warning under the [`tapioca` toolchain](https://github.com/Shopify/tapioca)**. This is normal, and does not impact functionality.
+This library uses a simple DSL to represent request parameters and response shapes in `lib/acme_ai_sdk/models`.
 
-This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
+With the right [editor plugins](https://shopify.github.io/ruby-lsp), you can ctrl-click on elements of the DSL to navigate around and explore the library.
 
-What this means is that while you can use Sorbet to type check your code statically, and benefit from the [Sorbet Language Server](https://sorbet.org/docs/lsp) in your editor, there is no runtime type checking and execution overhead from Sorbet itself.
-
-Due to limitations with the Sorbet type system, where a method otherwise can take an instance of `AcmeAISDK::BaseModel` class, you will need to use the `**` splat operator to pass the arguments:
-
-Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
+In all places where a `BaseModel` type is specified, vanilla Ruby `Hash` can also be used. For example, the following are interchangeable as arguments:
 
 ```ruby
-model = FileFileCreateParams.new(file: "REPLACE_ME")
+# This has tooling readability, for auto-completion, static analysis, and goto definition with supported language services
+params = AcmeAISDK::Models::FileFileCreateParams.new(file: StringIO.new("REPLACE_ME"))
 
-acme_ai_sdk.files.file_create(**model)
+# This also works
+params = {
+  file: StringIO.new("REPLACE_ME")
+}
 ```
 
-## Advanced
+## Editor support
 
-### Concurrency & Connection Pooling
+A combination of [Shopify LSP](https://shopify.github.io/ruby-lsp) and [Solargraph](https://solargraph.org/) is recommended for non-[Sorbet](https://sorbet.org) users. The former is especially good at go to definition, while the latter has much better auto-completion support.
+
+## Advanced concepts
+
+### Making custom/undocumented requests
+
+#### Undocumented request params
+
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a requests as seen in examples above.
+
+#### Undocumented endpoints
+
+To make requests to undocumented endpoints, you can make requests using `client.request`. Options on the client will be respected (such as retries) when making this request.
+
+```ruby
+response = client.request(
+  method: :post,
+  path: '/undocumented/endpoint',
+  query: {"dog": "woof"},
+  headers: {"useful-header": "interesting-value"},
+  body: {"he": "llo"},
+)
+```
+
+### Concurrency & connection pooling
 
 The `AcmeAISDK::Client` instances are thread-safe, and should be re-used across multiple threads. By default, each `Client` have their own HTTP connection pool, with a maximum number of connections equal to thread count.
 
@@ -139,6 +182,17 @@ Unless otherwise specified, other classes in the SDK do not have locks protectin
 
 Currently, `AcmeAISDK::Client` instances are only fork-safe if there are no in-flight HTTP requests.
 
+### Sorbet
+
+#### Argument passing trick
+
+It is possible to pass a compatible model / parameter class to a method that expects keyword arguments by using the `**` splat operator.
+
+```ruby
+params = AcmeAISDK::Models::FileFileCreateParams.new(file: StringIO.new("REPLACE_ME"))
+acme_ai_sdk.files.file_create(**params)
+```
+
 ## Versioning
 
 This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
@@ -147,4 +201,8 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 ## Requirements
 
-Ruby 3.0.0 or higher.
+Ruby 3.2.0 or higher.
+
+## Contributing
+
+See [the contributing documentation](https://github.com/ACME-AI-Co/ruby/tree/main/CONTRIBUTING.md).

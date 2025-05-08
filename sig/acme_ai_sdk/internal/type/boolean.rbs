@@ -1,0 +1,23 @@
+module AcmeAISDK
+  module Internal
+    module Type
+      class Boolean
+        extend AcmeAISDK::Internal::Type::Converter
+
+        def self.===: (top other) -> bool
+
+        def self.==: (top other) -> bool
+
+        def self.coerce: (
+          bool | top value,
+          state: AcmeAISDK::Internal::Type::Converter::coerce_state
+        ) -> (bool | top)
+
+        def self.dump: (
+          bool | top value,
+          state: AcmeAISDK::Internal::Type::Converter::dump_state
+        ) -> (bool | top)
+      end
+    end
+  end
+end

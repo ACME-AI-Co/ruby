@@ -1,0 +1,73 @@
+# typed: strong
+
+module AcmeAISDK
+  module Models
+    class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
+
+      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
+      # Natural language search query
+      sig { returns(String) }
+      attr_accessor :query
+
+      # Number of characters to include before and after the match
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :context_size
+
+      sig { params(context_size: Integer).void }
+      attr_writer :context_size
+
+      # Whether to include file metadata in response
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :include_metadata
+
+      sig { params(include_metadata: T::Boolean).void }
+      attr_writer :include_metadata
+
+      # Maximum number of results to return
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :max_results
+
+      sig { params(max_results: Integer).void }
+      attr_writer :max_results
+
+      sig do
+        params(
+          query: String,
+          context_size: Integer,
+          include_metadata: T::Boolean,
+          max_results: Integer,
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # Natural language search query
+        query:,
+        # Number of characters to include before and after the match
+        context_size: nil,
+        # Whether to include file metadata in response
+        include_metadata: nil,
+        # Maximum number of results to return
+        max_results: nil,
+        request_options: {}
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            query: String,
+            context_size: Integer,
+            include_metadata: T::Boolean,
+            max_results: Integer,
+            request_options: AcmeAISDK::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
+    end
+  end
+end

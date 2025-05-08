@@ -1,0 +1,39 @@
+module AcmeAISDK
+  module Models
+    type file_file_search_params =
+      {
+        query: String,
+        context_size: Integer,
+        include_metadata: bool,
+        max_results: Integer
+      }
+      & AcmeAISDK::Internal::Type::request_parameters
+
+    class FileFileSearchParams < AcmeAISDK::Internal::Type::BaseModel
+      extend AcmeAISDK::Internal::Type::RequestParameters::Converter
+      include AcmeAISDK::Internal::Type::RequestParameters
+
+      attr_accessor query: String
+
+      attr_reader context_size: Integer?
+
+      def context_size=: (Integer) -> Integer
+
+      attr_reader include_metadata: bool?
+
+      def include_metadata=: (bool) -> bool
+
+      attr_reader max_results: Integer?
+
+      def max_results=: (Integer) -> Integer
+
+      def initialize: (
+        query: String,
+        ?context_size: Integer,
+        ?include_metadata: bool,
+        ?max_results: Integer,
+        ?request_options: AcmeAISDK::request_opts
+      ) -> void
+    end
+  end
+end

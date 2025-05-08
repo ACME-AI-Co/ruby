@@ -1,0 +1,43 @@
+module AcmeAISDK
+  module Models
+    type file_file_create_response =
+      {
+        file_id: String,
+        status: AcmeAISDK::Models::FileFileCreateResponse::status,
+        upload_time: Time
+      }
+
+    class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
+      attr_reader file_id: String?
+
+      def file_id=: (String) -> String
+
+      attr_reader status: AcmeAISDK::Models::FileFileCreateResponse::status?
+
+      def status=: (
+        AcmeAISDK::Models::FileFileCreateResponse::status
+      ) -> AcmeAISDK::Models::FileFileCreateResponse::status
+
+      attr_reader upload_time: Time?
+
+      def upload_time=: (Time) -> Time
+
+      def initialize: (
+        ?file_id: String,
+        ?status: AcmeAISDK::Models::FileFileCreateResponse::status,
+        ?upload_time: Time
+      ) -> void
+
+      type status = :pending | :processing
+
+      module Status
+        extend AcmeAISDK::Internal::Type::Enum
+
+        PENDING: :pending
+        PROCESSING: :processing
+
+        def self?.values: -> ::Array[AcmeAISDK::Models::FileFileCreateResponse::status]
+      end
+    end
+  end
+end
