@@ -9,10 +9,10 @@ module AcmeAISDK
         params(
           file: T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart),
           description: String,
-          processing_options: T.any(AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, AcmeAISDK::Internal::AnyHash),
-          request_options: AcmeAISDK::RequestOpts
-        )
-          .returns(AcmeAISDK::Models::FileFileCreateResponse)
+          processing_options:
+            AcmeAISDK::FileFileCreateParams::ProcessingOptions::OrHash,
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(AcmeAISDK::Models::FileFileCreateResponse)
       end
       def file_create(
         # The file to upload
@@ -21,7 +21,9 @@ module AcmeAISDK
         description: nil,
         processing_options: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Search for content within a processed file using natural language queries.
       # Returns relevant passages and their context.
       sig do
@@ -31,9 +33,8 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: AcmeAISDK::RequestOpts
-        )
-          .returns(AcmeAISDK::Models::FileFileSearchResponse)
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(AcmeAISDK::Models::FileFileSearchResponse)
       end
       def file_search(
         # Unique identifier of the file to search in
@@ -47,19 +48,20 @@ module AcmeAISDK
         # Maximum number of results to return
         max_results: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # Retrieve the processing status of files. Can be filtered by status and sorted by
       # upload time.
       sig do
         params(
           limit: Integer,
           offset: Integer,
-          sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
-          sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
-          status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: AcmeAISDK::RequestOpts
-        )
-          .returns(AcmeAISDK::Models::FileFileslistResponse)
+          sort_by: AcmeAISDK::FileFileslistParams::SortBy::OrSymbol,
+          sort_order: AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol,
+          status: AcmeAISDK::FileFileslistParams::Status::OrSymbol,
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(AcmeAISDK::Models::FileFileslistResponse)
       end
       def fileslist(
         # Maximum number of files to return
@@ -73,10 +75,13 @@ module AcmeAISDK
         # Filter by processing status
         status: nil,
         request_options: {}
-      ); end
+      )
+      end
+
       # @api private
       sig { params(client: AcmeAISDK::Client).returns(T.attached_class) }
-      def self.new(client:); end
+      def self.new(client:)
+      end
     end
   end
 end

@@ -34,8 +34,6 @@ module AcmeAISDK
         ?total: Integer
       ) -> void
 
-      def to_hash: -> AcmeAISDK::Models::file_fileslist_response
-
       type file =
         {
           completion_time: Time,
@@ -87,8 +85,6 @@ module AcmeAISDK
           ?status: AcmeAISDK::Models::FileFileslistResponse::File::status,
           ?upload_time: Time
         ) -> void
-
-        def to_hash: -> AcmeAISDK::Models::FileFileslistResponse::file
 
         type status = :pending | :processing | :completed | :failed
 

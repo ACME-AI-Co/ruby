@@ -49,8 +49,6 @@ module AcmeAISDK
         ?request_options: AcmeAISDK::request_opts
       ) -> void
 
-      def to_hash: -> AcmeAISDK::Models::file_fileslist_params
-
       type sort_by = :upload_time | :status
 
       module SortBy
