@@ -42,8 +42,6 @@ module AcmeAISDK
         ?total_results: Integer
       ) -> void
 
-      def to_hash: -> AcmeAISDK::Models::file_file_search_response
-
       type metadata =
         {
           description: String,
@@ -102,8 +100,6 @@ module AcmeAISDK
           ?word_count: Integer
         ) -> void
 
-        def to_hash: -> AcmeAISDK::Models::FileFileSearchResponse::metadata
-
         type processing_options = { language: String, ocr: bool }
 
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
@@ -116,8 +112,6 @@ module AcmeAISDK
           def ocr=: (bool) -> bool
 
           def initialize: (?language: String, ?ocr: bool) -> void
-
-          def to_hash: -> AcmeAISDK::Models::FileFileSearchResponse::Metadata::processing_options
         end
       end
 
@@ -161,8 +155,6 @@ module AcmeAISDK
           ?relevance_score: Float
         ) -> void
 
-        def to_hash: -> AcmeAISDK::Models::FileFileSearchResponse::result
-
         type highlight_range = { end_: Integer, start: Integer }
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
@@ -175,8 +167,6 @@ module AcmeAISDK
           def start=: (Integer) -> Integer
 
           def initialize: (?end_: Integer, ?start: Integer) -> void
-
-          def to_hash: -> AcmeAISDK::Models::FileFileSearchResponse::Result::highlight_range
         end
       end
     end

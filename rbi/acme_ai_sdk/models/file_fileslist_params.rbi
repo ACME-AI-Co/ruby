@@ -6,6 +6,8 @@ module AcmeAISDK
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
       # Maximum number of files to return
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
@@ -21,36 +23,49 @@ module AcmeAISDK
       attr_writer :offset
 
       # Field to sort by
-      sig { returns(T.nilable(AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol)) }
+      sig do
+        returns(T.nilable(AcmeAISDK::FileFileslistParams::SortBy::OrSymbol))
+      end
       attr_reader :sort_by
 
-      sig { params(sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol).void }
+      sig do
+        params(sort_by: AcmeAISDK::FileFileslistParams::SortBy::OrSymbol).void
+      end
       attr_writer :sort_by
 
       # Sort order
-      sig { returns(T.nilable(AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol)) }
+      sig do
+        returns(T.nilable(AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol))
+      end
       attr_reader :sort_order
 
-      sig { params(sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol).void }
+      sig do
+        params(
+          sort_order: AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol
+        ).void
+      end
       attr_writer :sort_order
 
       # Filter by processing status
-      sig { returns(T.nilable(AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol)) }
+      sig do
+        returns(T.nilable(AcmeAISDK::FileFileslistParams::Status::OrSymbol))
+      end
       attr_reader :status
 
-      sig { params(status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol).void }
+      sig do
+        params(status: AcmeAISDK::FileFileslistParams::Status::OrSymbol).void
+      end
       attr_writer :status
 
       sig do
         params(
           limit: Integer,
           offset: Integer,
-          sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
-          sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
-          status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          sort_by: AcmeAISDK::FileFileslistParams::SortBy::OrSymbol,
+          sort_order: AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol,
+          status: AcmeAISDK::FileFileslistParams::Status::OrSymbol,
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Maximum number of files to return
@@ -64,64 +79,103 @@ module AcmeAISDK
         # Filter by processing status
         status: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              limit: Integer,
-              offset: Integer,
-              sort_by: AcmeAISDK::Models::FileFileslistParams::SortBy::OrSymbol,
-              sort_order: AcmeAISDK::Models::FileFileslistParams::SortOrder::OrSymbol,
-              status: AcmeAISDK::Models::FileFileslistParams::Status::OrSymbol,
-              request_options: AcmeAISDK::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            limit: Integer,
+            offset: Integer,
+            sort_by: AcmeAISDK::FileFileslistParams::SortBy::OrSymbol,
+            sort_order: AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol,
+            status: AcmeAISDK::FileFileslistParams::Status::OrSymbol,
+            request_options: AcmeAISDK::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
 
       # Field to sort by
       module SortBy
         extend AcmeAISDK::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, AcmeAISDK::FileFileslistParams::SortBy) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        UPLOAD_TIME = T.let(:upload_time, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
-        STATUS = T.let(:status, AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol)
+        UPLOAD_TIME =
+          T.let(
+            :upload_time,
+            AcmeAISDK::FileFileslistParams::SortBy::TaggedSymbol
+          )
+        STATUS =
+          T.let(:status, AcmeAISDK::FileFileslistParams::SortBy::TaggedSymbol)
 
-        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortBy::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[AcmeAISDK::FileFileslistParams::SortBy::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # Sort order
       module SortOrder
         extend AcmeAISDK::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder) }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, AcmeAISDK::FileFileslistParams::SortOrder)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        ASC = T.let(:asc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
-        DESC = T.let(:desc, AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol)
+        ASC =
+          T.let(:asc, AcmeAISDK::FileFileslistParams::SortOrder::TaggedSymbol)
+        DESC =
+          T.let(:desc, AcmeAISDK::FileFileslistParams::SortOrder::TaggedSymbol)
 
-        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::SortOrder::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[AcmeAISDK::FileFileslistParams::SortOrder::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # Filter by processing status
       module Status
         extend AcmeAISDK::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistParams::Status) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, AcmeAISDK::FileFileslistParams::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        PENDING = T.let(:pending, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
-        PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
-        COMPLETED = T.let(:completed, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
-        FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol)
+        PENDING =
+          T.let(:pending, AcmeAISDK::FileFileslistParams::Status::TaggedSymbol)
+        PROCESSING =
+          T.let(
+            :processing,
+            AcmeAISDK::FileFileslistParams::Status::TaggedSymbol
+          )
+        COMPLETED =
+          T.let(
+            :completed,
+            AcmeAISDK::FileFileslistParams::Status::TaggedSymbol
+          )
+        FAILED =
+          T.let(:failed, AcmeAISDK::FileFileslistParams::Status::TaggedSymbol)
 
-        sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistParams::Status::TaggedSymbol]) }
-        def self.values; end
+        sig do
+          override.returns(
+            T::Array[AcmeAISDK::FileFileslistParams::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

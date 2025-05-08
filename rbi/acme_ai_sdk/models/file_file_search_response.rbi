@@ -3,6 +3,8 @@
 module AcmeAISDK
   module Models
     class FileFileSearchResponse < AcmeAISDK::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
       # Unique identifier of the searched file
       sig { returns(T.nilable(String)) }
       attr_reader :file_id
@@ -11,12 +13,15 @@ module AcmeAISDK
       attr_writer :file_id
 
       # File metadata (only included if requested)
-      sig { returns(T.nilable(AcmeAISDK::Models::FileFileSearchResponse::Metadata)) }
+      sig do
+        returns(T.nilable(AcmeAISDK::Models::FileFileSearchResponse::Metadata))
+      end
       attr_reader :metadata
 
       sig do
-        params(metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Internal::AnyHash))
-          .void
+        params(
+          metadata: AcmeAISDK::Models::FileFileSearchResponse::Metadata::OrHash
+        ).void
       end
       attr_writer :metadata
 
@@ -27,14 +32,18 @@ module AcmeAISDK
       sig { params(query: String).void }
       attr_writer :query
 
-      sig { returns(T.nilable(T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result])) }
+      sig do
+        returns(
+          T.nilable(T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result])
+        )
+      end
       attr_reader :results
 
       sig do
         params(
-          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Internal::AnyHash)]
-        )
-          .void
+          results:
+            T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result::OrHash]
+        ).void
       end
       attr_writer :results
 
@@ -48,12 +57,12 @@ module AcmeAISDK
       sig do
         params(
           file_id: String,
-          metadata: T.any(AcmeAISDK::Models::FileFileSearchResponse::Metadata, AcmeAISDK::Internal::AnyHash),
+          metadata: AcmeAISDK::Models::FileFileSearchResponse::Metadata::OrHash,
           query: String,
-          results: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result, AcmeAISDK::Internal::AnyHash)],
+          results:
+            T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result::OrHash],
           total_results: Integer
-        )
-          .returns(T.attached_class)
+        ).returns(T.attached_class)
       end
       def self.new(
         # Unique identifier of the searched file
@@ -65,22 +74,28 @@ module AcmeAISDK
         results: nil,
         # Total number of results found
         total_results: nil
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              file_id: String,
-              metadata: AcmeAISDK::Models::FileFileSearchResponse::Metadata,
-              query: String,
-              results: T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result],
-              total_results: Integer
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            file_id: String,
+            metadata: AcmeAISDK::Models::FileFileSearchResponse::Metadata,
+            query: String,
+            results:
+              T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result],
+            total_results: Integer
+          }
+        )
+      end
+      def to_hash
+      end
 
       class Metadata < AcmeAISDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
         # User-provided description of the file
         sig { returns(T.nilable(String)) }
         attr_reader :description
@@ -116,17 +131,20 @@ module AcmeAISDK
         sig { params(page_count: Integer).void }
         attr_writer :page_count
 
-        sig { returns(T.nilable(AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions)) }
+        sig do
+          returns(
+            T.nilable(
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions
+            )
+          )
+        end
         attr_reader :processing_options
 
         sig do
           params(
-            processing_options: T.any(
-              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
-              AcmeAISDK::Internal::AnyHash
-            )
-          )
-            .void
+            processing_options:
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions::OrHash
+          ).void
         end
         attr_writer :processing_options
 
@@ -152,14 +170,11 @@ module AcmeAISDK
             file_type: String,
             filename: String,
             page_count: Integer,
-            processing_options: T.any(
-              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
-              AcmeAISDK::Internal::AnyHash
-            ),
+            processing_options:
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions::OrHash,
             upload_time: Time,
             word_count: Integer
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # User-provided description of the file
@@ -177,25 +192,31 @@ module AcmeAISDK
           upload_time: nil,
           # Approximate word count
           word_count: nil
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                description: String,
-                file_id: String,
-                file_type: String,
-                filename: String,
-                page_count: Integer,
-                processing_options: AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
-                upload_time: Time,
-                word_count: Integer
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              description: String,
+              file_id: String,
+              file_type: String,
+              filename: String,
+              page_count: Integer,
+              processing_options:
+                AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
+              upload_time: Time,
+              word_count: Integer
+            }
+          )
+        end
+        def to_hash
+        end
 
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
           # Language used for processing
           sig { returns(T.nilable(String)) }
           attr_reader :language
@@ -210,19 +231,27 @@ module AcmeAISDK
           sig { params(ocr: T::Boolean).void }
           attr_writer :ocr
 
-          sig { params(language: String, ocr: T::Boolean).returns(T.attached_class) }
+          sig do
+            params(language: String, ocr: T::Boolean).returns(T.attached_class)
+          end
           def self.new(
             # Language used for processing
             language: nil,
             # Whether OCR was used
             ocr: nil
-          ); end
-          sig { override.returns({language: String, ocr: T::Boolean}) }
-          def to_hash; end
+          )
+          end
+
+          sig { override.returns({ language: String, ocr: T::Boolean }) }
+          def to_hash
+          end
         end
       end
 
       class Result < AcmeAISDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
         # Additional context information (document-type specific)
         sig { returns(T.nilable(T.anything)) }
         attr_reader :additional_context
@@ -231,14 +260,24 @@ module AcmeAISDK
         attr_writer :additional_context
 
         # Character ranges to highlight within the passage
-        sig { returns(T.nilable(T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange
+              ]
+            )
+          )
+        end
         attr_reader :highlight_ranges
 
         sig do
           params(
-            highlight_ranges: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange, AcmeAISDK::Internal::AnyHash)]
-          )
-            .void
+            highlight_ranges:
+              T::Array[
+                AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange::OrHash
+              ]
+          ).void
         end
         attr_writer :highlight_ranges
 
@@ -266,12 +305,14 @@ module AcmeAISDK
         sig do
           params(
             additional_context: T.anything,
-            highlight_ranges: T::Array[T.any(AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange, AcmeAISDK::Internal::AnyHash)],
+            highlight_ranges:
+              T::Array[
+                AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange::OrHash
+              ],
             page_number: Integer,
             passage: String,
             relevance_score: Float
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # Additional context information (document-type specific)
@@ -284,22 +325,30 @@ module AcmeAISDK
           passage: nil,
           # Relevance score of the result (0-1)
           relevance_score: nil
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                additional_context: T.anything,
-                highlight_ranges: T::Array[AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange],
-                page_number: Integer,
-                passage: String,
-                relevance_score: Float
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              additional_context: T.anything,
+              highlight_ranges:
+                T::Array[
+                  AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange
+                ],
+              page_number: Integer,
+              passage: String,
+              relevance_score: Float
+            }
+          )
+        end
+        def to_hash
+        end
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
           # End index of highlight in passage
           sig { returns(T.nilable(Integer)) }
           attr_reader :end_
@@ -314,15 +363,20 @@ module AcmeAISDK
           sig { params(start: Integer).void }
           attr_writer :start
 
-          sig { params(end_: Integer, start: Integer).returns(T.attached_class) }
+          sig do
+            params(end_: Integer, start: Integer).returns(T.attached_class)
+          end
           def self.new(
             # End index of highlight in passage
             end_: nil,
             # Start index of highlight in passage
             start: nil
-          ); end
-          sig { override.returns({end_: Integer, start: Integer}) }
-          def to_hash; end
+          )
+          end
+
+          sig { override.returns({ end_: Integer, start: Integer }) }
+          def to_hash
+          end
         end
       end
     end

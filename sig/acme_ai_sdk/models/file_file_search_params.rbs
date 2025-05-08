@@ -34,8 +34,6 @@ module AcmeAISDK
         ?max_results: Integer,
         ?request_options: AcmeAISDK::request_opts
       ) -> void
-
-      def to_hash: -> AcmeAISDK::Models::file_file_search_params
     end
   end
 end

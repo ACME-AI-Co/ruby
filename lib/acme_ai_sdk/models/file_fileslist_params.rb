@@ -22,31 +22,31 @@ module AcmeAISDK
       # @!attribute sort_by
       #   Field to sort by
       #
-      #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy, nil]
-      optional :sort_by, enum: -> { AcmeAISDK::Models::FileFileslistParams::SortBy }
+      #   @return [Symbol, AcmeAISDK::FileFileslistParams::SortBy, nil]
+      optional :sort_by, enum: -> { AcmeAISDK::FileFileslistParams::SortBy }
 
       # @!attribute sort_order
       #   Sort order
       #
-      #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder, nil]
-      optional :sort_order, enum: -> { AcmeAISDK::Models::FileFileslistParams::SortOrder }
+      #   @return [Symbol, AcmeAISDK::FileFileslistParams::SortOrder, nil]
+      optional :sort_order, enum: -> { AcmeAISDK::FileFileslistParams::SortOrder }
 
       # @!attribute status
       #   Filter by processing status
       #
-      #   @return [Symbol, AcmeAISDK::Models::FileFileslistParams::Status, nil]
-      optional :status, enum: -> { AcmeAISDK::Models::FileFileslistParams::Status }
+      #   @return [Symbol, AcmeAISDK::FileFileslistParams::Status, nil]
+      optional :status, enum: -> { AcmeAISDK::FileFileslistParams::Status }
 
       # @!method initialize(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #   @param limit [Integer] Maximum number of files to return
       #
       #   @param offset [Integer] Number of files to skip
       #
-      #   @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] Field to sort by
+      #   @param sort_by [Symbol, AcmeAISDK::FileFileslistParams::SortBy] Field to sort by
       #
-      #   @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] Sort order
+      #   @param sort_order [Symbol, AcmeAISDK::FileFileslistParams::SortOrder] Sort order
       #
-      #   @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] Filter by processing status
+      #   @param status [Symbol, AcmeAISDK::FileFileslistParams::Status] Filter by processing status
       #
       #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 

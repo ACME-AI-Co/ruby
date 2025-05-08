@@ -21,15 +21,15 @@ module AcmeAISDK
 
       # @!attribute processing_options
       #
-      #   @return [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions, nil]
-      optional :processing_options, -> { AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions }
+      #   @return [AcmeAISDK::FileFileCreateParams::ProcessingOptions, nil]
+      optional :processing_options, -> { AcmeAISDK::FileFileCreateParams::ProcessingOptions }
 
       # @!method initialize(file:, description: nil, processing_options: nil, request_options: {})
       #   @param file [Pathname, StringIO, IO, AcmeAISDK::FilePart] The file to upload
       #
       #   @param description [String] Optional description of the file
       #
-      #   @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      #   @param processing_options [AcmeAISDK::FileFileCreateParams::ProcessingOptions]
       #
       #   @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}]
 

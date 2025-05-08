@@ -4,7 +4,7 @@ module AcmeAISDK
       {
         file: (Pathname | StringIO | IO | AcmeAISDK::FilePart),
         description: String,
-        processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
+        processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions
       }
       & AcmeAISDK::Internal::Type::request_parameters
 
@@ -18,20 +18,18 @@ module AcmeAISDK
 
       def description=: (String) -> String
 
-      attr_reader processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions?
+      attr_reader processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions?
 
       def processing_options=: (
-        AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
-      ) -> AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions
+        AcmeAISDK::FileFileCreateParams::ProcessingOptions
+      ) -> AcmeAISDK::FileFileCreateParams::ProcessingOptions
 
       def initialize: (
         file: Pathname | StringIO | IO | AcmeAISDK::FilePart,
         ?description: String,
-        ?processing_options: AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions,
+        ?processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions,
         ?request_options: AcmeAISDK::request_opts
       ) -> void
-
-      def to_hash: -> AcmeAISDK::Models::file_file_create_params
 
       type processing_options = { language: String, ocr: bool }
 
@@ -45,8 +43,6 @@ module AcmeAISDK
         def ocr=: (bool) -> bool
 
         def initialize: (?language: String, ?ocr: bool) -> void
-
-        def to_hash: -> AcmeAISDK::Models::FileFileCreateParams::processing_options
       end
     end
   end

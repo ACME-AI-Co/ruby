@@ -3,14 +3,20 @@
 module AcmeAISDK
   module Models
     class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
-      sig { returns(T.nilable(T::Array[AcmeAISDK::Models::FileFileslistResponse::File])) }
+      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
+      sig do
+        returns(
+          T.nilable(T::Array[AcmeAISDK::Models::FileFileslistResponse::File])
+        )
+      end
       attr_reader :files
 
       sig do
         params(
-          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::AnyHash)]
-        )
-          .void
+          files:
+            T::Array[AcmeAISDK::Models::FileFileslistResponse::File::OrHash]
+        ).void
       end
       attr_writer :files
 
@@ -37,12 +43,12 @@ module AcmeAISDK
 
       sig do
         params(
-          files: T::Array[T.any(AcmeAISDK::Models::FileFileslistResponse::File, AcmeAISDK::Internal::AnyHash)],
+          files:
+            T::Array[AcmeAISDK::Models::FileFileslistResponse::File::OrHash],
           limit: Integer,
           offset: Integer,
           total: Integer
-        )
-          .returns(T.attached_class)
+        ).returns(T.attached_class)
       end
       def self.new(
         files: nil,
@@ -52,16 +58,26 @@ module AcmeAISDK
         offset: nil,
         # Total number of files matching the filter
         total: nil
-      ); end
-      sig do
-        override
-          .returns(
-            {files: T::Array[AcmeAISDK::Models::FileFileslistResponse::File], limit: Integer, offset: Integer, total: Integer}
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            files: T::Array[AcmeAISDK::Models::FileFileslistResponse::File],
+            limit: Integer,
+            offset: Integer,
+            total: Integer
+          }
+        )
+      end
+      def to_hash
+      end
 
       class File < AcmeAISDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
         # Time processing was completed (if applicable)
         sig { returns(T.nilable(Time)) }
         attr_reader :completion_time
@@ -98,10 +114,21 @@ module AcmeAISDK
         attr_writer :filename
 
         # Current processing status
-        sig { returns(T.nilable(AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)) }
+        sig do
+          returns(
+            T.nilable(
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+            )
+          )
+        end
         attr_reader :status
 
-        sig { params(status: AcmeAISDK::Models::FileFileslistResponse::File::Status::OrSymbol).void }
+        sig do
+          params(
+            status:
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::OrSymbol
+          ).void
+        end
         attr_writer :status
 
         # Time the file was uploaded
@@ -118,10 +145,10 @@ module AcmeAISDK
             file_id: String,
             file_size: Integer,
             filename: String,
-            status: AcmeAISDK::Models::FileFileslistResponse::File::Status::OrSymbol,
+            status:
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::OrSymbol,
             upload_time: Time
-          )
-            .returns(T.attached_class)
+          ).returns(T.attached_class)
         end
         def self.new(
           # Time processing was completed (if applicable)
@@ -138,37 +165,69 @@ module AcmeAISDK
           status: nil,
           # Time the file was uploaded
           upload_time: nil
-        ); end
-        sig do
-          override
-            .returns(
-              {
-                completion_time: Time,
-                error: String,
-                file_id: String,
-                file_size: Integer,
-                filename: String,
-                status: AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol,
-                upload_time: Time
-              }
-            )
+        )
         end
-        def to_hash; end
+
+        sig do
+          override.returns(
+            {
+              completion_time: Time,
+              error: String,
+              file_id: String,
+              file_size: Integer,
+              filename: String,
+              status:
+                AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol,
+              upload_time: Time
+            }
+          )
+        end
+        def to_hash
+        end
 
         # Current processing status
         module Status
           extend AcmeAISDK::Internal::Type::Enum
 
-          TaggedSymbol = T.type_alias { T.all(Symbol, AcmeAISDK::Models::FileFileslistResponse::File::Status) }
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                AcmeAISDK::Models::FileFileslistResponse::File::Status
+              )
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          PENDING = T.let(:pending, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
-          PROCESSING = T.let(:processing, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
-          COMPLETED = T.let(:completed, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
-          FAILED = T.let(:failed, AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol)
+          PENDING =
+            T.let(
+              :pending,
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+            )
+          PROCESSING =
+            T.let(
+              :processing,
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+            )
+          COMPLETED =
+            T.let(
+              :completed,
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+            )
+          FAILED =
+            T.let(
+              :failed,
+              AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+            )
 
-          sig { override.returns(T::Array[AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol]) }
-          def self.values; end
+          sig do
+            override.returns(
+              T::Array[
+                AcmeAISDK::Models::FileFileslistResponse::File::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

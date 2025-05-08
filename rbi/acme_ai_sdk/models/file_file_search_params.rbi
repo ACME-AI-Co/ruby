@@ -6,6 +6,8 @@ module AcmeAISDK
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
+      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+
       # Natural language search query
       sig { returns(String) }
       attr_accessor :query
@@ -37,9 +39,8 @@ module AcmeAISDK
           context_size: Integer,
           include_metadata: T::Boolean,
           max_results: Integer,
-          request_options: T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
-        )
-          .returns(T.attached_class)
+          request_options: AcmeAISDK::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
       def self.new(
         # Natural language search query
@@ -51,20 +52,22 @@ module AcmeAISDK
         # Maximum number of results to return
         max_results: nil,
         request_options: {}
-      ); end
-      sig do
-        override
-          .returns(
-            {
-              query: String,
-              context_size: Integer,
-              include_metadata: T::Boolean,
-              max_results: Integer,
-              request_options: AcmeAISDK::RequestOptions
-            }
-          )
+      )
       end
-      def to_hash; end
+
+      sig do
+        override.returns(
+          {
+            query: String,
+            context_size: Integer,
+            include_metadata: T::Boolean,
+            max_results: Integer,
+            request_options: AcmeAISDK::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
     end
   end
 end

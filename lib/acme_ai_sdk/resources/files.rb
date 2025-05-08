@@ -12,7 +12,7 @@ module AcmeAISDK
       #
       # @param description [String] Optional description of the file
       #
-      # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
+      # @param processing_options [AcmeAISDK::FileFileCreateParams::ProcessingOptions]
       #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -20,7 +20,7 @@ module AcmeAISDK
       #
       # @see AcmeAISDK::Models::FileFileCreateParams
       def file_create(params)
-        parsed, options = AcmeAISDK::Models::FileFileCreateParams.dump_request(params)
+        parsed, options = AcmeAISDK::FileFileCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "files/",
@@ -52,7 +52,7 @@ module AcmeAISDK
       #
       # @see AcmeAISDK::Models::FileFileSearchParams
       def file_search(file_id, params)
-        parsed, options = AcmeAISDK::Models::FileFileSearchParams.dump_request(params)
+        parsed, options = AcmeAISDK::FileFileSearchParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["files/%1$s/search", file_id],
@@ -71,11 +71,11 @@ module AcmeAISDK
       #
       # @param offset [Integer] Number of files to skip
       #
-      # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] Field to sort by
+      # @param sort_by [Symbol, AcmeAISDK::FileFileslistParams::SortBy] Field to sort by
       #
-      # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] Sort order
+      # @param sort_order [Symbol, AcmeAISDK::FileFileslistParams::SortOrder] Sort order
       #
-      # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] Filter by processing status
+      # @param status [Symbol, AcmeAISDK::FileFileslistParams::Status] Filter by processing status
       #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -83,7 +83,7 @@ module AcmeAISDK
       #
       # @see AcmeAISDK::Models::FileFileslistParams
       def fileslist(params = {})
-        parsed, options = AcmeAISDK::Models::FileFileslistParams.dump_request(params)
+        parsed, options = AcmeAISDK::FileFileslistParams.dump_request(params)
         @client.request(
           method: :get,
           path: "files/",
