@@ -5,9 +5,11 @@ module AcmeAISDK
     module Transport
       # @api private
       class BaseClient
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
         abstract!
 
-        RequestComponentsShape =
+        RequestComponents =
           T.type_alias do
             {
               method: Symbol,
@@ -53,7 +55,7 @@ module AcmeAISDK
             }
           end
 
-        RequestInputShape =
+        RequestInput =
           T.type_alias do
             {
               method: Symbol,
@@ -74,8 +76,7 @@ module AcmeAISDK
           # @api private
           sig do
             params(
-              req:
-                AcmeAISDK::Internal::Transport::BaseClient::RequestComponentsShape
+              req: AcmeAISDK::Internal::Transport::BaseClient::RequestComponents
             ).void
           end
           def validate!(req)
@@ -94,13 +95,10 @@ module AcmeAISDK
           # @api private
           sig do
             params(
-              request:
-                AcmeAISDK::Internal::Transport::BaseClient::RequestInputShape,
+              request: AcmeAISDK::Internal::Transport::BaseClient::RequestInput,
               status: Integer,
               response_headers: T.any(T::Hash[String, String], Net::HTTPHeader)
-            ).returns(
-              AcmeAISDK::Internal::Transport::BaseClient::RequestInputShape
-            )
+            ).returns(AcmeAISDK::Internal::Transport::BaseClient::RequestInput)
           end
           def follow_redirect(request, status:, response_headers:)
           end
@@ -168,12 +166,10 @@ module AcmeAISDK
           overridable
             .params(
               req:
-                AcmeAISDK::Internal::Transport::BaseClient::RequestComponentsShape,
+                AcmeAISDK::Internal::Transport::BaseClient::RequestComponents,
               opts: AcmeAISDK::Internal::AnyHash
             )
-            .returns(
-              AcmeAISDK::Internal::Transport::BaseClient::RequestInputShape
-            )
+            .returns(AcmeAISDK::Internal::Transport::BaseClient::RequestInput)
         end
         private def build_request(req, opts)
         end
@@ -191,8 +187,7 @@ module AcmeAISDK
         # @api private
         sig do
           params(
-            request:
-              AcmeAISDK::Internal::Transport::BaseClient::RequestInputShape,
+            request: AcmeAISDK::Internal::Transport::BaseClient::RequestInput,
             redirect_count: Integer,
             retry_count: Integer,
             send_retry_header: T::Boolean

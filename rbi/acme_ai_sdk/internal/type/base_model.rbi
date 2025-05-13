@@ -5,10 +5,11 @@ module AcmeAISDK
     module Type
       class BaseModel
         extend AcmeAISDK::Internal::Type::Converter
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
-        KnownFieldShape =
+        KnownField =
           T.type_alias do
             {
               mode: T.nilable(Symbol),
@@ -18,19 +19,29 @@ module AcmeAISDK
           end
 
         OrHash =
-          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              AcmeAISDK::Internal::Type::BaseModel,
+              AcmeAISDK::Internal::AnyHash
+            )
+          end
 
         class << self
           # @api private
           #
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
+          sig { params(child: T.self_type).void }
+          def inherited(child)
+          end
+
+          # @api private
           sig do
             returns(
               T::Hash[
                 Symbol,
                 T.all(
-                  AcmeAISDK::Internal::Type::BaseModel::KnownFieldShape,
+                  AcmeAISDK::Internal::Type::BaseModel::KnownField,
                   {
                     type_fn:
                       T.proc.returns(
@@ -50,7 +61,7 @@ module AcmeAISDK
               T::Hash[
                 Symbol,
                 T.all(
-                  AcmeAISDK::Internal::Type::BaseModel::KnownFieldShape,
+                  AcmeAISDK::Internal::Type::BaseModel::KnownField,
                   { type: AcmeAISDK::Internal::Type::Converter::Input }
                 )
               ]

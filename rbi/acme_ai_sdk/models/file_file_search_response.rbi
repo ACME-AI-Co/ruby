@@ -3,7 +3,13 @@
 module AcmeAISDK
   module Models
     class FileFileSearchResponse < AcmeAISDK::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            AcmeAISDK::Models::FileFileSearchResponse,
+            AcmeAISDK::Internal::AnyHash
+          )
+        end
 
       # Unique identifier of the searched file
       sig { returns(T.nilable(String)) }
@@ -94,7 +100,12 @@ module AcmeAISDK
 
       class Metadata < AcmeAISDK::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Metadata,
+              AcmeAISDK::Internal::AnyHash
+            )
+          end
 
         # User-provided description of the file
         sig { returns(T.nilable(String)) }
@@ -215,7 +226,12 @@ module AcmeAISDK
 
         class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                AcmeAISDK::Models::FileFileSearchResponse::Metadata::ProcessingOptions,
+                AcmeAISDK::Internal::AnyHash
+              )
+            end
 
           # Language used for processing
           sig { returns(T.nilable(String)) }
@@ -250,7 +266,12 @@ module AcmeAISDK
 
       class Result < AcmeAISDK::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              AcmeAISDK::Models::FileFileSearchResponse::Result,
+              AcmeAISDK::Internal::AnyHash
+            )
+          end
 
         # Additional context information (document-type specific)
         sig { returns(T.nilable(T.anything)) }
@@ -347,7 +368,12 @@ module AcmeAISDK
 
         class HighlightRange < AcmeAISDK::Internal::Type::BaseModel
           OrHash =
-            T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+            T.type_alias do
+              T.any(
+                AcmeAISDK::Models::FileFileSearchResponse::Result::HighlightRange,
+                AcmeAISDK::Internal::AnyHash
+              )
+            end
 
           # End index of highlight in passage
           sig { returns(T.nilable(Integer)) }

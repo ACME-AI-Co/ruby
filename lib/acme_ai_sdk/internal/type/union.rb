@@ -6,6 +6,7 @@ module AcmeAISDK
       # @api private
       module Union
         include AcmeAISDK::Internal::Type::Converter
+        include AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         # @api private
         #

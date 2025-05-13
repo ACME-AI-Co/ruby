@@ -2,6 +2,8 @@ module AcmeAISDK
   module Internal
     module Type
       module Converter
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
         type input = AcmeAISDK::Internal::Type::Converter | Class
 
         type coerce_state =

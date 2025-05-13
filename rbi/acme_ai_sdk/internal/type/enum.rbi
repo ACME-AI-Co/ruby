@@ -17,6 +17,7 @@ module AcmeAISDK
       # values safely.
       module Enum
         include AcmeAISDK::Internal::Type::Converter
+        include AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         # All of the valid Symbol values for this enum.
         sig do

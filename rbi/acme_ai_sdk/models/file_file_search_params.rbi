@@ -6,7 +6,10 @@ module AcmeAISDK
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(AcmeAISDK::FileFileSearchParams, AcmeAISDK::Internal::AnyHash)
+        end
 
       # Natural language search query
       sig { returns(String) }

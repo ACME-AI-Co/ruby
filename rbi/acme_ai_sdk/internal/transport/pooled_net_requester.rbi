@@ -5,7 +5,9 @@ module AcmeAISDK
     module Transport
       # @api private
       class PooledNetRequester
-        RequestShape =
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
+        Request =
           T.type_alias do
             {
               method: Symbol,
@@ -35,7 +37,7 @@ module AcmeAISDK
           sig do
             params(
               request:
-                AcmeAISDK::Internal::Transport::PooledNetRequester::RequestShape,
+                AcmeAISDK::Internal::Transport::PooledNetRequester::Request,
               blk: T.proc.params(arg0: String).void
             ).returns([Net::HTTPGenericRequest, T.proc.void])
           end
@@ -57,8 +59,7 @@ module AcmeAISDK
         # @api private
         sig do
           params(
-            request:
-              AcmeAISDK::Internal::Transport::PooledNetRequester::RequestShape
+            request: AcmeAISDK::Internal::Transport::PooledNetRequester::Request
           ).returns([Integer, Net::HTTPResponse, T::Enumerable[String]])
         end
         def execute(request)

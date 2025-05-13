@@ -3,7 +3,13 @@
 module AcmeAISDK
   module Models
     class FileFileslistResponse < AcmeAISDK::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            AcmeAISDK::Models::FileFileslistResponse,
+            AcmeAISDK::Internal::AnyHash
+          )
+        end
 
       sig do
         returns(
@@ -76,7 +82,12 @@ module AcmeAISDK
 
       class File < AcmeAISDK::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              AcmeAISDK::Models::FileFileslistResponse::File,
+              AcmeAISDK::Internal::AnyHash
+            )
+          end
 
         # Time processing was completed (if applicable)
         sig { returns(T.nilable(Time)) }

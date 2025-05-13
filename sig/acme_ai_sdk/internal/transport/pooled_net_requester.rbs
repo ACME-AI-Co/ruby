@@ -2,6 +2,8 @@ module AcmeAISDK
   module Internal
     module Transport
       class PooledNetRequester
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
         type request =
           {
             method: Symbol,

@@ -3,7 +3,13 @@
 module AcmeAISDK
   module Models
     class FileFileCreateResponse < AcmeAISDK::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(
+            AcmeAISDK::Models::FileFileCreateResponse,
+            AcmeAISDK::Internal::AnyHash
+          )
+        end
 
       # Unique identifier for the file
       sig { returns(T.nilable(String)) }

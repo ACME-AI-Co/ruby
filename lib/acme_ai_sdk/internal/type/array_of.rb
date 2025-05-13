@@ -29,7 +29,7 @@ module AcmeAISDK
         #
         #   @option spec [Boolean] :"nil?"
         #
-        # @return [AcmeAISDK::Internal::Type::ArrayOf]
+        # @return [self]
         def self.[](...) = new(...)
 
         # @api public

@@ -5,6 +5,8 @@ module AcmeAISDK
     module Type
       # @api private
       module Converter
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
         Input =
           T.type_alias do
             T.any(AcmeAISDK::Internal::Type::Converter, T::Class[T.anything])
