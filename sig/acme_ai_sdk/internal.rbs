@@ -1,5 +1,7 @@
 module AcmeAISDK
   module Internal
+    extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
     OMIT: Object
   end
 end

@@ -2,6 +2,8 @@ module AcmeAISDK
   module Internal
     module Transport
       class BaseClient
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
         type request_components =
           {
             method: Symbol,
@@ -20,7 +22,6 @@ module AcmeAISDK
             model: AcmeAISDK::Internal::Type::Converter::input?,
             options: AcmeAISDK::request_opts?
           }
-
         type request_input =
           {
             method: Symbol,

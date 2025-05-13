@@ -7,7 +7,10 @@ module AcmeAISDK
   # When making a request, you can pass an actual {RequestOptions} instance, or
   # simply pass a Hash with symbol keys matching the attributes on this class.
   class RequestOptions < AcmeAISDK::Internal::Type::BaseModel
-    OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+    OrHash =
+      T.type_alias do
+        T.any(AcmeAISDK::RequestOptions, AcmeAISDK::Internal::AnyHash)
+      end
 
     # @api private
     sig { params(opts: AcmeAISDK::RequestOptions::OrHash).void }

@@ -6,7 +6,10 @@ module AcmeAISDK
       extend AcmeAISDK::Internal::Type::RequestParameters::Converter
       include AcmeAISDK::Internal::Type::RequestParameters
 
-      OrHash = T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+      OrHash =
+        T.type_alias do
+          T.any(AcmeAISDK::FileFileCreateParams, AcmeAISDK::Internal::AnyHash)
+        end
 
       # The file to upload
       sig { returns(T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart)) }
@@ -67,7 +70,12 @@ module AcmeAISDK
 
       class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(T.self_type, AcmeAISDK::Internal::AnyHash) }
+          T.type_alias do
+            T.any(
+              AcmeAISDK::FileFileCreateParams::ProcessingOptions,
+              AcmeAISDK::Internal::AnyHash
+            )
+          end
 
         # Preferred language for processing
         sig { returns(T.nilable(String)) }

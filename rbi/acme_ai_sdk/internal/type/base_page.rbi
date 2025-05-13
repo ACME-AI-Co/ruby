@@ -29,8 +29,7 @@ module AcmeAISDK
         sig do
           params(
             client: AcmeAISDK::Internal::Transport::BaseClient,
-            req:
-              AcmeAISDK::Internal::Transport::BaseClient::RequestComponentsShape,
+            req: AcmeAISDK::Internal::Transport::BaseClient::RequestComponents,
             headers: T.any(T::Hash[String, String], Net::HTTPHeader),
             page_data: T.anything
           ).void
