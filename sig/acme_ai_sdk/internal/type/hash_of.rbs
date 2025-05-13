@@ -9,7 +9,7 @@ module AcmeAISDK
           | ^-> AcmeAISDK::Internal::Type::Converter::input
           | AcmeAISDK::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
-        ) -> self
+        ) -> instance
 
         def ===: (top other) -> bool
 
