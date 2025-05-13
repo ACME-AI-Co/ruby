@@ -99,7 +99,7 @@ module AcmeAISDK
       # @param response [nil]
       # @param message [String, nil]
       #
-      # @return [AcmeAISDK::Errors::APIStatusError]
+      # @return [self]
       def self.for(url:, status:, body:, request:, response:, message: nil)
         kwargs = {
           url: url,
