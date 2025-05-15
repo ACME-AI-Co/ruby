@@ -391,6 +391,14 @@ module AcmeAISDK
         # @param keys [Array<Symbol>, nil]
         #
         # @return [Hash{Symbol=>Object}]
+        #
+        # @example
+        #   # `file_file_create_response` is a `AcmeAISDK::Models::FileFileCreateResponse`
+        #   file_file_create_response => {
+        #     file_id: file_id,
+        #     status: status,
+        #     upload_time: upload_time
+        #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
             .filter_map do |k|
