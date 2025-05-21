@@ -10,7 +10,7 @@ module AcmeAISDK
       # @!attribute file
       #   The file to upload
       #
-      #   @return [Pathname, StringIO, IO, AcmeAISDK::FilePart]
+      #   @return [Pathname, StringIO, IO, String, AcmeAISDK::FilePart]
       required :file, AcmeAISDK::Internal::Type::FileInput
 
       # @!attribute description
@@ -25,7 +25,7 @@ module AcmeAISDK
       optional :processing_options, -> { AcmeAISDK::FileFileCreateParams::ProcessingOptions }
 
       # @!method initialize(file:, description: nil, processing_options: nil, request_options: {})
-      #   @param file [Pathname, StringIO, IO, AcmeAISDK::FilePart] The file to upload
+      #   @param file [Pathname, StringIO, IO, String, AcmeAISDK::FilePart] The file to upload
       #
       #   @param description [String] Optional description of the file
       #
