@@ -89,6 +89,13 @@ module AcmeAISDK
 
             value
           end
+
+          # @api private
+          #
+          # @return [Object]
+          def to_sorbet_type
+            T.any(Pathname, StringIO, IO, String, AcmeAISDK::FilePart)
+          end
         end
       end
     end

@@ -3,6 +3,7 @@ module AcmeAISDK
     module Type
       class HashOf[Elem]
         include AcmeAISDK::Internal::Type::Converter
+        include AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         def self.[]: (
           ::Hash[Symbol, top]
@@ -26,6 +27,8 @@ module AcmeAISDK
           ::Hash[top, top] | top value,
           state: AcmeAISDK::Internal::Type::Converter::dump_state
         ) -> (::Hash[Symbol, top] | top)
+
+        def to_sorbet_type: -> top
 
         def item_type: -> Elem
 
