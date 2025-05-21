@@ -3,6 +3,7 @@ module AcmeAISDK
     module Type
       class Unknown
         extend AcmeAISDK::Internal::Type::Converter
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         def self.===: (top other) -> bool
 
@@ -17,6 +18,8 @@ module AcmeAISDK
           top value,
           state: AcmeAISDK::Internal::Type::Converter::dump_state
         ) -> top
+
+        def self.to_sorbet_type: -> top
       end
     end
   end

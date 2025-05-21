@@ -8,6 +8,7 @@ module AcmeAISDK
       # Hash of items of a given type.
       class HashOf
         include AcmeAISDK::Internal::Type::Converter
+        include AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -61,6 +62,11 @@ module AcmeAISDK
             .returns(T.any(AcmeAISDK::Internal::AnyHash, T.anything))
         end
         def dump(value, state:)
+        end
+
+        # @api private
+        sig { returns(T.anything) }
+        def to_sorbet_type
         end
 
         # @api private
