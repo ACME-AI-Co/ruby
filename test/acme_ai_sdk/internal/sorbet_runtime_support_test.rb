@@ -25,6 +25,7 @@ class AcmeAISDK::Test::SorbetRuntimeSupportTest < Minitest::Test
     err = AcmeAISDK::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
 
     assert_raises(err) { AcmeAISDK::Internal::AnyHash }
+    assert_raises(err) { AcmeAISDK::Internal::FileInput }
     assert_raises(err) { AcmeAISDK::Internal::Type::Converter::Input }
     assert_raises(err) { AcmeAISDK::Internal::Type::Converter::CoerceState }
     assert_raises(err) { AcmeAISDK::Internal::Type::Converter::DumpState }

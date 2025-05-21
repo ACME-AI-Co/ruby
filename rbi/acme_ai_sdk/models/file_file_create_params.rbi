@@ -12,7 +12,7 @@ module AcmeAISDK
         end
 
       # The file to upload
-      sig { returns(T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart)) }
+      sig { returns(AcmeAISDK::Internal::FileInput) }
       attr_accessor :file
 
       # Optional description of the file
@@ -37,7 +37,7 @@ module AcmeAISDK
 
       sig do
         params(
-          file: T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart),
+          file: AcmeAISDK::Internal::FileInput,
           description: String,
           processing_options:
             AcmeAISDK::FileFileCreateParams::ProcessingOptions::OrHash,
@@ -57,7 +57,7 @@ module AcmeAISDK
       sig do
         override.returns(
           {
-            file: T.any(Pathname, StringIO, IO, AcmeAISDK::FilePart),
+            file: AcmeAISDK::Internal::FileInput,
             description: String,
             processing_options:
               AcmeAISDK::FileFileCreateParams::ProcessingOptions,

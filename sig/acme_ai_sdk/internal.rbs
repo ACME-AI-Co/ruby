@@ -2,6 +2,8 @@ module AcmeAISDK
   module Internal
     extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
 
+    type file_input = Pathname | StringIO | IO | String | AcmeAISDK::FilePart
+
     OMIT: Object
   end
 end
