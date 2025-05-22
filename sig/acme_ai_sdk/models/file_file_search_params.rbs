@@ -34,6 +34,14 @@ module AcmeAISDK
         ?max_results: Integer,
         ?request_options: AcmeAISDK::request_opts
       ) -> void
+
+      def to_hash: -> {
+        query: String,
+        context_size: Integer,
+        include_metadata: bool,
+        max_results: Integer,
+        request_options: AcmeAISDK::RequestOptions
+      }
     end
   end
 end

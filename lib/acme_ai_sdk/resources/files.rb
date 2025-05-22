@@ -12,7 +12,7 @@ module AcmeAISDK
       #
       # @param description [String] Optional description of the file
       #
-      # @param processing_options [AcmeAISDK::FileFileCreateParams::ProcessingOptions]
+      # @param processing_options [AcmeAISDK::Models::FileFileCreateParams::ProcessingOptions]
       #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -71,11 +71,11 @@ module AcmeAISDK
       #
       # @param offset [Integer] Number of files to skip
       #
-      # @param sort_by [Symbol, AcmeAISDK::FileFileslistParams::SortBy] Field to sort by
+      # @param sort_by [Symbol, AcmeAISDK::Models::FileFileslistParams::SortBy] Field to sort by
       #
-      # @param sort_order [Symbol, AcmeAISDK::FileFileslistParams::SortOrder] Sort order
+      # @param sort_order [Symbol, AcmeAISDK::Models::FileFileslistParams::SortOrder] Sort order
       #
-      # @param status [Symbol, AcmeAISDK::FileFileslistParams::Status] Filter by processing status
+      # @param status [Symbol, AcmeAISDK::Models::FileFileslistParams::Status] Filter by processing status
       #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
