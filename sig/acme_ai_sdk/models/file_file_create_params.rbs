@@ -31,6 +31,13 @@ module AcmeAISDK
         ?request_options: AcmeAISDK::request_opts
       ) -> void
 
+      def to_hash: -> {
+        file: AcmeAISDK::Internal::file_input,
+        description: String,
+        processing_options: AcmeAISDK::FileFileCreateParams::ProcessingOptions,
+        request_options: AcmeAISDK::RequestOptions
+      }
+
       type processing_options = { language: String, ocr: bool }
 
       class ProcessingOptions < AcmeAISDK::Internal::Type::BaseModel
@@ -43,6 +50,8 @@ module AcmeAISDK
         def ocr=: (bool) -> bool
 
         def initialize: (?language: String, ?ocr: bool) -> void
+
+        def to_hash: -> { language: String, ocr: bool }
       end
     end
   end

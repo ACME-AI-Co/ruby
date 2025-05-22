@@ -28,6 +28,12 @@ module AcmeAISDK
         ?upload_time: Time
       ) -> void
 
+      def to_hash: -> {
+        file_id: String,
+        status: AcmeAISDK::Models::FileFileCreateResponse::status,
+        upload_time: Time
+      }
+
       type status = :pending | :processing
 
       module Status
