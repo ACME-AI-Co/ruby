@@ -600,11 +600,13 @@ module AcmeAISDK
         #
         # @return [Object]
         def encode_content(headers, body)
+          # rubocop:disable Style/CaseEquality
+          # rubocop:disable Layout/LineLength
           content_type = headers["content-type"]
           case [content_type, body]
           in [AcmeAISDK::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
             [headers, JSON.generate(body)]
-          in [AcmeAISDK::Internal::Util::JSONL_CONTENT, Enumerable] unless body.is_a?(AcmeAISDK::Internal::Type::FileInput)
+          in [AcmeAISDK::Internal::Util::JSONL_CONTENT, Enumerable] unless AcmeAISDK::Internal::Type::FileInput === body
             [headers, body.lazy.map { JSON.generate(_1) }]
           in [%r{^multipart/form-data}, Hash | AcmeAISDK::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
@@ -619,6 +621,8 @@ module AcmeAISDK
           else
             [headers, body]
           end
+          # rubocop:enable Layout/LineLength
+          # rubocop:enable Style/CaseEquality
         end
 
         # @api private
