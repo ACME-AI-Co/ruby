@@ -47,15 +47,25 @@ class AcmeAISDK::Test::Resources::FilesTest < AcmeAISDK::Test::ResourceTest
     response = @acme_ai_sdk.files.fileslist
 
     assert_pattern do
-      response => AcmeAISDK::Models::FileFileslistResponse
+      response => AcmeAISDK::Internal::Offset
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => AcmeAISDK::Models::FileFileslistResponse
     end
 
     assert_pattern do
-      response => {
-        files: ^(AcmeAISDK::Internal::Type::ArrayOf[AcmeAISDK::Models::FileFileslistResponse::File]) | nil,
-        limit: Integer | nil,
-        offset: Integer | nil,
-        total: Integer | nil
+      row => {
+        completion_time: Time | nil,
+        error: String | nil,
+        file_id: String | nil,
+        file_size: Integer | nil,
+        filename: String | nil,
+        status: AcmeAISDK::Models::FileFileslistResponse::Status | nil,
+        upload_time: Time | nil
       }
     end
   end

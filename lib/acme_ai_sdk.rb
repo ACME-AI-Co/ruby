@@ -20,7 +20,9 @@ require "uri"
 
 # We already ship the preferred sorbet manifests in the package itself.
 # `tapioca` currently does not offer us a way to opt out of unnecessary compilation.
-if Object.const_defined?(:Tapioca) && caller.chain([$PROGRAM_NAME]).chain(ARGV).grep(/tapioca/)
+if Object.const_defined?(:Tapioca) &&
+   caller.chain([$PROGRAM_NAME]).chain(ARGV).any?(/tapioca/) &&
+   ARGV.none?(/dsl/)
   return
 end
 
@@ -48,6 +50,7 @@ require_relative "acme_ai_sdk/errors"
 require_relative "acme_ai_sdk/internal/transport/base_client"
 require_relative "acme_ai_sdk/internal/transport/pooled_net_requester"
 require_relative "acme_ai_sdk/client"
+require_relative "acme_ai_sdk/internal/offset"
 require_relative "acme_ai_sdk/models/file_file_create_params"
 require_relative "acme_ai_sdk/models/file_file_create_response"
 require_relative "acme_ai_sdk/models/file_file_search_params"

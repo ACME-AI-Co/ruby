@@ -61,7 +61,9 @@ module AcmeAISDK
           sort_order: AcmeAISDK::FileFileslistParams::SortOrder::OrSymbol,
           status: AcmeAISDK::FileFileslistParams::Status::OrSymbol,
           request_options: AcmeAISDK::RequestOptions::OrHash
-        ).returns(AcmeAISDK::Models::FileFileslistResponse)
+        ).returns(
+          AcmeAISDK::Internal::Offset[AcmeAISDK::Models::FileFileslistResponse]
+        )
       end
       def fileslist(
         # Maximum number of files to return
