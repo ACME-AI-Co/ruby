@@ -79,7 +79,7 @@ module AcmeAISDK
       #
       # @param request_options [AcmeAISDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [AcmeAISDK::Models::FileFileslistResponse]
+      # @return [AcmeAISDK::Internal::Offset<AcmeAISDK::Models::FileFileslistResponse>]
       #
       # @see AcmeAISDK::Models::FileFileslistParams
       def fileslist(params = {})
@@ -88,6 +88,7 @@ module AcmeAISDK
           method: :get,
           path: "files/",
           query: parsed,
+          page: AcmeAISDK::Internal::Offset,
           model: AcmeAISDK::Models::FileFileslistResponse,
           options: options
         )

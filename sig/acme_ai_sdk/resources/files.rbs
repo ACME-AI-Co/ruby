@@ -24,7 +24,7 @@ module AcmeAISDK
         ?sort_order: AcmeAISDK::Models::FileFileslistParams::sort_order,
         ?status: AcmeAISDK::Models::FileFileslistParams::status,
         ?request_options: AcmeAISDK::request_opts
-      ) -> AcmeAISDK::Models::FileFileslistResponse
+      ) -> AcmeAISDK::Internal::Offset[AcmeAISDK::Models::FileFileslistResponse]
 
       def initialize: (client: AcmeAISDK::Client) -> void
     end
