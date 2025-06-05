@@ -62,8 +62,7 @@ module AcmeAISDK
         )
       end
 
-      # Retrieve the processing status of files. Can be filtered by status and sorted by
-      # upload time.
+      # Retrieve a list of files. Can be filtered by status and sorted by upload time.
       #
       # @overload fileslist(limit: nil, offset: nil, sort_by: nil, sort_order: nil, status: nil, request_options: {})
       #
