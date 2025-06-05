@@ -37,6 +37,34 @@ response = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
 puts(response.file_id)
 ```
 
+### Pagination
+
+List methods in the Acme AI SDK API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = acme_ai_sdk.files.fileslist(limit: 20, offset: 20)
+
+# Fetch single item from page.
+file = page.files[0]
+puts(file.file_id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |file|
+  puts(file.file_id)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.files[0].file_id)
+end
+```
+
 ### File uploads
 
 Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
