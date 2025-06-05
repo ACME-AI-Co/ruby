@@ -8,7 +8,7 @@ AllCops:
     - "bin/*"
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.1.0
+  TargetRubyVersion: 3.2.0
 
 # Whether MFA is required or not should be left to the token configuration.
 Gemspec/RequireMFA:
@@ -39,7 +39,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "AcmeAISDK::(Models|Resources)::"
+    - "AcmeAISDK::Internal::Type::BaseModel$"
+    - "^\\s*[A-Z0-9_]+ = :"
+    - "AcmeAISDK::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:
@@ -61,11 +63,21 @@ Layout/MultilineMethodParameterLineBreaks:
 # Prefer compact hash literals.
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+  Exclude:
+    - "**/*.rbi"
+
+Lint/BooleanSymbol:
+  Enabled: false
 
 # This option occasionally mangles identifier names
 Lint/DeprecatedConstants:
   Exclude:
     - "**/*.rbi"
+
+# We use pattern assertion in tests to ensure correctness.
+Lint/DuplicateMatchPattern:
+  Exclude:
+    - "test/**/*"
 
 # Fairly useful in tests for pattern assertions.
 Lint/EmptyInPattern:
@@ -77,6 +89,10 @@ Lint/MissingCopEnableDirective:
     - "examples/**/*.rb"
 
 Lint/MissingSuper:
+  Exclude:
+    - "**/*.rbi"
+
+Lint/SymbolConversion:
   Exclude:
     - "**/*.rbi"
 
@@ -96,6 +112,8 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   AllowedPatterns:
     - assert_pattern
+    - type_alias
+    - define_sorbet_constant!
   Exclude:
     - "**/*.rbi"
 
@@ -109,8 +127,7 @@ Metrics/MethodLength:
   Enabled: false
 
 Metrics/ModuleLength:
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Metrics/ParameterLists:
   Enabled: false
@@ -118,17 +135,19 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-Naming/BlockForwarding:
-  Exclude:
-    - "**/*.rbi"
+Naming/AccessorMethodName:
+  Enabled: false
 
+# Need to preserve block identifier for documentation.
+Naming/BlockForwarding:
+  Enabled: false
+
+# Underscores are generally useful for disambiguation.
 Naming/ClassAndModuleCamelCase:
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Naming/MethodParameterName:
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Naming/PredicateName:
   Exclude:
@@ -153,6 +172,9 @@ Style/Alias:
 Style/AndOr:
   EnforcedStyle: always
 
+Style/ArgumentsForwarding:
+  Enabled: false
+
 Style/BisectedAttrAccessor:
   Exclude:
     - "**/*.rbi"
@@ -161,6 +183,9 @@ Style/BisectedAttrAccessor:
 Style/ClassAndModuleChildren:
   Exclude:
     - "test/**/*"
+
+Style/CommentAnnotation:
+  Enabled: false
 
 # We should go back and add these docs, but ignore for now.
 Style/Documentation:
@@ -200,6 +225,9 @@ Style/MethodCallWithArgsParentheses:
   Exclude:
     - "**/*.gemspec"
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 # Perfectly fine.
 Style/MultipleComparison:
   Enabled: false
@@ -227,6 +255,10 @@ Style/RedundantInitialize:
   Exclude:
     - "**/*.rbi"
 
+Style/RedundantParentheses:
+  Exclude:
+    - "**/*.rbi"
+
 # Prefer slashes for regex literals.
 Style/RegexpLiteral:
   EnforcedStyle: slashes
@@ -234,6 +266,11 @@ Style/RegexpLiteral:
 # Allow explicit ifs, especially for imperative use.
 Style/SafeNavigation:
   Enabled: false
+
+Style/SignalException:
+  Exclude:
+    - Rakefile
+    - "**/*.rake"
 
 # We use these sparingly, where we anticipate future branches for the
 # inner conditional.

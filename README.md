@@ -1,63 +1,111 @@
 # Acme AI SDK Ruby API library
 
-The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.0.0+ application.
+The Acme AI SDK Ruby library provides convenient access to the Acme AI SDK REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/ACME-AI-Co/ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for released of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/acme-ai-sdk).
 
-The underlying REST API documentation can be found on [docs.acme-ai-sdk.com](https://docs.acme-ai-sdk.com).
+The REST API documentation can be found on [docs.acme-ai-sdk.com](https://docs.acme-ai-sdk.com).
 
 ## Installation
 
-To use this gem during the beta, install directly from GitHub with Bundler by adding the following to your application's `Gemfile`:
+To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
+
+<!-- x-release-please-start-version -->
 
 ```ruby
-gem "acme-ai-sdk", git: "https://github.com/ACME-AI-Co/ruby", branch: "main"
+gem "acme-ai-sdk", "~> 0.1.0.pre.alpha.2"
 ```
 
-To fetch an initial copy of the gem:
-
-```sh
-bundle install
-```
-
-To update the version used by your application when updates are pushed to GitHub:
-
-```sh
-bundle update acme-ai-sdk
-```
+<!-- x-release-please-end -->
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "acme-ai-sdk"
+require "acme_ai_sdk"
 
 acme_ai_sdk = AcmeAISDK::Client.new(
-  bearer_token: "My Bearer Token" # defaults to ENV["ACME_AI_SDK_BEARER_TOKEN"]
+  bearer_token: ENV["ACME_AI_SDK_BEARER_TOKEN"] # This is the default and can be omitted
 )
 
-response = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
+response = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
 
 puts(response.file_id)
 ```
 
-### Errors
+### Pagination
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Error` will be thrown:
+List methods in the Acme AI SDK API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```ruby
-begin
-  file = acme_ai_sdk.files.file_create(file: "REPLACE_ME")
-rescue AcmeAISDK::Error => e
-  puts(e.status) # 400
+page = acme_ai_sdk.files.fileslist(limit: 20, offset: 20)
+
+# Fetch single item from page.
+file = page.files[0]
+puts(file.file_id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |file|
+  puts(file.file_id)
 end
 ```
 
-Error codes are as followed:
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.files[0].file_id)
+end
+```
+
+### File uploads
+
+Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
+
+```ruby
+require "pathname"
+
+# Use `Pathname` to send the filename and/or avoid paging a large file into memory:
+response = acme_ai_sdk.files.file_create(file: Pathname("/path/to/file"))
+
+# Alternatively, pass file contents or a `StringIO` directly:
+response = acme_ai_sdk.files.file_create(file: File.read("/path/to/file"))
+
+# Or, to control the filename and/or content type:
+file = AcmeAISDK::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+response = acme_ai_sdk.files.file_create(file: file)
+
+puts(response.file_id)
+```
+
+Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
+
+### Handling errors
+
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `AcmeAISDK::Errors::APIError` will be thrown:
+
+```ruby
+begin
+  file = acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+rescue AcmeAISDK::Errors::APIConnectionError => e
+  puts("The server could not be reached")
+  puts(e.cause)  # an underlying Exception, likely raised within `net/http`
+rescue AcmeAISDK::Errors::RateLimitError => e
+  puts("A 429 status code was received; we should back off a bit.")
+rescue AcmeAISDK::Errors::APIStatusError => e
+  puts("Another non-200-range status code was received")
+  puts(e.status)
+end
+```
+
+Error codes are as follows:
 
 | Cause            | Error Type                 |
 | ---------------- | -------------------------- |
@@ -68,7 +116,7 @@ Error codes are as followed:
 | HTTP 409         | `ConflictError`            |
 | HTTP 422         | `UnprocessableEntityError` |
 | HTTP 429         | `RateLimitError`           |
-| HTTP >=500       | `InternalServerError`      |
+| HTTP >= 500      | `InternalServerError`      |
 | Other HTTP error | `APIStatusError`           |
 | Timeout          | `APITimeoutError`          |
 | Network error    | `APIConnectionError`       |
@@ -88,16 +136,12 @@ acme_ai_sdk = AcmeAISDK::Client.new(
 )
 
 # Or, configure per-request:
-acme_ai_sdk.files.file_create(file: "REPLACE_ME", request_options: {max_retries: 5})
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"), request_options: {max_retries: 5})
 ```
 
 ### Timeouts
 
-By default, requests will time out after 60 seconds.
-
-Timeouts are applied separately to the initial connection and the overall request time, so in some cases a request could wait 2\*timeout seconds before it fails.
-
-You can use the `timeout` option to configure or disable this:
+By default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
@@ -106,38 +150,125 @@ acme_ai_sdk = AcmeAISDK::Client.new(
 )
 
 # Or, configure per-request:
-acme_ai_sdk.files.file_create(file: "REPLACE_ME", request_options: {timeout: 5})
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"), request_options: {timeout: 5})
 ```
 
-## Sorbet Support
+On timeout, `AcmeAISDK::Errors::APITimeoutError` is raised.
 
-**This library emits an intentional warning under the [`tapioca` toolchain](https://github.com/Shopify/tapioca)**. This is normal, and does not impact functionality.
+Note that requests that time out are retried by default.
 
-This library is written with [Sorbet type definitions](https://sorbet.org/docs/rbi). However, there is no runtime dependency on the `sorbet-runtime`.
+## Advanced concepts
 
-What this means is that while you can use Sorbet to type check your code statically, and benefit from the [Sorbet Language Server](https://sorbet.org/docs/lsp) in your editor, there is no runtime type checking and execution overhead from Sorbet itself.
+### BaseModel
 
-Due to limitations with the Sorbet type system, where a method otherwise can take an instance of `AcmeAISDK::BaseModel` class, you will need to use the `**` splat operator to pass the arguments:
+All parameter and response objects inherit from `AcmeAISDK::Internal::Type::BaseModel`, which provides several conveniences, including:
 
-Please follow Sorbet's [setup guides](https://sorbet.org/docs/adopting) for best experience.
+1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
+
+2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.
+
+3. Both instances and the classes themselves can be pretty-printed.
+
+4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.
+
+### Making custom or undocumented requests
+
+#### Undocumented properties
+
+You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
+
+Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-model = FileFileCreateParams.new(file: "REPLACE_ME")
+response =
+  acme_ai_sdk.files.file_create(
+    file: StringIO.new("REPLACE_ME"),
+    request_options: {
+      extra_query: {my_query_parameter: value},
+      extra_body: {my_body_parameter: value},
+      extra_headers: {"my-header": value}
+    }
+  )
 
-acme_ai_sdk.files.file_create(**model)
+puts(response[:my_undocumented_property])
 ```
 
-## Advanced
+#### Undocumented request params
 
-### Concurrency & Connection Pooling
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.
 
-The `AcmeAISDK::Client` instances are thread-safe, and should be re-used across multiple threads. By default, each `Client` have their own HTTP connection pool, with a maximum number of connections equal to thread count.
+#### Undocumented endpoints
 
-When the maximum number of connections has been checked out from the connection pool, the `Client` will wait for an in use connection to become available. The queue time for this mechanism is accounted for by the per-request timeout.
+To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:
+
+```ruby
+response = client.request(
+  method: :post,
+  path: '/undocumented/endpoint',
+  query: {"dog": "woof"},
+  headers: {"useful-header": "interesting-value"},
+  body: {"hello": "world"}
+)
+```
+
+### Concurrency & connection pooling
+
+The `AcmeAISDK::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+
+Each instance of `AcmeAISDK::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+
+When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
 Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
 
-Currently, `AcmeAISDK::Client` instances are only fork-safe if there are no in-flight HTTP requests.
+## Sorbet
+
+This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.
+
+You can provide typesafe request parameters like so:
+
+```ruby
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+```
+
+Or, equivalently:
+
+```ruby
+# Hashes work, but are not typesafe:
+acme_ai_sdk.files.file_create(file: StringIO.new("REPLACE_ME"))
+
+# You can also splat a full Params class:
+params = AcmeAISDK::FileFileCreateParams.new(file: StringIO.new("REPLACE_ME"))
+acme_ai_sdk.files.file_create(**params)
+```
+
+### Enums
+
+Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
+
+```ruby
+# :upload_time
+puts(AcmeAISDK::FileFileslistParams::SortBy::UPLOAD_TIME)
+
+# Revealed type: `T.all(AcmeAISDK::FileFileslistParams::SortBy, Symbol)`
+T.reveal_type(AcmeAISDK::FileFileslistParams::SortBy::UPLOAD_TIME)
+```
+
+Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
+
+```ruby
+# Using the enum constants preserves the tagged type information:
+acme_ai_sdk.files.fileslist(
+  sort_by: AcmeAISDK::FileFileslistParams::SortBy::UPLOAD_TIME,
+  # …
+)
+
+# Literal values are also permissible:
+acme_ai_sdk.files.fileslist(
+  sort_by: :upload_time,
+  # …
+)
+```
 
 ## Versioning
 
@@ -147,4 +278,8 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 ## Requirements
 
-Ruby 3.0.0 or higher.
+Ruby 3.2.0 or higher.
+
+## Contributing
+
+See [the contributing documentation](https://github.com/ACME-AI-Co/ruby/tree/main/CONTRIBUTING.md).

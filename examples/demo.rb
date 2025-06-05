@@ -24,7 +24,7 @@ loop do
   found = files_response.files.select { |f| f.file_id == file_id }
 
   # Break when file is completed
-  if found && found.status == :completed
+  if found && found.status == AcmeAISDK::Models::FileFileslistResponse::File::Status::COMPLETED
     break
   end
 

@@ -1,0 +1,26 @@
+module AcmeAISDK
+  module Internal
+    module Type
+      class Unknown
+        extend AcmeAISDK::Internal::Type::Converter
+        extend AcmeAISDK::Internal::Util::SorbetRuntimeSupport
+
+        def self.===: (top other) -> bool
+
+        def self.==: (top other) -> bool
+
+        def self.coerce: (
+          top value,
+          state: AcmeAISDK::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def self.dump: (
+          top value,
+          state: AcmeAISDK::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def self.to_sorbet_type: -> top
+      end
+    end
+  end
+end

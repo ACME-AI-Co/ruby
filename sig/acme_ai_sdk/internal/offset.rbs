@@ -1,0 +1,13 @@
+module AcmeAISDK
+  module Internal
+    class Offset[Elem]
+      include AcmeAISDK::Internal::Type::BasePage[Elem]
+
+      attr_accessor files: ::Array[Elem]?
+
+      attr_accessor total: Integer
+
+      def inspect: -> String
+    end
+  end
+end
